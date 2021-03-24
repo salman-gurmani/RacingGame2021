@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Glass_1
+  m_Shader: {fileID: 4800000, guid: 54b4819397d055a49927ded5b27e71c6, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: 6913793cbd897d44c8319173e72715b9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Cube:
+        m_Texture: {fileID: 8900000, guid: ea5c73e6439c46c44896f3a090463513, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 418eb12934be11846a552732675a7002, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpAmt: 2.2857144
+    - _CandyPower: 0
+    - _CandyScale: 0
+    - _FresnelPower: 0.5
+    - _FresnelScale: 1.37
+    - _MetalicPower: 0
+    - _MetalicScale: 0
+    - _Parallax: 0.028035713
+    - _Reflect: 0.067
+    - _Shininess: 0.29
+    m_Colors:
+    - _AmbientColor: {r: 1, g: 1, b: 1, a: 1}
+    - _AmbientColor2: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.54611814, g: 0.6106167, b: 0.6691177, a: 0.63529414}
+    - _ReflectionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecColor: {r: 1, g: 1, b: 1, a: 1}

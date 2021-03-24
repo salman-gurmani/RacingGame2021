@@ -1,0 +1,450 @@
+﻿using System;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class HUDListner : MonoBehaviour {
+
+    public enum ControlType {
+
+        STEERING,
+        ARROWS
+    }
+    public ControlType type = ControlType.STEERING;
+
+    public Text timeTxt;
+    public Text speedTxt;
+    public Text playerSpeed;
+    public Text paneltiesTxt;
+    public Text paneltiesLimitTxt;
+    public Text levelTxt;
+
+    public GameObject uiParent;
+    public GameObject controls;
+    public GameObject steeringObj;
+    public GameObject arrowsObj;
+    public GameObject repairBtn;
+    public GameObject speedLimitIndicator;
+    public Toggle sportsBtn, cruiseBtn;
+    public Button accelBtn, respawn;
+
+    public static float accelVal = 0;
+    public static float brakeVal = 0;
+    public static float handBrakeVal = 0;
+    public static float turnVal = 0;
+
+    public static float speed = 0;
+    public RCC_CarControllerV3 carController;
+
+    private float tempAccelnVal;
+    private float tempTurnVal;
+    private float accelDirection = 1;
+    private float oldSpeed, newSpeedLimit;
+
+    public float accelSwitchSpeed = 0.2f;
+    public float steerSwitchSpeed = 0.2f;
+
+    private bool startTime = false;
+    private bool inCruiseMode = false;
+    float tempTime = 0;
+
+    private bool gotSpeedPanelty = false;
+    private bool isAccPressed = false;
+    float speedLimit = 0;
+    float speedPaneltyTime = 0;
+    float speedPaneltyResetTime = 5;
+
+    int paneltiesRecieved = 0;
+
+    public bool StartTime { get => startTime; set => startTime = value; }
+    public float TempTime { get => tempTime; set => tempTime = value; }
+    public int PaneltiesRecieved { get => paneltiesRecieved; set => paneltiesRecieved = value; }
+
+    void Awake() {
+        Toolbox.Set_HudListner(this.GetComponent<HUDListner>());
+    }
+
+    public void DisableHUD() {
+        
+        ResetControls();
+    }
+
+    public void OnDestroy()
+    {
+        ResetControls();
+    }
+
+    private void Start()
+    {
+        accelVal = 0;
+        brakeVal = 0;
+        handBrakeVal = 0;
+        turnVal = 0;
+
+        speedLimit = 500;
+        speedPaneltyTime = speedPaneltyResetTime;
+        TempTime = 300;
+
+        UpdateControls();
+        carController = Toolbox.GameplayScript.PlayerObject.GetComponent<RCC_CarControllerV3>();
+        //RCC.SetController(1);
+    }
+    private void Update()
+    {
+        accelVal = Mathf.MoveTowards(accelVal, tempAccelnVal, accelSwitchSpeed);
+        //if (cruiseBtn.isOn) OnPress_Forward();
+        switch (type)
+        {
+
+            case ControlType.STEERING:
+                turnVal = SimpleInput.GetAxis("Horizontal");
+
+                break;
+
+            case ControlType.ARROWS:
+                turnVal = Mathf.MoveTowards(turnVal, tempTurnVal, steerSwitchSpeed);
+
+                break;
+        }
+
+        HandleTime();
+        CheckSpeedLimit();
+
+        if (carController)
+            playerSpeed.text = Mathf.RoundToInt(carController.speed).ToString();
+
+        if (carController.speed >= 20f && !isAccPressed) cruiseBtn.interactable = true;
+        else cruiseBtn.interactable = false;
+
+#if UNITY_EDITOR
+        HandlingKeyboardControls();
+#endif
+
+    }
+
+    public void SetLvlTxt(string _str) {
+
+        levelTxt.text = _str;
+    }
+
+    private void HandlingKeyboardControls()
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            OnPress_Forward();
+        }
+        else if (Input.GetKeyUp(KeyCode.W))
+        {
+            OnRelease_Forward();
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            OnPress_Reverse();
+        }
+        else if (Input.GetKeyUp(KeyCode.S))
+        {
+            OnRelease_Reverse();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            OnPress_HandBrake();
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            OnRelease_Handbrake();
+        }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            OnPress_TurnLeft();
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            OnPress_TurnRight();
+        }
+        else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+        {
+            OnRelease_TurnRightOrLeft();
+        }
+    }
+
+    public void SetTotalPanelties(int _val) {
+
+        paneltiesLimitTxt.text = _val.ToString();
+    }
+
+    public void IncrementPanelty(int _val) {
+
+        paneltiesRecieved += _val;
+        paneltiesTxt.text = paneltiesRecieved.ToString();
+
+        if (paneltiesRecieved >= Toolbox.GameplayScript.levelsManager.CurLevelData.allowedPanelties) {
+
+            Toolbox.GameplayScript.LevelFailHandling();
+        }
+    }
+
+    private void HandleTime()
+    {
+        if (StartTime) {
+            TempTime -= Time.deltaTime;
+            timeTxt.transform.parent.gameObject.SetActive(true);
+            int roundedSec = Mathf.RoundToInt(TempTime);
+            int min = roundedSec / 60;
+            int seconds = roundedSec - (min * 60);
+
+            timeTxt.text = String.Format("{0:D2} : {1:D2}", min, seconds);
+
+            if (TempTime <= 0) {
+
+                StartTime = false;
+                Toolbox.GameplayScript.LevelFailHandling();
+            }
+        }
+    }
+
+    void CheckSpeedLimit() {
+
+        if (!gotSpeedPanelty) {
+
+            if (carController.speed > speedLimit + 1)
+            {
+                gotSpeedPanelty = true;
+                Toolbox.GameManager.Instantiate_PaneltyMsg(" SpeedLimit Exceeded");
+            }
+        }
+
+        if (gotSpeedPanelty) {
+            speedPaneltyTime -= Time.deltaTime;
+
+            if (speedPaneltyTime <= 0) {
+
+                gotSpeedPanelty = false;
+                speedPaneltyTime = speedPaneltyResetTime;
+            }
+        }
+
+        if (carController.speed < speedLimit - 3)
+        {
+            speedLimitIndicator.SetActive(false);
+        }
+        else {
+            speedLimitIndicator.SetActive(true);
+        }
+    }
+
+    public void SetNStartTime(float _val) {
+
+        TempTime = _val;
+        StartTime = true;
+    }
+
+    public void SetSpeedLimit(float _val)
+    {
+        speedTxt.transform.parent.gameObject.SetActive(true);
+        speedLimit = _val;
+        speedTxt.text = _val.ToString() + " MPH";
+    }
+
+    public void Press_Pause() {
+
+        Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.buttonPressYes);
+        Toolbox.GameManager.Instantiate_PauseMenu();
+    }
+
+    public void Press_Camera()
+    {
+        Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.buttonPressYes);
+
+        Toolbox.GameplayScript.cameraScript.ChangeCamera();
+
+    }
+    public void Press_ControlChange()
+    {
+        Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.buttonPressYes);
+
+        if (type == ControlType.ARROWS)
+        {
+            type = ControlType.STEERING;
+            Toolbox.DB.prefs.IsSteerControl = true;
+        }
+        else {
+            type = ControlType.ARROWS;
+            Toolbox.DB.prefs.IsSteerControl = false;
+
+        }
+
+        UpdateControls();
+    }
+
+    public void UpdateControls() {
+
+        if (Toolbox.DB.prefs.IsSteerControl)
+            type = ControlType.STEERING;
+        else
+            type = ControlType.ARROWS;
+
+        if (type == ControlType.ARROWS)
+        {
+            arrowsObj.SetActive(true);
+            steeringObj.SetActive(false);
+        }
+        else
+        {
+            arrowsObj.SetActive(false);
+            steeringObj.SetActive(true);
+        }
+    }
+
+    public void Press_Settings()
+    {
+        Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.buttonPressYes);
+
+        Toolbox.GameManager.Instantiate_SettingsMenu();
+    }
+
+    public void OnPress_Horn() {
+
+        Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.horn);
+    }
+
+    public void OnPress_ToggleGear() {
+
+        accelDirection *= -1;
+
+        //if (accelDirection > 0)
+        //    accelBtn.sprite = accelImages[0];
+        //else
+        //    accelBtn.sprite = accelImages[1];
+    }
+
+    public void OnPress_Forward()
+    {
+        StartTime = true;
+        tempAccelnVal = accelDirection;
+    }
+    //To disable Cruise Control on first click
+    public void onClick_Forward()
+    {
+        isAccPressed = true;
+        if (inCruiseMode) cruiseBtn.isOn = false;
+    }
+    public void OnRelease_Forward()
+    {
+        isAccPressed = false;
+        tempAccelnVal = 0;
+    }
+    public void OnPress_Reverse()
+    {
+        StartTime = true;
+        brakeVal = 1;
+        if (inCruiseMode) cruiseBtn.isOn = false;
+
+    }
+    public void OnRelease_Reverse()
+    {
+        brakeVal = 0;
+    }
+    public void OnPress_TurnRight()
+    {
+        tempTurnVal = 1;
+    }
+    public void OnPress_TurnLeft()
+    {
+        tempTurnVal = -1;
+    }
+    public void OnRelease_TurnRightOrLeft()
+    {
+        tempTurnVal = 0;
+    }
+    public void OnPress_HandBrake()
+    {
+        handBrakeVal = 1;
+        if (inCruiseMode) cruiseBtn.isOn = false;
+    }
+    public void OnRelease_Handbrake()
+    {
+        handBrakeVal = 0;
+    }
+    public void OnPress_Reset() {
+
+        carController.ResetNew();
+        respawn.interactable = false;
+        Invoke("EnableRespawnbtn", 3f);
+    }
+
+    public void EnableRespawnbtn()
+    {
+        respawn.interactable = true;
+    }
+
+    public void Onpress_Repair()
+    {
+        RCC_Customization.Repair(carController);
+        Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.Repair);
+    }
+
+    public void OnPress_Turbo()
+    {
+        RCC_Customization.SetTurbo(carController, sportsBtn.isOn);
+    }
+
+    public void OnPress_Cruise()
+    {
+        if (cruiseBtn.isOn)
+        {
+            inCruiseMode = true;
+            OnPress_Forward();
+            oldSpeed = carController.maxspeed;
+            newSpeedLimit = carController.speed;
+            RCC_Customization.SetMaximumSpeed(carController, newSpeedLimit);
+        }
+        else
+        {
+            Disable_CruiseControl();
+            Debug.Log("Disable by CruiseBtn_itself");
+        }
+
+    }
+
+    private void Disable_CruiseControl()
+    {
+        RCC_Customization.SetMaximumSpeed(carController, oldSpeed);
+        tempAccelnVal = 0;
+        inCruiseMode = false;
+    }
+
+    public void ResetControls() {
+
+        startTime = false;
+        accelVal = 0;
+        brakeVal = 0;
+        handBrakeVal = 0;
+        turnVal = 0;
+
+        uiParent.SetActive(false);
+    }
+
+    #region Garbage
+
+    /*public void OnPress_Cruise()
+    {
+        if (cruiseBtn.isOn)
+        {
+            
+            if (!Toolbox.GameplayScript.isSE_implemented)
+            {
+                oldSpeed = carController.maxspeed;
+                RCC_Customization.SetMaximumSpeed(carController, Toolbox.GameplayScript.levelsManager.CurLevelData.passenger[0].speedLimit);
+            }
+            else
+            {
+                RCC_Customization.SetMaximumSpeed(carController, Toolbox.GameplayScript.levelsManager.CurLevelData.passenger[0].speedLimit_SE);
+            }
+        }
+        else RCC_Customization.SetMaximumSpeed(carController, oldSpeed);
+
+    }*/
+    #endregion
+}

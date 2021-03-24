@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &2974451164243856828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5021876337366096893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6936c60d51a378b4d8088ba241cce80c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 0.25490198, b: 0.2, a: 1}
+  x: 1
+  y: 105.16
+  z: 1
+  alwaysVisible: 1
+--- !u!1001 &2696931518606850179
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6979494232981037936, guid: 1fbc46c2a42918d4c8bba8b2f5f4325a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 59.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979494232981037936, guid: 1fbc46c2a42918d4c8bba8b2f5f4325a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.35707003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979494232981037936, guid: 1fbc46c2a42918d4c8bba8b2f5f4325a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 126.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979494232981037936, guid: 1fbc46c2a42918d4c8bba8b2f5f4325a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979494232981037936, guid: 1fbc46c2a42918d4c8bba8b2f5f4325a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979494232981037936, guid: 1fbc46c2a42918d4c8bba8b2f5f4325a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979494232981037936, guid: 1fbc46c2a42918d4c8bba8b2f5f4325a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979494232981037936, guid: 1fbc46c2a42918d4c8bba8b2f5f4325a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979494232981037936, guid: 1fbc46c2a42918d4c8bba8b2f5f4325a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979494232981037936, guid: 1fbc46c2a42918d4c8bba8b2f5f4325a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979494232981037936, guid: 1fbc46c2a42918d4c8bba8b2f5f4325a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979494232981037937, guid: 1fbc46c2a42918d4c8bba8b2f5f4325a,
+        type: 3}
+      propertyPath: getPassengerFromLevelData
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979494232981037950, guid: 1fbc46c2a42918d4c8bba8b2f5f4325a,
+        type: 3}
+      propertyPath: m_Name
+      value: Passenger Pickup Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1fbc46c2a42918d4c8bba8b2f5f4325a, type: 3}
+--- !u!1 &5021876337366096893 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6979494232981037950, guid: 1fbc46c2a42918d4c8bba8b2f5f4325a,
+    type: 3}
+  m_PrefabInstance: {fileID: 2696931518606850179}
+  m_PrefabAsset: {fileID: 0}
