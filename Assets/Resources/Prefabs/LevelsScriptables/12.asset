@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07d9492b67302df428665f63dbcea5e9, type: 3}
+  m_Name: 12
+  m_EditorClassIdentifier: 
+  allowedPanelties: 10
+  isRaining: 1
+  passenger:
+  - name: Arshan
+    type: 0
+    prefab: {fileID: 653170113978565903, guid: dc2aa336cc2e26d4aa604e54087410e6, type: 3}
+    destination: Factory
+    description: 'Arshan is chemical engineer. His coworkers has made some mess at
+      the factory. Reach the destination before its too late. '
+    speedLimit: 100
+    timeLimit: 180
+    hasSpecialEvent: 1
+    startRaining: 0
+    description_SE: She needs to go for an urgent visit at a site. Quick, she can't
+      be late
+    destination_SE: Secret Site
+    speedLimit_SE: 90
+    timeLimit_SE: 100

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07d9492b67302df428665f63dbcea5e9, type: 3}
+  m_Name: 17
+  m_EditorClassIdentifier: 
+  allowedPanelties: 10
+  isRaining: 1
+  passenger:
+  - name: Rumero
+    type: 0
+    prefab: {fileID: 8399931493381040020, guid: 3e0103d6553a83742bcc9a22295fd905,
+      type: 3}
+    destination: Repair Shop
+    description: Rumero is a car mechanic and an angry car owner is waiting for him
+      at repair shop. He is hurry so speed up.
+    speedLimit: 100
+    timeLimit: 130
+    hasSpecialEvent: 1
+    startRaining: 0
+    description_SE: You are too late. Customer got angry and got in a fight with
+      your colleague. Go visit him in hospital.
+    destination_SE: Hospital
+    speedLimit_SE: 80
+    timeLimit_SE: 45
