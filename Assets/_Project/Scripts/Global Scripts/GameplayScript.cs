@@ -66,24 +66,24 @@ public class GameplayScript : MonoBehaviour {
         Toolbox.GameManager.Analytics_LevelStart();
 
         AdsManager.instance.RequestAd(AdsManager.AdType.INTERSTITIAL);
-        map.ShowAsNavigator();
+        //map.ShowAsNavigator();
 
         Toolbox.Soundmanager.PlayBGSound(Toolbox.Soundmanager.gameBG);
         StartCoroutine(GameplayTime());
         levelCompleted = false;
 
-        if (levelsManager.CurLevelData.isNight)
-        {
-            RenderSettings.skybox = NightSkybox;
-            DayLight.SetActive(false);
-            NightLight.SetActive(true);
-        }
-        else
-        {
-            RenderSettings.skybox = DaySkybox;
-            NightLight.SetActive(false);
-            DayLight.SetActive(true);
-        }
+        //if (levelsManager.CurLevelData.isNight)
+        //{
+        //    RenderSettings.skybox = NightSkybox;
+        //    DayLight.SetActive(false);
+        //    NightLight.SetActive(true);
+        //}
+        //else
+        //{
+        //    RenderSettings.skybox = DaySkybox;
+        //    NightLight.SetActive(false);
+        //    DayLight.SetActive(true);
+        //}
     }
 
     private void Update()

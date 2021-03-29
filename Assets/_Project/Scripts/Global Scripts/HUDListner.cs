@@ -85,7 +85,10 @@ public class HUDListner : MonoBehaviour {
         TempTime = 300;
 
         UpdateControls();
-        carController = Toolbox.GameplayScript.PlayerObject.GetComponent<RCC_CarControllerV3>();
+
+        if(Toolbox.GameplayScript.PlayerObject)
+            carController = Toolbox.GameplayScript.PlayerObject.GetComponent<RCC_CarControllerV3>();
+        
         //RCC.SetController(1);
     }
     private void Update()

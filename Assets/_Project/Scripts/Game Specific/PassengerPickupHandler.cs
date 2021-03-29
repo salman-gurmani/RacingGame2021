@@ -33,7 +33,7 @@ public class PassengerPickupHandler : MonoBehaviour
         if(Toolbox.GameplayScript.carArrowScript)
             Toolbox.GameplayScript.carArrowScript.SetTarget(this.transform);
 
-        Toolbox.GameplayScript.mapNavigator.SetTargetPoint(this.gameObject.transform.position);
+        //Toolbox.GameplayScript.mapNavigator.SetTargetPoint(this.gameObject.transform.position);
 
         InitPassenger();
     }
