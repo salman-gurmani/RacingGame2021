@@ -27,34 +27,34 @@ public class ShopListner : MonoBehaviour
         AdsManager.instance.SetNShowRewardedAd(AdsManager.RewardType.FREECOINS, 100);
     }
 
-    public void PurchaseProduct(int _val)
-    {
+    //public void PurchaseProduct(int _val)
+    //{
 
-        switch (_val) {
+    //    switch (_val) {
 
 
-            case 0:
+    //        case 0:
 
-                Toolbox.InAppHandler.BuyProductID(Constants.coins_1);
+    //            Toolbox.InAppHandler.BuyProductID(Constants.coins_1);
 
-                break;
+    //            break;
 
-            case 1:
+    //        case 1:
 
-                Toolbox.InAppHandler.BuyProductID(Constants.coins_2);
-                break;
+    //            Toolbox.InAppHandler.BuyProductID(Constants.coins_2);
+    //            break;
 
-            case 2:
+    //        case 2:
 
-                Toolbox.InAppHandler.BuyProductID(Constants.unlockPlayerObj);
-                break;
+    //            Toolbox.InAppHandler.BuyProductID(Constants.unlockPlayerObj);
+    //            break;
 
-            case 3:
+    //        case 3:
 
-                Toolbox.InAppHandler.BuyProductID(Constants.unlockLevels);
-                break;
+    //            Toolbox.InAppHandler.BuyProductID(Constants.unlockLevels);
+    //            break;
 
-        }
+    //    }
 
-    }
+    //}
 }

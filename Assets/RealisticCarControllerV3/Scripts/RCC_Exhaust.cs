@@ -1,48 +1,17 @@
-﻿//----------------------------------------------
-//            Realistic Car Controller
-//
-// Copyright © 2014 - 2020 BoneCracker Games
-// http://www.bonecrackergames.com
-// Buğra Özdoğanlar
-//
-//----------------------------------------------
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
-/// <summary>
-/// Exhaust based on Particle System. Based on vehicle controller's throttle situation.
-/// </summary>
-[AddComponentMenu("BoneCracker Games/Realistic Car Controller/Misc/RCC Exhaust")]
-public class RCC_Exhaust : RCC_Core {
-
-	// Getting an Instance of Main Shared RCC Settings.
-	#region RCC Settings Instance
-
-	private RCC_Settings RCCSettingsInstance;
-	private RCC_Settings RCCSettings {
-		get {
-			if (RCCSettingsInstance == null) {
-				RCCSettingsInstance = RCC_Settings.Instance;
-				return RCCSettingsInstance;
-			}
-			return RCCSettingsInstance;
-		}
-	}
-
-	#endregion
+[AddComponentMenu("BoneCracker Games/Realistic Car Controller/Misc/Exhaust")]
+public class RCC_Exhaust : MonoBehaviour {
 
 	private RCC_CarControllerV3 carController;
 	private ParticleSystem particle;
 	private ParticleSystem.EmissionModule emission;
+	private ParticleSystem.MinMaxCurve emissionRate;
 	public ParticleSystem flame;
 	private ParticleSystem.EmissionModule subEmission;
-
+	private ParticleSystem.MinMaxCurve subEmissionRate;
 	private Light flameLight;
-	private LensFlare lensFlare;
-
-	public float flareBrightness = 1f;
-	private float finalFlareBrightness;
 
 	public float flameTime = 0f;
 	private AudioSource flameSource;
@@ -50,46 +19,20 @@ public class RCC_Exhaust : RCC_Core {
 	public Color flameColor = Color.red;
 	public Color boostFlameColor = Color.blue;
 
-	public bool previewFlames = false;
-
-	public float minEmission = 5f;
-	public float maxEmission = 50f;
-
-	public float minSize = 2.5f;
-	public float maxSize = 5f;
-
-	public float minSpeed = .5f;
-	public float maxSpeed = 5f;
-
 	void Start () {
-
-		if (RCCSettings.dontUseAnyParticleEffects) {
-			Destroy (gameObject);
-			return;
-		}
 
 		carController = GetComponentInParent<RCC_CarControllerV3>();
 		particle = GetComponent<ParticleSystem>();
 		emission = particle.emission;
 
 		if(flame){
-
+			
 			subEmission = flame.emission;
 			flameLight = flame.GetComponentInChildren<Light>();
-			flameSource = NewAudioSource(RCCSettings.audioMixer, gameObject, "Exhaust Flame AudioSource", 10f, 25f, 1f, RCCSettings.exhaustFlameClips[0], false, false, false);
-			flameLight.renderMode = RCCSettings.useLightsAsVertexLights ? LightRenderMode.ForceVertex : LightRenderMode.ForcePixel;
+			flameSource = RCC_CreateAudioSource.NewAudioSource(gameObject, "Exhaust Flame AudioSource", 10f, 50f, 10f, RCC_Settings.Instance.exhaustFlameClips[0], false, false, false);
 
 		}
-
-		lensFlare = GetComponentInChildren<LensFlare> ();
-
-		if (flameLight) {
-
-			if (flameLight.flare != null)
-				flameLight.flare = null;
-
-		}
-
+	
 	}
 
 	void Update () {
@@ -97,96 +40,62 @@ public class RCC_Exhaust : RCC_Core {
 		if(!carController || !particle)
 			return;
 
-		Smoke ();
-		Flame ();
-
-		if (lensFlare)
-			LensFlare ();
-
-	}
-
-	void Smoke(){
-
-		if (carController.engineRunning) {
-
-			var main = particle.main;
-
-			if (carController.speed < 50) {
-
-				if (!emission.enabled)
-					emission.enabled = true;
-
-				if (carController.throttleInput > .35f) {
-
-					emission.rateOverTime = maxEmission;
-					main.startSpeed = maxSpeed;
-					main.startSize = maxSize;
-
-				} else {
-					
-					emission.rateOverTime = minEmission;
-					main.startSpeed = minSpeed;
-					main.startSize = minSize;
-
-				}
-
-			} else {
-
-				if (emission.enabled)
-					emission.enabled = false;
-
-			}
-
-		} else {
-
-			if (emission.enabled)
-				emission.enabled = false;
-
-		}
-
-	}
-
-	void Flame(){
-
 		if(carController.engineRunning){
 
-			var main = flame.main;
+			if(carController.speed < 150){
+				if(!emission.enabled)
+					emission.enabled = true;
+			if(carController._gasInput > .05f){
+				emissionRate.constantMax = 50f;
+				emission.rate = emissionRate;
+				particle.startSpeed = 5f;
+				particle.startSize = 8;
+			}else{
+				emissionRate.constantMax = 5;
+				emission.rate = emissionRate;
+				particle.startSpeed = .5f;
+				particle.startSize = 4;
+				}
+			}else{
+				if(emission.enabled)
+					emission.enabled = false;
+			}
 
-			if(carController.throttleInput >= .25f)
+			if(carController._gasInput >= .25f)
 				flameTime = 0f;
 
-			if(((carController.useExhaustFlame && carController.engineRPM >= 5000 && carController.engineRPM <= 5500 && carController.throttleInput <= .25f && flameTime <= .5f) || carController.boostInput >= .75f) || previewFlames){
-
+			if((carController.useExhaustFlame && carController.engineRPM >= 5000 && carController.engineRPM <= 5500 && carController._gasInput <= .25f && flameTime <= .5f) || carController._boostInput >= 1.5f){
+				
 				flameTime += Time.deltaTime;
 				subEmission.enabled = true;
 
 				if(flameLight)
 					flameLight.intensity = flameSource.pitch * 3f * Random.Range(.25f, 1f) ;
-
-				if(carController.boostInput >= .75f && flame){
-					main.startColor = boostFlameColor;
-					flameLight.color = main.startColor.color;
+				
+				if(carController._boostInput >= 1.5f && flame){
+					flame.startColor = boostFlameColor;
+					flameLight.color = flame.startColor;
 				}else{
-					main.startColor = flameColor;
-					flameLight.color = main.startColor.color;
+					flame.startColor = flameColor;
+					flameLight.color = flame.startColor;
 				}
 
 				if(!flameSource.isPlaying){
-					flameSource.clip = RCCSettings.exhaustFlameClips[Random.Range(0, RCCSettings.exhaustFlameClips.Length)];
+					flameSource.clip = RCC_Settings.Instance.exhaustFlameClips[Random.Range(0, RCC_Settings.Instance.exhaustFlameClips.Length)];
 					flameSource.Play();
 				}
 
 			}else{
-
+				
 				subEmission.enabled = false;
 
 				if(flameLight)
 					flameLight.intensity = 0f;
 				if(flameSource.isPlaying)
 					flameSource.Stop();
-
+				
 			}
-
+				
 		}else{
 
 			if(emission.enabled)
@@ -198,24 +107,8 @@ public class RCC_Exhaust : RCC_Core {
 				flameLight.intensity = 0f;
 			if(flameSource.isPlaying)
 				flameSource.Stop();
-
+			
 		}
-
-	}
-
-	private void LensFlare(){
-
-		if (!RCC_SceneManager.Instance.activePlayerCamera)
-			return;
-
-		float distanceTocam = Vector3.Distance(transform.position, RCC_SceneManager.Instance.activePlayerCamera.thisCam.transform.position);
-		float angle = Vector3.Angle(transform.forward,  RCC_SceneManager.Instance.activePlayerCamera.thisCam.transform.position - transform.position);
-
-		if(angle != 0)
-			finalFlareBrightness = flareBrightness * (4 / distanceTocam) * ((100f - (1.11f * angle)) / 100f) / 2f;
-
-		lensFlare.brightness = finalFlareBrightness * flameLight.intensity;
-		lensFlare.color = flameLight.color;
 
 	}
 

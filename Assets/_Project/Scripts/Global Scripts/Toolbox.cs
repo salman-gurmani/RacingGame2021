@@ -8,7 +8,7 @@ public class Toolbox : MonoBehaviour {
     private static GameManager gameManager;
     private static SoundManager soundManager;
     private static DB db;
-    private static InAppHandler inAppHandler;
+    //private static InAppHandler inAppHandler;
 
     private static MenuHandler menuHandler;
     private static GameplayScript gameplayScript;
@@ -27,10 +27,10 @@ public class Toolbox : MonoBehaviour {
         get { return db; }
     }
 
-    public static InAppHandler InAppHandler
-    {
-        get { return inAppHandler; }
-    }
+    //public static InAppHandler InAppHandler
+    //{
+    //    get { return inAppHandler; }
+    //}
     public static MenuHandler MenuHandler
     {
         get { return menuHandler; }
@@ -49,7 +49,7 @@ public class Toolbox : MonoBehaviour {
         gameManager = GetComponent<GameManager>();
         soundManager = GetComponent<SoundManager>();
         db = GetComponent<DB>();
-        inAppHandler = GetComponent<InAppHandler>();
+       // inAppHandler = GetComponent<InAppHandler>();
 
         DontDestroyOnLoad(gameObject);
     }

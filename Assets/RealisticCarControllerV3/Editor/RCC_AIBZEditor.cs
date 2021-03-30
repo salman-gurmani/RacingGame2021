@@ -1,9 +1,8 @@
 ﻿//----------------------------------------------
 //            Realistic Car Controller
 //
-// Copyright © 2014 - 2019 BoneCracker Games
+// Copyright © 2015 BoneCracker Games
 // http://www.bonecrackergames.com
-// Buğra Özdoğanlar
 //
 //----------------------------------------------
 
@@ -56,7 +55,6 @@ public class RCC_AIBZEditor : Editor {
 					GameObject wp = new GameObject("Brake Zone " + bzScript.brakeZones.Count.ToString());
 
 					wp.transform.position = newTilePosition;
-					wp.transform.gameObject.layer = LayerMask.NameToLayer ("Ignore Raycast");
 					wp.AddComponent<RCC_AIBrakeZone>();
 					wp.AddComponent<BoxCollider>();
 					wp.GetComponent<BoxCollider>().isTrigger = true;

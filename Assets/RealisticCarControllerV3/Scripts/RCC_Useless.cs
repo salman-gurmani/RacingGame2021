@@ -1,20 +1,11 @@
-﻿//----------------------------------------------
-//            Realistic Car Controller
-//
-// Copyright © 2014 - 2020 BoneCracker Games
-// http://www.bonecrackergames.com
-// Buğra Özdoğanlar
-//
-//----------------------------------------------
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
 public class RCC_Useless : MonoBehaviour {
 
 	public Useless useless;
-	public enum Useless{MainController, MobileControllers, Behavior, Graphics}
+	public enum Useless{Controller, Behavior}
 
 	// Use this for initialization
 	void Awake () {
@@ -23,45 +14,37 @@ public class RCC_Useless : MonoBehaviour {
 
 		if(useless == Useless.Behavior){
 
-			type = RCC_Settings.Instance.behaviorSelectedIndex;
+			RCC_Settings.BehaviorType behavior = RCC_Settings.Instance.behaviorType;
 
-		}if(useless == Useless.MainController){
-
-			type = RCC_Settings.Instance.controllerSelectedIndex;
-
-		}if(useless == Useless.MobileControllers){
-
-			switch (RCC_Settings.Instance.mobileController) {
-
-			case RCC_Settings.MobileController.TouchScreen:
-
+			switch(behavior){
+			case(RCC_Settings.BehaviorType.Simulator):
 				type = 0;
-
 				break;
-
-			case RCC_Settings.MobileController.Gyro:
-
+			case(RCC_Settings.BehaviorType.Racing):
 				type = 1;
-
 				break;
-
-			case RCC_Settings.MobileController.SteeringWheel:
-
+			case(RCC_Settings.BehaviorType.SemiArcade):
 				type = 2;
-
 				break;
-
-			case RCC_Settings.MobileController.Joystick:
-
+			case(RCC_Settings.BehaviorType.Drift):
 				type = 3;
-
 				break;
-
+			case(RCC_Settings.BehaviorType.Fun):
+				type = 4;
+				break;
+			case(RCC_Settings.BehaviorType.Custom):
+				type = 5;
+				break;
 			}
 
-		}if(useless == Useless.Graphics){
+		}else{
 
-			type = QualitySettings.GetQualityLevel ();
+			if(!RCC_Settings.Instance.useAccelerometerForSteering && !RCC_Settings.Instance.useSteeringWheelForSteering)
+				type = 0;
+			if(RCC_Settings.Instance.useAccelerometerForSteering)
+				type = 1;
+			if(RCC_Settings.Instance.useSteeringWheelForSteering)
+				type = 2;
 
 		}
 

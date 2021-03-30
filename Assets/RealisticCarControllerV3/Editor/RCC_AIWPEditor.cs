@@ -1,9 +1,8 @@
 ﻿//----------------------------------------------
 //            Realistic Car Controller
 //
-// Copyright © 2014 - 2019 BoneCracker Games
+// Copyright © 2015 BoneCracker Games
 // http://www.bonecrackergames.com
-// Buğra Özdoğanlar
 //
 //----------------------------------------------
 
@@ -20,28 +19,19 @@ public class RCC_AIWPEditor : Editor {
 	public override void  OnInspectorGUI () {
 		
 		serializedObject.Update();
-
+		
 		wpScript = (RCC_AIWaypointsContainer)target;
 
-		EditorGUILayout.HelpBox("Create Waypoints By Shift + Left Mouse Button On Your Road", MessageType.Info);
+		if(GUILayout.Button("Delete Waypoints")){
+			foreach(Transform t in wpScript.waypoints){
+				DestroyImmediate(t.gameObject);
+			}
+			wpScript.waypoints.Clear();
+		}
 
 		EditorGUILayout.PropertyField(serializedObject.FindProperty("waypoints"), new GUIContent("Waypoints", "Waypoints"), true);
 
-		foreach (Transform item in wpScript.transform) {
-
-			if (item.gameObject.GetComponent<RCC_Waypoint> () == null)
-				item.gameObject.AddComponent<RCC_Waypoint> ();
-			
-		}
-
-		if (GUILayout.Button ("Delete Waypoints")) {
-			
-			foreach (RCC_Waypoint t in wpScript.waypoints) {
-				DestroyImmediate (t.gameObject);
-			}
-			wpScript.waypoints.Clear ();
-
-		}
+		EditorGUILayout.HelpBox("Create Waypoints By Shift + Left Mouse Button On Your Road", MessageType.Info);
 
 		serializedObject.ApplyModifiedProperties();
 		
@@ -63,7 +53,7 @@ public class RCC_AIWPEditor : Editor {
 					Vector3 newTilePosition = hit.point;
 
 					GameObject wp = new GameObject("Waypoint " + wpScript.waypoints.Count.ToString());
-					wp.AddComponent<RCC_Waypoint> ();
+
 					wp.transform.position = newTilePosition;
 					wp.transform.SetParent(wpScript.transform);
 
@@ -84,11 +74,11 @@ public class RCC_AIWPEditor : Editor {
 	
 	public void GetWaypoints(){
 		
-		wpScript.waypoints = new List<RCC_Waypoint>();
+		wpScript.waypoints = new List<Transform>();
 		
-		RCC_Waypoint[] allTransforms = wpScript.transform.GetComponentsInChildren<RCC_Waypoint>();
+		Transform[] allTransforms = wpScript.transform.GetComponentsInChildren<Transform>();
 		
-		foreach(RCC_Waypoint t in allTransforms){
+		foreach(Transform t in allTransforms){
 			
 			if(t != wpScript.transform)
 				wpScript.waypoints.Add(t);

@@ -372,7 +372,7 @@ public class HUDListner : MonoBehaviour {
     }
     public void OnPress_Reset() {
 
-        carController.ResetNew();
+        //carController.ResetNew();
         respawn.interactable = false;
         Invoke("EnableRespawnbtn", 3f);
     }
@@ -384,13 +384,13 @@ public class HUDListner : MonoBehaviour {
 
     public void Onpress_Repair()
     {
-        RCC_Customization.Repair(carController);
+      //  RCC_Customization.Repair(carController);
         Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.Repair);
     }
 
     public void OnPress_Turbo()
     {
-        RCC_Customization.SetTurbo(carController, sportsBtn.isOn);
+      //  RCC_Customization.SetTurbo(carController, sportsBtn.isOn);
     }
 
     public void OnPress_Cruise()
@@ -401,7 +401,7 @@ public class HUDListner : MonoBehaviour {
             OnPress_Forward();
             oldSpeed = carController.maxspeed;
             newSpeedLimit = carController.speed;
-            RCC_Customization.SetMaximumSpeed(carController, newSpeedLimit);
+           // RCC_Customization.SetMaximumSpeed(carController, newSpeedLimit);
         }
         else
         {
@@ -413,7 +413,7 @@ public class HUDListner : MonoBehaviour {
 
     private void Disable_CruiseControl()
     {
-        RCC_Customization.SetMaximumSpeed(carController, oldSpeed);
+        //RCC_Customization.SetMaximumSpeed(carController, oldSpeed);
         tempAccelnVal = 0;
         inCruiseMode = false;
     }
