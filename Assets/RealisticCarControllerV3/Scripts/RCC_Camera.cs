@@ -268,7 +268,10 @@ public class RCC_Camera : MonoBehaviour{
 			targetPosition = new Vector3(targetPosition.x, currentHeight, targetPosition.z);
 		}
 
-		transform.position = SmoothApproach(pastFollowerPosition, pastTargetPosition, targetPosition, Mathf.Clamp(.1f, speed, Mathf.Infinity));
+
+		if(Time.timeScale != 0)
+			transform.position = SmoothApproach(pastFollowerPosition, pastTargetPosition, targetPosition, Mathf.Clamp(.1f, speed, Mathf.Infinity));
+
 
 		pastFollowerPosition = transform.position;
 		pastTargetPosition = targetPosition;

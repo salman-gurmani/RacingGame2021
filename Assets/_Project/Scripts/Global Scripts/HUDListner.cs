@@ -23,7 +23,6 @@ public class HUDListner : MonoBehaviour {
     public GameObject steeringObj;
     public GameObject arrowsObj;
     public GameObject repairBtn;
-    public GameObject speedLimitIndicator;
     public Toggle sportsBtn, cruiseBtn;
     public Button accelBtn, respawn;
 
@@ -44,14 +43,11 @@ public class HUDListner : MonoBehaviour {
     public float steerSwitchSpeed = 0.2f;
 
     private bool startTime = false;
-    private bool inCruiseMode = false;
+
     float tempTime = 0;
 
-    private bool gotSpeedPanelty = false;
     private bool isAccPressed = false;
-    float speedLimit = 0;
-    float speedPaneltyTime = 0;
-    float speedPaneltyResetTime = 5;
+
 
     int paneltiesRecieved = 0;
 
@@ -80,10 +76,6 @@ public class HUDListner : MonoBehaviour {
         handBrakeVal = 0;
         turnVal = 0;
 
-        speedLimit = 500;
-        speedPaneltyTime = speedPaneltyResetTime;
-        TempTime = 300;
-
         UpdateControls();
 
         if(Toolbox.GameplayScript.PlayerObject)
@@ -110,7 +102,6 @@ public class HUDListner : MonoBehaviour {
         }
 
         HandleTime();
-        CheckSpeedLimit();
 
         if (carController)
             playerSpeed.text = Mathf.RoundToInt(carController.speed).ToString();
@@ -199,55 +190,19 @@ public class HUDListner : MonoBehaviour {
 
             timeTxt.text = String.Format("{0:D2} : {1:D2}", min, seconds);
 
-            if (TempTime <= 0) {
+            //if (TempTime <= 0) {
 
-                StartTime = false;
-                Toolbox.GameplayScript.LevelFailHandling();
-            }
+            //    StartTime = false;
+            //    //Toolbox.GameplayScript.LevelFailHandling();
+            //}
         }
     }
 
-    void CheckSpeedLimit() {
-
-        if (!gotSpeedPanelty) {
-
-            if (carController.speed > speedLimit + 1)
-            {
-                gotSpeedPanelty = true;
-                Toolbox.GameManager.Instantiate_PaneltyMsg(" SpeedLimit Exceeded");
-            }
-        }
-
-        if (gotSpeedPanelty) {
-            speedPaneltyTime -= Time.deltaTime;
-
-            if (speedPaneltyTime <= 0) {
-
-                gotSpeedPanelty = false;
-                speedPaneltyTime = speedPaneltyResetTime;
-            }
-        }
-
-        if (carController.speed < speedLimit - 3)
-        {
-            speedLimitIndicator.SetActive(false);
-        }
-        else {
-            speedLimitIndicator.SetActive(true);
-        }
-    }
 
     public void SetNStartTime(float _val) {
 
         TempTime = _val;
         StartTime = true;
-    }
-
-    public void SetSpeedLimit(float _val)
-    {
-        speedTxt.transform.parent.gameObject.SetActive(true);
-        speedLimit = _val;
-        speedTxt.text = _val.ToString() + " MPH";
     }
 
     public void Press_Pause() {
@@ -331,7 +286,6 @@ public class HUDListner : MonoBehaviour {
     public void onClick_Forward()
     {
         isAccPressed = true;
-        if (inCruiseMode) cruiseBtn.isOn = false;
     }
     public void OnRelease_Forward()
     {
@@ -342,7 +296,6 @@ public class HUDListner : MonoBehaviour {
     {
         StartTime = true;
         brakeVal = 1;
-        if (inCruiseMode) cruiseBtn.isOn = false;
 
     }
     public void OnRelease_Reverse()
@@ -364,7 +317,6 @@ public class HUDListner : MonoBehaviour {
     public void OnPress_HandBrake()
     {
         handBrakeVal = 1;
-        if (inCruiseMode) cruiseBtn.isOn = false;
     }
     public void OnRelease_Handbrake()
     {
@@ -397,7 +349,6 @@ public class HUDListner : MonoBehaviour {
     {
         if (cruiseBtn.isOn)
         {
-            inCruiseMode = true;
             OnPress_Forward();
             oldSpeed = carController.maxspeed;
             newSpeedLimit = carController.speed;
@@ -415,7 +366,6 @@ public class HUDListner : MonoBehaviour {
     {
         //RCC_Customization.SetMaximumSpeed(carController, oldSpeed);
         tempAccelnVal = 0;
-        inCruiseMode = false;
     }
 
     public void ResetControls() {
@@ -428,26 +378,4 @@ public class HUDListner : MonoBehaviour {
 
         uiParent.SetActive(false);
     }
-
-    #region Garbage
-
-    /*public void OnPress_Cruise()
-    {
-        if (cruiseBtn.isOn)
-        {
-            
-            if (!Toolbox.GameplayScript.isSE_implemented)
-            {
-                oldSpeed = carController.maxspeed;
-                RCC_Customization.SetMaximumSpeed(carController, Toolbox.GameplayScript.levelsManager.CurLevelData.passenger[0].speedLimit);
-            }
-            else
-            {
-                RCC_Customization.SetMaximumSpeed(carController, Toolbox.GameplayScript.levelsManager.CurLevelData.passenger[0].speedLimit_SE);
-            }
-        }
-        else RCC_Customization.SetMaximumSpeed(carController, oldSpeed);
-
-    }*/
-    #endregion
 }

@@ -433,7 +433,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e027cf5d099f8a41ab78532b4e84490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 0
   pressing: 0
 --- !u!1 &518532784596099131
 GameObject:
@@ -1058,7 +1057,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buttonType: 5
-  gearDirection: 0
 --- !u!1 &1041204377055321181
 GameObject:
   m_ObjectHideFlags: 0
@@ -1667,100 +1665,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &1707827498578597097
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3469170636570668982}
-  - component: {fileID: 5682804878769994051}
-  - component: {fileID: 4143508149496239404}
-  - component: {fileID: 5464847792185477380}
-  m_Layer: 5
-  m_Name: Speed Limit Indicator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &3469170636570668982
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1707827498578597097}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7890168783943788544}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 241.08936, y: 241.88757}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &5682804878769994051
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1707827498578597097}
-  m_CullTransparentMesh: 0
---- !u!114 &4143508149496239404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1707827498578597097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ecabc65bdb73ef746b3eb9d3ef4f61b9, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!95 &5464847792185477380
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1707827498578597097}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0c05a6e8b9866ab43b8f5f403be45528, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1732452180250018953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1971,7 +1875,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buttonType: 14
-  gearDirection: 0
 --- !u!1 &1788106217053697603
 GameObject:
   m_ObjectHideFlags: 0
@@ -2105,7 +2008,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e027cf5d099f8a41ab78532b4e84490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 0
   pressing: 0
 --- !u!114 &315583052795247477
 MonoBehaviour:
@@ -2522,7 +2424,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e027cf5d099f8a41ab78532b4e84490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 0
   pressing: 0
 --- !u!114 &1382555626424049749
 MonoBehaviour:
@@ -2901,7 +2802,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e027cf5d099f8a41ab78532b4e84490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 0
   pressing: 0
 --- !u!114 &6339793276203017948
 MonoBehaviour:
@@ -3564,7 +3464,6 @@ MonoBehaviour:
   steeringObj: {fileID: 3990428384474972636}
   arrowsObj: {fileID: 6948801035910002553}
   repairBtn: {fileID: 1219455161735969649}
-  speedLimitIndicator: {fileID: 1707827498578597097}
   sportsBtn: {fileID: 727543714371013049}
   cruiseBtn: {fileID: 8866102719528071605}
   accelBtn: {fileID: 0}
@@ -4267,7 +4166,7 @@ RectTransform:
   - {fileID: 5175037912895170260}
   - {fileID: 3979625129876555563}
   m_Father: {fileID: 7890168783943788544}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5164,7 +5063,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buttonType: 4
-  gearDirection: 0
 --- !u!1 &6554228041440176225
 GameObject:
   m_ObjectHideFlags: 0
@@ -5372,7 +5270,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e027cf5d099f8a41ab78532b4e84490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 0
   pressing: 0
 --- !u!114 &1895638109221484043
 MonoBehaviour:
@@ -6173,7 +6070,7 @@ GameObject:
   - component: {fileID: 4833857396526493396}
   - component: {fileID: 3773156142995448673}
   - component: {fileID: 599550720492972644}
-  - component: {fileID: 8418115842803751570}
+  - component: {fileID: 3927262841223926241}
   m_Layer: 5
   m_Name: FPS
   m_TagString: Untagged
@@ -6241,7 +6138,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 50
---- !u!114 &8418115842803751570
+--- !u!114 &3927262841223926241
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6250,7 +6147,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7919003861261026913}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83fd2d77527dbc449931d3fa423cc134, type: 3}
+  m_Script: {fileID: 11500000, guid: 22bbf57ec543cee42a5aa0ec2dd9e457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8039604019731442055
@@ -6613,7 +6510,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buttonType: 6
-  gearDirection: 0
 --- !u!1 &8449216644270560009
 GameObject:
   m_ObjectHideFlags: 0
@@ -6641,7 +6537,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 3469170636570668982}
   - {fileID: 810585639778548754}
   m_Father: {fileID: 620810732972227334}
   m_RootOrder: 9
@@ -6783,7 +6678,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e027cf5d099f8a41ab78532b4e84490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 0
   pressing: 0
 --- !u!114 &1127878981626472318
 MonoBehaviour:

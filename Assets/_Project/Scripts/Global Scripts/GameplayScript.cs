@@ -160,7 +160,6 @@ public class GameplayScript : MonoBehaviour {
     public void EnableCurrentPassengerStats() {
 
         Toolbox.HUDListner.SetNStartTime(levelsManager.CurLevelData.passenger[ridesCompleted].timeLimit);
-        Toolbox.HUDListner.SetSpeedLimit(levelsManager.CurLevelData.passenger[ridesCompleted].speedLimit);
         
     }
 
@@ -183,20 +182,6 @@ public class GameplayScript : MonoBehaviour {
 
         return randomColors[Random.Range(0, randomColors.Length - 1)];
     }
-
-    public void RideStartHandling() {
-
-        if (levelsManager) {
-
-            Passenger pas = levelsManager.CurLevelData.passenger[ridesCompleted];
-            Toolbox.GameManager.InstantiateRide_Msg(pas.name, pas.destination, pas.description, pas.timeLimit, pas.speedLimit);
-
-            Toolbox.HUDListner.SetNStartTime(pas.timeLimit);
-            Toolbox.HUDListner.SetSpeedLimit(pas.speedLimit);
-            isRideStart = true;
-        }
-    }
-
 
     public void LevelCompleteHandling() {
 
