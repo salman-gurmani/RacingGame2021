@@ -36,39 +36,26 @@ public class CarPositionManager : MonoBehaviour
 
         for (int i = 0; i < PositionSystem.transform.childCount; ++i)
         {
-
             PositionClass ps = new PositionClass(PositionSystem.transform.GetChild(i).gameObject, false);
             PositionsList.Add(ps);
-
         }
+
         Distance = Vector3.Distance(PositionsList.ElementAt(0).position.transform.position, this.gameObject.transform.position);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-
-
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
         CheckPosition(other.gameObject);
-        //  AssignPosition();
+
         if (other.gameObject.tag == "FinishLine")
         {
             if (CheckAllCheckPointTeversed())
             {
                 if (lapCheck)
                 {
-
                     lapCounter++;
-                    //if (this.gameObject.tag == "Player")
-                    //{
-                    //    GameManager.Instance.gameplayScript.AddMission();
-                    //}
+
                     DisableAllCheckPoints();
                     Counter = 0;
                     lapCheck = false;

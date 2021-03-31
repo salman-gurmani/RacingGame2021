@@ -9,11 +9,18 @@ public class RCC_InputNew : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        rcc.gasInput = DrivingInput.accelValue;
-        rcc.brakeInput = (DrivingInput.brakeValue)?1:0;
-       rcc.steerInput = DrivingInput.steerValue;
-        rcc.handbrakeInput = (DrivingInput.handbrake)?1:0;
-       // rcc.boostInput = (DrivingInput.nos)?1:0;
-        
+       // rcc.gasInput = DrivingInput.accelValue;
+       // rcc.brakeInput = (DrivingInput.brakeValue)?1:0;
+       //rcc.steerInput = DrivingInput.steerValue;
+       // rcc.handbrakeInput = (DrivingInput.handbrake)?1:0;
+
+
+        rcc.gasInput = HUDListner.accelVal;
+        rcc.brakeInput = HUDListner.brakeVal;
+        rcc.steerInput = HUDListner.turnVal;
+        rcc.handbrakeInput = HUDListner.handBrakeVal;
+
+        // rcc.boostInput = (DrivingInput.nos)?1:0;
+
     }
 }

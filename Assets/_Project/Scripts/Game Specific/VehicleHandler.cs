@@ -5,8 +5,6 @@ using UnityEngine;
 public class VehicleHandler : MonoBehaviour
 {
     public Animator anim;
-    
-    public PassengerHandler passengerInCarHandler;
 
     public Transform rightDoorStandPoint;
     public Transform leftDoorStandPoint;

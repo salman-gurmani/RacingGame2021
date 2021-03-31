@@ -27,7 +27,6 @@ public class GameplayScript : MonoBehaviour {
     public GameObject NightLight, DayLight;
     
     [Header("MiniMap")]
-    public InsaneSystems.RoadNavigator.Map map;
     public InsaneSystems.RoadNavigator.Navigator mapNavigator;
 
     [HideInInspector]
@@ -38,7 +37,6 @@ public class GameplayScript : MonoBehaviour {
     public RCC_Camera cameraScript;
     public bool canShowReviewMenu = false;
     public LevelsManager levelsManager;
-    public LookAtTarget carArrowScript;
 
     [Header("Colors")]
     public Color[] randomColors;
@@ -148,8 +146,6 @@ public class GameplayScript : MonoBehaviour {
         if (score >= levelsManager.CurLevelData.passenger.Length - 1)
         {
             LevelCompleteHandling();
-            map.DisableMap();
-
         }
     }
 
@@ -159,7 +155,6 @@ public class GameplayScript : MonoBehaviour {
         IncrementScore(1);
         isRideStart = false;
         Toolbox.HUDListner.StartTime = false;
-        levelsManager.CurLevelHandler.EnablePassengerPoint(ridesCompleted);
     }
 
     public void EnableCurrentPassengerStats() {
@@ -199,7 +194,6 @@ public class GameplayScript : MonoBehaviour {
             Toolbox.HUDListner.SetNStartTime(pas.timeLimit);
             Toolbox.HUDListner.SetSpeedLimit(pas.speedLimit);
             isRideStart = true;
-            Toolbox.GameplayScript.carArrowScript.Status(true);
         }
     }
 

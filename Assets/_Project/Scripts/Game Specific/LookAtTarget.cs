@@ -10,10 +10,6 @@ public class LookAtTarget : MonoBehaviour
     private void Start()
     {
 
-        if (Toolbox.GameplayScript)
-            Toolbox.GameplayScript.carArrowScript = this;
-        else
-            Status(false);
     }
 
     private void Update()

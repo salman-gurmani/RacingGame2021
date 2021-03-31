@@ -50,7 +50,7 @@ public class LevelsManager : MonoBehaviour
 
         Toolbox.GameManager.Instantiate_Blackout();
 
-        //Toolbox.GameplayScript.cameraScript.playerCar = obj.GetComponent<RCC_CarControllerV3>();
+        Toolbox.GameplayScript.cameraScript.playerCar = obj.transform;
         Toolbox.HUDListner.carController = obj.GetComponent<RCC_CarControllerV3>();
     }
 

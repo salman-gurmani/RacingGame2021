@@ -31,32 +31,7 @@ public class VehicleTriggerHandler : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("PickPoint") && !isPicked) {
 
-            if (GetComponent<RCC_CarControllerV3>().speed <= 40)
-            {
-                StopCarForPassengerPickup(other.GetComponent<PassengerPickupHandler>());
-                other.gameObject.SetActive(false);
-                Toolbox.GameplayScript.carArrowScript.Status(false);
-                isPicked = true;
-            }
-        }
-
-        if (other.CompareTag("DropPoint"))
-        {
-            temp = other.gameObject;
-            //if passenger is in car
-            if (vehicleHandler.passengerInCarHandler && 
-                GetComponent<RCC_CarControllerV3>().speed <= 40 &&
-                !isDropped)
-            { 
-                Toolbox.GameplayScript.carArrowScript.Status(false);
-
-                StopCarForPassengerDropof(other.GetComponent<PassengerDropoffHandler>());
-                temp.GetComponent<BoxCollider>().enabled = false;
-                Invoke("TurnOnCollider", 5f);
-            }
-        }
     }
     void TurnOnCollider()
     {
@@ -72,11 +47,6 @@ public class VehicleTriggerHandler : MonoBehaviour
         }
         if (other.CompareTag("PickPoint"))
         {
-            if (other.GetComponent<PassengerPickupHandler>().passengerPrefab.CompareTag("Female"))
-            {
-                Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.F_TaxiCall);
-            }
-            else Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.M_TaxiCall);
 
         }
 
@@ -114,12 +84,6 @@ public class VehicleTriggerHandler : MonoBehaviour
         else if (collision.collider.CompareTag("Roads"))
         {
 
-        }else if (collision.collider.CompareTag("Male") || collision.collider.CompareTag("Female"))
-        {
-            collision.gameObject.GetComponent<PassengerHandler>().onDead();
-            collision.gameObject.SetActive(false);
-            LevelEndHandling();
-            Toolbox.GameplayScript.LevelFailHandling();
         }
         else if (collision.collider.CompareTag("FireHydrant"))
         {
@@ -128,7 +92,6 @@ public class VehicleTriggerHandler : MonoBehaviour
             Toolbox.HUDListner.cruiseBtn.isOn = false;
             if (accidentTimer <= 0)
             {
-                if (vehicleHandler.passengerInCarHandler != null) Passenger_shout();
                 Toolbox.GameManager.Instantiate_PaneltyMsg("Accident Panelty!");
 
                 accidentTimer += 5;
@@ -139,7 +102,6 @@ public class VehicleTriggerHandler : MonoBehaviour
             Toolbox.HUDListner.cruiseBtn.isOn = false;
             if (accidentTimer <= 0)
             {
-                if (vehicleHandler.passengerInCarHandler != null) Passenger_shout();
                 Toolbox.GameManager.Instantiate_PaneltyMsg("Accident Panelty!");
                 
                 accidentTimer += 5;
@@ -153,15 +115,6 @@ public class VehicleTriggerHandler : MonoBehaviour
     public void Passenger_shout()
     {
         int random = Random.Range(0, 5);
-        //Debug.Log("Passenegr Shouted: " + random);
-        if (vehicleHandler.passengerInCarHandler.CompareTag("Male"))
-        {
-            Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.Male_Shouting[random]);
-        }
-        else if (vehicleHandler.passengerInCarHandler.CompareTag("Female"))
-        {
-            Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.Female_Shouting[random]);
-        }
     }
 
     private void LevelEndHandling() {
@@ -174,40 +127,9 @@ public class VehicleTriggerHandler : MonoBehaviour
         //Toolbox.GameplayScript.DisableHud();
     }
 
-    void StopCarForPassengerPickup(PassengerPickupHandler _handler) {
-
-        this.GetComponent<VehicleHandler>().DisableDriving();
-
-        _handler.SetVehicle(this.GetComponent<VehicleHandler>());
-        _handler.MovePassengerToVehicleDoor();
-    }
-
-    void StopCarForPassengerDropof(PassengerDropoffHandler _handler)
-    {
-        isDropped = true;
-        if (Toolbox.GameplayScript.levelsManager.CurLevelData.passenger[0].hasSpecialEvent && !specialScenerioImplemented)
-        {
-            vehicleHandler.DisableDriving();
-            _handler.gameObject.SetActive(true);
-            _handler.SpecialEventHanlding();
-            specialScenerioImplemented = true;
-            isDropped = false;
-            Toolbox.GameplayScript.isSE_implemented = specialScenerioImplemented;
-            //Toolbox.HUDListner.OnPress_Cruise();
-        }
-        else {
-            Invoke("PlayThankyouSfx", 2f);
-            _handler.gameObject.SetActive(false);
-            vehicleHandler.DisableDriving();
-            vehicleHandler.passengerInCarHandler.ExitVehicle();
-            vehicleHandler.passengerInCarHandler.TargetPoint = _handler.passengerFinalPoint;
-            vehicleHandler.passengerInCarHandler.IsEnterVehicle = false;
-        }
-    }
     public void PlayThankyouSfx()
     {
-        if (vehicleHandler.passengerInCarHandler.CompareTag("Male")) Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.ThankYou_M);
-        else Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.ThankYou_F);
+        Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.ThankYou_F);
     }
 }
 
