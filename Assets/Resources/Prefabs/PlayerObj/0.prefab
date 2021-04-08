@@ -519,7 +519,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2037947443799897565}
-  m_LocalRotation: {x: -0, y: -0.2536407, z: -0, w: 0.96729857}
+  m_LocalRotation: {x: 0, y: -0.2536398, z: 0, w: 0.9672988}
   m_LocalPosition: {x: 575, y: 60.539, z: 206.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -790,9 +790,9 @@ MonoBehaviour:
   engineInertia: 1.5
   useRevLimiter: 1
   useExhaustFlame: 1
-  steerAngle: 40
-  highspeedsteerAngle: 15
-  highspeedsteerAngleAtspeed: 300
+  steerAngle: 35
+  highspeedsteerAngle: 25
+  highspeedsteerAngleAtspeed: 100
   antiRollFrontHorizontal: 3500
   antiRollRearHorizontal: 3500
   antiRollVertical: 0
@@ -1068,16 +1068,16 @@ WheelCollider:
   m_Mass: 40
   m_WheelDampingRate: 1
   m_ForwardFriction:
-    m_ExtremumSlip: 0.2
+    m_ExtremumSlip: 1
     m_ExtremumValue: 3
     m_AsymptoteSlip: 0.7
     m_AsymptoteValue: 4
     m_Stiffness: 1.5
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.7
-    m_ExtremumValue: 1.5
-    m_AsymptoteSlip: 1.3
-    m_AsymptoteValue: 4
+    m_ExtremumSlip: 0.16
+    m_ExtremumValue: 5
+    m_AsymptoteSlip: 0.05
+    m_AsymptoteValue: 5
     m_Stiffness: 1.3
   m_Enabled: 1
 --- !u!114 &2037947443882932183
@@ -1345,16 +1345,16 @@ WheelCollider:
   m_Mass: 40
   m_WheelDampingRate: 1
   m_ForwardFriction:
-    m_ExtremumSlip: 0.2
+    m_ExtremumSlip: 1
     m_ExtremumValue: 3
     m_AsymptoteSlip: 0.7
     m_AsymptoteValue: 4
     m_Stiffness: 1.5
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.7
-    m_ExtremumValue: 1.5
-    m_AsymptoteSlip: 1.3
-    m_AsymptoteValue: 4
+    m_ExtremumSlip: 0.15
+    m_ExtremumValue: 3.7
+    m_AsymptoteSlip: 0.3
+    m_AsymptoteValue: 5
     m_Stiffness: 1.3
   m_Enabled: 1
 --- !u!114 &2037947444063815539
@@ -7667,16 +7667,16 @@ WheelCollider:
   m_Mass: 40
   m_WheelDampingRate: 1
   m_ForwardFriction:
-    m_ExtremumSlip: 0.2
+    m_ExtremumSlip: 1
     m_ExtremumValue: 3
     m_AsymptoteSlip: 0.7
     m_AsymptoteValue: 4
     m_Stiffness: 1.5
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.7
-    m_ExtremumValue: 1.5
-    m_AsymptoteSlip: 1.3
-    m_AsymptoteValue: 4
+    m_ExtremumSlip: 0.16
+    m_ExtremumValue: 5
+    m_AsymptoteSlip: 0.05
+    m_AsymptoteValue: 5
     m_Stiffness: 1.3
   m_Enabled: 1
 --- !u!114 &2037947444920626892
@@ -8191,16 +8191,16 @@ WheelCollider:
   m_Mass: 40
   m_WheelDampingRate: 1
   m_ForwardFriction:
-    m_ExtremumSlip: 0.2
+    m_ExtremumSlip: 1
     m_ExtremumValue: 3
     m_AsymptoteSlip: 0.7
     m_AsymptoteValue: 4
     m_Stiffness: 1.5
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.7
-    m_ExtremumValue: 1.5
-    m_AsymptoteSlip: 1.3
-    m_AsymptoteValue: 4
+    m_ExtremumSlip: 0.15
+    m_ExtremumValue: 3.7
+    m_AsymptoteSlip: 0.3
+    m_AsymptoteValue: 5
     m_Stiffness: 1.3
   m_Enabled: 1
 --- !u!114 &2037947445034383921
@@ -14131,7 +14131,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.431022, y: 0.6921768, z: 0.8710443}
+  m_ConnectedAnchor: {x: -0.43102366, y: 0.6921768, z: 0.8710434}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 0, z: 0}
   m_XMotion: 1
