@@ -6,7 +6,52 @@ ModelImporter:
   - first:
       74: 1827226128182048838
     second: Take 001
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: S010_04_D_02
+    second: {fileID: 2100000, guid: df70d9cac72a03648aa0257f8b4a7eb2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: S011_03_01_D
+    second: {fileID: 2100000, guid: 5e6f55bc21ab36b428036368838fa519, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: S013_Road_D_2
+    second: {fileID: 2100000, guid: 87c4fe6335870f044b50b81e7a2a98dd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: S014_02_D
+    second: {fileID: 2100000, guid: 63c50435f5fc82c4cb84585f9026fa81, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: S014_04_D02
+    second: {fileID: 2100000, guid: d87746b4fe04b714293745bc5424f22c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: S017_04_D
+    second: {fileID: 2100000, guid: 94f06c5b4e459c246bf4fed95f826232, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: S017_06_D
+    second: {fileID: 2100000, guid: 430a9b7b2099b254893ad194456a1ebe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: S017_08_D
+    second: {fileID: 2100000, guid: f2f34ecb878089445b34b9f323b87d61, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert3
+    second: {fileID: 2100000, guid: 21eb0607cb2f4bb42b410f7607398948, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -39,7 +84,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
