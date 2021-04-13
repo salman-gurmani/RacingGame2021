@@ -35,6 +35,7 @@ public class SoundManager : MonoBehaviour {
 	
 		UpdateSoundStatus();
 		UpdateMusicStatus();
+
 	}
 
 	public void UpdateSoundStatus()
