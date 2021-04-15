@@ -20860,7 +20860,6 @@ GameObject:
   - component: {fileID: 7658139444583490023}
   - component: {fileID: 7658139444583490018}
   - component: {fileID: 7658139444583490017}
-  - component: {fileID: 7658139444583490016}
   m_Layer: 8
   m_Name: Head Light
   m_TagString: Untagged
@@ -20956,21 +20955,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightType: 0
---- !u!114 &7658139444583490016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7658139444583490022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd7f59f4129565d499a41bafe5e133dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightRenderer: {fileID: 0}
-  materialIndex: 0
-  noTexture: 0
 --- !u!1 &7658139444585244817
 GameObject:
   m_ObjectHideFlags: 0
@@ -20982,7 +20966,6 @@ GameObject:
   - component: {fileID: 7658139444585244818}
   - component: {fileID: 7658139444585244845}
   - component: {fileID: 7658139444585244844}
-  - component: {fileID: 7658139444585244819}
   m_Layer: 8
   m_Name: Brake Light
   m_TagString: Untagged
@@ -21078,21 +21061,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightType: 1
---- !u!114 &7658139444585244819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7658139444585244817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd7f59f4129565d499a41bafe5e133dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightRenderer: {fileID: 0}
-  materialIndex: 0
-  noTexture: 0
 --- !u!1 &7658139444929567955
 GameObject:
   m_ObjectHideFlags: 0
@@ -21210,7 +21178,6 @@ GameObject:
   - component: {fileID: 7658139444957519666}
   - component: {fileID: 7658139444957519693}
   - component: {fileID: 7658139444957519692}
-  - component: {fileID: 7658139444957519667}
   m_Layer: 8
   m_Name: Indicator Light
   m_TagString: Untagged
@@ -21306,21 +21273,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightType: 3
---- !u!114 &7658139444957519667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7658139444957519665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd7f59f4129565d499a41bafe5e133dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightRenderer: {fileID: 0}
-  materialIndex: 0
-  noTexture: 0
 --- !u!1 &7658139445038329702
 GameObject:
   m_ObjectHideFlags: 0
@@ -21544,7 +21496,6 @@ GameObject:
   - component: {fileID: 7658139445402389177}
   - component: {fileID: 7658139445402389172}
   - component: {fileID: 7658139445402389179}
-  - component: {fileID: 7658139445402389178}
   m_Layer: 8
   m_Name: Head Light
   m_TagString: Untagged
@@ -21640,21 +21591,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightType: 0
---- !u!114 &7658139445402389178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7658139445402389176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd7f59f4129565d499a41bafe5e133dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightRenderer: {fileID: 0}
-  materialIndex: 0
-  noTexture: 0
 --- !u!1 &7658139445427091091
 GameObject:
   m_ObjectHideFlags: 0
@@ -21666,7 +21602,6 @@ GameObject:
   - component: {fileID: 7658139445427091116}
   - component: {fileID: 7658139445427091119}
   - component: {fileID: 7658139445427091118}
-  - component: {fileID: 7658139445427091117}
   m_Layer: 8
   m_Name: Indicator Light
   m_TagString: Untagged
@@ -21762,21 +21697,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightType: 3
---- !u!114 &7658139445427091117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7658139445427091091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd7f59f4129565d499a41bafe5e133dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightRenderer: {fileID: 0}
-  materialIndex: 0
-  noTexture: 0
 --- !u!1 &7658139445563708586
 GameObject:
   m_ObjectHideFlags: 0
@@ -21788,7 +21708,6 @@ GameObject:
   - component: {fileID: 7658139445563708587}
   - component: {fileID: 7658139445563708582}
   - component: {fileID: 7658139445563708581}
-  - component: {fileID: 7658139445563708580}
   m_Layer: 8
   m_Name: Indicator Light
   m_TagString: Untagged
@@ -21884,21 +21803,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightType: 3
---- !u!114 &7658139445563708580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7658139445563708586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd7f59f4129565d499a41bafe5e133dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightRenderer: {fileID: 0}
-  materialIndex: 0
-  noTexture: 0
 --- !u!1 &7658139446198297898
 GameObject:
   m_ObjectHideFlags: 0
@@ -21910,7 +21814,6 @@ GameObject:
   - component: {fileID: 7658139446198297899}
   - component: {fileID: 7658139446198297894}
   - component: {fileID: 7658139446198297893}
-  - component: {fileID: 7658139446198297892}
   m_Layer: 8
   m_Name: Indicator Light
   m_TagString: Untagged
@@ -22006,21 +21909,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightType: 3
---- !u!114 &7658139446198297892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7658139446198297898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd7f59f4129565d499a41bafe5e133dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightRenderer: {fileID: 0}
-  materialIndex: 0
-  noTexture: 0
 --- !u!1 &7658139446255820361
 GameObject:
   m_ObjectHideFlags: 0
@@ -22032,7 +21920,6 @@ GameObject:
   - component: {fileID: 7658139446255820362}
   - component: {fileID: 7658139446255820357}
   - component: {fileID: 7658139446255820356}
-  - component: {fileID: 7658139446255820363}
   m_Layer: 8
   m_Name: Reverse Light
   m_TagString: Untagged
@@ -22128,21 +22015,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightType: 2
---- !u!114 &7658139446255820363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7658139446255820361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd7f59f4129565d499a41bafe5e133dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightRenderer: {fileID: 0}
-  materialIndex: 0
-  noTexture: 0
 --- !u!1 &7658139446380335976
 GameObject:
   m_ObjectHideFlags: 0
