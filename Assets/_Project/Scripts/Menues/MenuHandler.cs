@@ -49,6 +49,7 @@ public class MenuHandler : MonoBehaviour {
     private void Start()
     {
 		//Toolbox.Soundmanager.Play_MenuBGSound();
+		lastRewardTime = Toolbox.DB.prefs.LastClaimedRewardTime;
 		if (DateTime.Now >= lastRewardTime.AddHours(24))
 			Toolbox.GameManager.Instantiate_DailyRewardMenu();
 	}

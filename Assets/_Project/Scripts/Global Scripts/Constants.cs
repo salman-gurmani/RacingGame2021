@@ -9,6 +9,10 @@ public static class Constants{
 
     public const string serverPrefsLink = "";
 
+    public const string CP1 = "https://apps.apple.com/pk/app/taxi-sim-2021/id1549650720";
+    public const string CP2 = "https://apps.apple.com/pk/app/fps-battle-unleashed-2021/id1557610547";
+    public const string CP3 = "https://apps.apple.com/pk/app/taxi-sim-2021/id1549650720";
+
     public const int iAd_SceneID = 0;
 
     public const int sceneIndex_Menu = 1;

@@ -62,4 +62,27 @@ public class MainMenuListner : MonoBehaviour {
 		Toolbox.MenuHandler.Show_NextUI();
 	}
 
+	public void OnPress_DailReward()
+	{
+		Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.Select);
+		Toolbox.GameManager.Instantiate_DailyRewardMenu();
+	}
+	public void CPfirstGame()
+	{
+		Debug.Log("Link = " + Constants.CP1);
+		Application.OpenURL(Constants.CP1);
+	}
+	public void CPsecondGame()
+	{
+		Debug.Log("Link = " + Constants.CP1);
+		Application.OpenURL(Constants.CP2);
+	}
+	public void CPThirdGame()
+	{
+		Debug.Log("Link = " + Constants.CP1);
+		Application.OpenURL(Constants.CP3);
+	}
+
 }
+
+

@@ -1415,6 +1415,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8217890944156991384, guid: ab5afbf676660c244bfe1d035c61f57f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2128646925}
+    - target: {fileID: 8217890944156991384, guid: ab5afbf676660c244bfe1d035c61f57f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnPress_DailReward
+      objectReference: {fileID: 0}
+    - target: {fileID: 8217890944156991384, guid: ab5afbf676660c244bfe1d035c61f57f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 9113292920425412093, guid: ab5afbf676660c244bfe1d035c61f57f,
         type: 3}
       propertyPath: m_Transition
@@ -1435,6 +1450,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2128646922}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2128646925 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4692825565952631502, guid: ab5afbf676660c244bfe1d035c61f57f,
+    type: 3}
+  m_PrefabInstance: {fileID: 2128646922}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128646924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94df46282e7393342bf701de209dfa5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &3021541774746505429 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5998091647368883576, guid: 11c34e77691432c4cb1cee12a01a6be1,
