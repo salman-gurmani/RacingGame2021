@@ -9,6 +9,7 @@ public class LevelSelectionMenuListner : MonoBehaviour {
 	public LevelSelectionLevelBtnHandler[] buttons;
 
 	public Text goldTxt;
+	public Text fuelTxt;
 
 	private void OnEnable()
 	{
@@ -22,6 +23,7 @@ public class LevelSelectionMenuListner : MonoBehaviour {
 	void UpdateTxt()
 	{
 		goldTxt.text = Toolbox.DB.prefs.GoldCoins.ToString();
+		fuelTxt.text = Toolbox.DB.prefs.FuelTank.ToString();
 	}
 
 	public void OnPress_Shop()
@@ -36,6 +38,9 @@ public class LevelSelectionMenuListner : MonoBehaviour {
 		_object.effectPlayer.loop = true;
 		_object.effectPlayer.duration = 2.7f;
 		_object.effectPlayer.play = true;
+
+		//Enable previous level stars
+		if(Toolbox.DB.prefs.LastSelectedLevel !=0) buttons[Toolbox.DB.prefs.LastSelectedLevel-1].ShowStars();
 	}
 	private void SetLevelsButtonLockState()
     {

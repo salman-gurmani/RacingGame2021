@@ -60,7 +60,7 @@ public class GameplayScript : MonoBehaviour {
 
         if (!Toolbox.DB.prefs.GameAudio)
             AudioListener.volume = 0.0f;
-
+        if (Toolbox.DB.prefs.FuelTank > 0) Toolbox.DB.prefs.FuelTank -= 1;
         Toolbox.GameManager.Analytics_LevelStart();
 
         AdsManager.instance.RequestAd(AdsManager.AdType.INTERSTITIAL);

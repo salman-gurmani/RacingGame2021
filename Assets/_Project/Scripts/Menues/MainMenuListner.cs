@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class MainMenuListner : MonoBehaviour {
 
 	public Text goldTxt;
+	public Text fuelTxt;
 
     private void OnEnable()
     {
@@ -12,7 +13,8 @@ public class MainMenuListner : MonoBehaviour {
 
     public void UpdateTxt(){
 
-		goldTxt.text = Toolbox.DB.prefs.GoldCoins.ToString();
+        goldTxt.text = Toolbox.DB.prefs.GoldCoins.ToString();
+		fuelTxt.text = Toolbox.DB.prefs.FuelTank.ToString();
 	}
 
 	public void OnPress_Shop()

@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour {
 
 			Toolbox.DB.prefs.LastNotificationFireTime = DateTime.Now.AddHours(24);
 			Schedule_Notification(Toolbox.DB.prefs.LastNotificationFireTime);
-
+			Toolbox.DB.prefs.FuelTank = 8;
 
 		}
 		else {

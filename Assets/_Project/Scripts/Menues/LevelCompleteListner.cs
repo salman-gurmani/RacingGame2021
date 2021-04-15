@@ -22,7 +22,7 @@ public class LevelCompleteListner : MonoBehaviour {
 
 		Toolbox.GameManager.Analytics_LevelComplete();
 
-
+		if(Toolbox.DB.prefs.FuelTank < 8) Toolbox.DB.prefs.FuelTank += 1;
 		UnlockNextLevel();
 		StarsHandling();
     }

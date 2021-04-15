@@ -54,4 +54,9 @@ public class LevelSelectionLevelBtnHandler : MonoBehaviour {
 		lockObj.SetActive (true);
 
 	}
+
+	public void ShowStars()
+    {
+		for (int i = 0; i < star.Length; i++) star[i].SetActive(true);
+    }
 }
