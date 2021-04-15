@@ -35,5 +35,7 @@ public class PopupMsgListner : MonoBehaviour
 
         Toolbox.DB.prefs.FirstRun = false;
         Toolbox.GameManager.LoadScene(Constants.sceneIndex_Menu, false, 0);
+
+        Destroy(this.gameObject);
     }
 }

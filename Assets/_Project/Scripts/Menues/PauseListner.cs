@@ -35,15 +35,16 @@ public class PauseListner : MonoBehaviour {
 	
 	public void Press_Restart()
 	{
+		Toolbox.GameplayScript.cameraScript.enabled = false;
 		Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.buttonPressYes);
 		Toolbox.GameManager.LoadScene(Constants.sceneIndex_Game, true, 0);
 		Toolbox.GameplayScript.stopmap = true;
-
 		Destroy(this.gameObject);
 	}
 
 	public void Press_Home(){
 
+		Toolbox.GameplayScript.cameraScript.enabled = false;
 		Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.buttonPressYes);
 		Toolbox.GameManager.LoadScene(Constants.sceneIndex_Menu, true, 0);
 		Toolbox.GameplayScript.stopmap = true;

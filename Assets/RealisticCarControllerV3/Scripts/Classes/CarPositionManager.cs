@@ -20,27 +20,30 @@ public class CarPositionManager : MonoBehaviour
     CarPositionManager[] Cars;
     public List<CarPositionManager> carpos = new List<CarPositionManager>();
     List<PositionClass> PositionsList = new List<PositionClass>();
-    CarPositionManager thisObject;
+    
     void Start()
     {
+        if (Toolbox.GameplayScript) {
 
-        GameObject PositionSystem = GameObject.FindGameObjectWithTag("PositionSystem");
-        Cars = GameObject.FindObjectsOfType<CarPositionManager>();
+            GameObject PositionSystem = Toolbox.GameplayScript.positionManager.gameObject;
+            Cars = GameObject.FindObjectsOfType<CarPositionManager>();
 
-        foreach (CarPositionManager car in Cars)
-        {
-            // if(this.gameObject.GetInstanceID()!=car.GetInstanceID())
-            carpos.Add(car);
+            foreach (CarPositionManager car in Cars)
+            {
+                // if(this.gameObject.GetInstanceID()!=car.GetInstanceID())
+                carpos.Add(car);
 
+            }
+
+            //for (int i = 0; i < PositionSystem.transform.childCount; ++i)
+            //{
+            //    PositionClass ps = new PositionClass(PositionSystem.transform.GetChild(i).gameObject, false);
+            //    PositionsList.Add(ps);
+            //}
+
+            //Distance = Vector3.Distance(PositionsList.ElementAt(0).position.transform.position, this.gameObject.transform.position);
         }
 
-        for (int i = 0; i < PositionSystem.transform.childCount; ++i)
-        {
-            PositionClass ps = new PositionClass(PositionSystem.transform.GetChild(i).gameObject, false);
-            PositionsList.Add(ps);
-        }
-
-        Distance = Vector3.Distance(PositionsList.ElementAt(0).position.transform.position, this.gameObject.transform.position);
     }
 
 
@@ -48,21 +51,27 @@ public class CarPositionManager : MonoBehaviour
     {
         CheckPosition(other.gameObject);
 
-        if (other.gameObject.tag == "FinishLine")
+        if (other.CompareTag("FinishLine") && this.gameObject.CompareTag("Player"))
         {
-            if (CheckAllCheckPointTeversed())
-            {
-                if (lapCheck)
-                {
-                    lapCounter++;
+            //if (CheckAllCheckPointTeversed())
+            //{
+                //if (lapCheck)
+                //{
+                //    lapCounter++;
 
-                    DisableAllCheckPoints();
-                    Counter = 0;
-                    lapCheck = false;
-                }
+                //    DisableAllCheckPoints();
+                //    Counter = 0;
+                //    lapCheck = false;
 
-            }
+                //}
 
+            DisableAllCheckPoints();
+            Counter = 0;
+            lapCheck = false;
+
+            Toolbox.GameplayScript.LevelCompleteHandling();
+
+            //}
         }
 
 

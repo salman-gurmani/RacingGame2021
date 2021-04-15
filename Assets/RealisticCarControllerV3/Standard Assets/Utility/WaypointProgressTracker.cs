@@ -64,6 +64,8 @@ namespace UnityStandardAssets.Utility
             }
 
             Reset();
+
+            Toolbox.GameplayScript.AddAiCar(this.gameObject);
         }
 
 

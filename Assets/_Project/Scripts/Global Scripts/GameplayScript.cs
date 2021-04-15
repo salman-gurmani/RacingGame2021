@@ -1,6 +1,7 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-
+using UnityStandardAssets.Vehicles.Car;
 /// <summary>
 /// This script will hold everything that is needed to be global only in Game scene
 /// </summary>
@@ -25,9 +26,6 @@ public class GameplayScript : MonoBehaviour {
     public GameObject rainObj;
     public Material NightSkybox, DaySkybox;
     public GameObject NightLight, DayLight;
-    
-    [Header("MiniMap")]
-    public InsaneSystems.RoadNavigator.Navigator mapNavigator;
 
     [HideInInspector]
     private int levelCompleteTime = 0;
@@ -37,6 +35,8 @@ public class GameplayScript : MonoBehaviour {
     public RCC_Camera cameraScript;
     public bool canShowReviewMenu = false;
     public LevelsManager levelsManager;
+    public PositionController positionManager;
+    public List<GameObject> aiCars = new List<GameObject>();
 
     [Header("Colors")]
     public Color[] randomColors;
@@ -69,19 +69,6 @@ public class GameplayScript : MonoBehaviour {
         Toolbox.Soundmanager.PlayBGSound(Toolbox.Soundmanager.gameBG);
         StartCoroutine(GameplayTime());
         levelCompleted = false;
-
-        //if (levelsManager.CurLevelData.isNight)
-        //{
-        //    RenderSettings.skybox = NightSkybox;
-        //    DayLight.SetActive(false);
-        //    NightLight.SetActive(true);
-        //}
-        //else
-        //{
-        //    RenderSettings.skybox = DaySkybox;
-        //    NightLight.SetActive(false);
-        //    DayLight.SetActive(true);
-        //}
     }
 
     private void Update()
@@ -93,6 +80,11 @@ public class GameplayScript : MonoBehaviour {
             Toolbox.GameManager.Log("Screenshot Taked!");
             ScreenCapture.CaptureScreenshot(name);
             screenShotPicName++;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Keypad0))
+        {
+            StartRaceHandling();
         }
 #endif
     }
@@ -147,14 +139,6 @@ public class GameplayScript : MonoBehaviour {
         {
             LevelCompleteHandling();
         }
-    }
-
-    public void CompleteRideHandling() {
-
-        ridesCompleted++;
-        IncrementScore(1);
-        isRideStart = false;
-        Toolbox.HUDListner.StartTime = false;
     }
 
     public void EnableCurrentPassengerStats() {
@@ -212,5 +196,23 @@ public class GameplayScript : MonoBehaviour {
     public void RainStatus(bool _val) {
 
         rainObj.SetActive(_val);
+    }
+
+    public void AddAiCar(GameObject _val) {
+
+        aiCars.Add(_val);
+    }
+
+    public void StartRaceHandling() {
+
+        Debug.LogError("Race Start!");
+
+        foreach (var item in aiCars)
+        {
+            item.GetComponent<CarAIControl>().enabled = true;
+            item.GetComponent<Rigidbody>().isKinematic = false;
+        }
+
+        Toolbox.HUDListner.OnPress_Forward();
     }
 }
