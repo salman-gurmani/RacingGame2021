@@ -32,7 +32,7 @@ public class LevelSelectionLevelBtnHandler : MonoBehaviour {
 
     public void SetButtonTxt(int _val)
     {
-		buttonTxt.text = _val.ToString();
+		buttonTxt.text = "LEVEL "+ _val.ToString();
     }
 
     public void Press_LevelButton(){

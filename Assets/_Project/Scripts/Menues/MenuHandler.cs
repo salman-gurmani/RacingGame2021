@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 /// <summary>
 /// 
@@ -16,6 +17,7 @@ public class MenuHandler : MonoBehaviour {
 
 	public GameObject clone;
 	public GameObject[] menuList;
+	private DateTime lastRewardTime;
 
 	void Awake(){
 
@@ -46,8 +48,10 @@ public class MenuHandler : MonoBehaviour {
 
     private void Start()
     {
-        //Toolbox.Soundmanager.Play_MenuBGSound();
-    }
+		//Toolbox.Soundmanager.Play_MenuBGSound();
+		if (DateTime.Now >= lastRewardTime.AddHours(24))
+			Toolbox.GameManager.Instantiate_DailyRewardMenu();
+	}
 
     public void Show_NextUI(){
 

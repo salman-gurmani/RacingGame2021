@@ -27,6 +27,7 @@ public class SoundManager : MonoBehaviour {
 	public AudioClip horn, WaterExplosion;
 	public AudioClip M_TaxiCall, F_TaxiCall;
 	public AudioClip Repair;
+	public AudioClip CollectReward;
 	public AudioClip ThankYou_F, ThankYou_M;
 
 	void Start () {

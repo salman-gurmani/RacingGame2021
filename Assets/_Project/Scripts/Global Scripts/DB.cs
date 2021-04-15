@@ -110,7 +110,8 @@ public class Prefs
 
     [SerializeField] private DateTime firstTimeOpenTime;
     [SerializeField] private DateTime lastNotificationFireTime;
-
+    [SerializeField] private DateTime lastClaimedRewardTime;
+    [SerializeField] private int rewardDay;
     public void UnlockAllPlayerObj()
     {
         for (int i = 0; i < playerObjectBought.Length; i++)
@@ -152,6 +153,9 @@ public class Prefs
     public GameMode[] GameMode { get => gameMode; set => gameMode = value; }
     public bool[] PlayerObjectBought { get => playerObjectBought; set => playerObjectBought = value; }
     public bool IsSteerControl { get => isSteerControl; set => isSteerControl = value; }
+
+    public DateTime LastClaimedRewardTime { get => lastClaimedRewardTime; set => lastClaimedRewardTime = value; }
+    public int RewardDay { get => rewardDay; set => rewardDay = value; }
 }
 public class DB : MonoBehaviour {
        

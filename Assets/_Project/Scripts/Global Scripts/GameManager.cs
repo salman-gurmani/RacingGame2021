@@ -196,8 +196,12 @@ public class GameManager : MonoBehaviour {
     {
         Instantiate((GameObject)Resources.Load(Constants.menuFolderPath + "Settings"));
     }
+	public void Instantiate_DailyRewardMenu()
+	{
+		Instantiate((GameObject)Resources.Load(Constants.menuFolderPath + "Daily Reward"));
+	}
 
-    public void Instantiate_QuitMenu()
+	public void Instantiate_QuitMenu()
     {
         Instantiate((GameObject)Resources.Load(Constants.menuFolderPath + "QuitMenu"));
     }
@@ -207,6 +211,11 @@ public class GameManager : MonoBehaviour {
 		GameObject obj = Instantiate((GameObject)Resources.Load(Constants.menuFolderPath + "Popup-Msg"));
 
 		obj.GetComponent<PopupMsgListner>().UpdateMsg(str);
+	}
+
+	public void Instantiate_CoinsEffect()
+	{
+		Instantiate((GameObject)Resources.Load(Constants.menuFolderPath + "Coins Effect"));
 	}
 
 	public void InstantiateRide_Msg(string _name, string _destination, string _description, float _timeLimit, float _speedLimit)
