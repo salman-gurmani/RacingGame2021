@@ -51,25 +51,32 @@ public class CarPositionManager : MonoBehaviour
     {
         CheckPosition(other.gameObject);
 
-        if (other.CompareTag("FinishLine") && this.gameObject.CompareTag("Player"))
+        if (other.CompareTag("FinishLine"))
         {
             //if (CheckAllCheckPointTeversed())
             //{
-                //if (lapCheck)
-                //{
-                //    lapCounter++;
+            //if (lapCheck)
+            //{
+            //    lapCounter++;
+            //    DisableAllCheckPoints();
+            //    Counter = 0;
+            //    lapCheck = false;
+            //}
 
-                //    DisableAllCheckPoints();
-                //    Counter = 0;
-                //    lapCheck = false;
+            if (this.gameObject.CompareTag("Player"))
+            {
 
-                //}
+                DisableAllCheckPoints();
+                Counter = 0;
+                lapCheck = false;
 
-            DisableAllCheckPoints();
-            Counter = 0;
-            lapCheck = false;
+                Toolbox.GameplayScript.LevelCompleteHandling();
+            }
+            else { 
+            
 
-            Toolbox.GameplayScript.LevelCompleteHandling();
+            }
+
 
             //}
         }

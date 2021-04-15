@@ -42,4 +42,9 @@ public class CommonMethods : MonoBehaviour
 
         _anim.enabled = true;
     }
+
+    public void StartRace() {
+
+        Toolbox.GameplayScript.StartRaceHandling();
+    }
 }

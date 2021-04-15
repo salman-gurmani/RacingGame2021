@@ -205,7 +205,7 @@ public class GameplayScript : MonoBehaviour {
 
     public void StartRaceHandling() {
 
-        Debug.LogError("Race Start!");
+        //Debug.LogError("Race Start!");
 
         foreach (var item in aiCars)
         {
