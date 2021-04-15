@@ -1526,7 +1526,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7356202927691486368}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8581464721137510197}
+        m_MethodName: OnPress_Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4023312478810309949
 GameObject:
   m_ObjectHideFlags: 0
@@ -2235,13 +2246,15 @@ GameObject:
   - component: {fileID: 5481250229612793182}
   - component: {fileID: 1606296326962171564}
   - component: {fileID: 8273052271140080015}
+  - component: {fileID: 8581464721137510197}
+  - component: {fileID: 4825314521965173319}
   m_Layer: 0
   m_Name: Store
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2819106506750580561
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2357,6 +2370,38 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &8581464721137510197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6273813787331590926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ba8470aebd7ec4ebeb0cacc5d65e4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goldTxt: {fileID: 1640010936526497819}
+--- !u!95 &4825314521965173319
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6273813787331590926}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d21ba53cd9fd96e41b4f390616f946e9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6370129413598082642
 GameObject:
   m_ObjectHideFlags: 0

@@ -108,6 +108,14 @@ public class PlayerObjSelectionListner : MonoBehaviour
 
 		Toolbox.MenuHandler.Show_NextUI();
 	}
+
+	public void OnPress_carThumb(int no)
+    {
+		Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.Select);
+		curIndex = no;
+		SpawnObject(curIndex);
+	}
+
 	public void OnPress_Unlock()
 	{
 		Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.buttonPressYes);

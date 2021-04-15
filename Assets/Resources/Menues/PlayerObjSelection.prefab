@@ -431,7 +431,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -303.7, y: 0}
+  m_AnchoredPosition: {x: -304, y: 0}
   m_SizeDelta: {x: 301, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &6394305563437882864
@@ -654,16 +654,16 @@ RectTransform:
   m_GameObject: {fileID: 1867237271346875178}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 1, z: 0.3}
   m_Children: []
   m_Father: {fileID: 7960969666493590248}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 573.2, y: -8.8}
-  m_SizeDelta: {x: -1543.5756, y: 13.772682}
-  m_Pivot: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -2588.6, y: 0}
+  m_SizeDelta: {x: 1712.7295, y: 15}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &5040167093406097291
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -693,7 +693,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 001ee41927790dd47953e0bf5a43ae01, type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -1298,8 +1298,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.7, y: 19.2}
-  m_SizeDelta: {x: 2023.6274, y: 238.49149}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920, y: 237}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3903718472003091969
 CanvasRenderer:
@@ -1322,14 +1322,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 0d3e1ba51ab8642479e95e9c976a0105, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1352,7 +1352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Content: {fileID: 6834403813838401979}
   m_Horizontal: 1
-  m_Vertical: 1
+  m_Vertical: 0
   m_MovementType: 1
   m_Elasticity: 0.1
   m_Inertia: 1
@@ -3099,7 +3099,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1025474380558123080}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1926177880819812359}
+        m_MethodName: OnPress_carThumb
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3772029757309732948
 GameObject:
   m_ObjectHideFlags: 0
@@ -3347,8 +3358,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.000061035156}
-  m_SizeDelta: {x: -17, y: 20}
+  m_AnchoredPosition: {x: 19.599976, y: 0.000061035156}
+  m_SizeDelta: {x: -36.61023, y: 20}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &1816337702762532566
 CanvasRenderer:
@@ -3379,7 +3390,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 2ea37e4e28aeebe4bac783880666bd20, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -3429,8 +3440,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8378513429325762383}
   m_HandleRect: {fileID: 617249895960500114}
   m_Direction: 0
-  m_Value: 0.00000024759456
-  m_Size: 0.67237353
+  m_Value: 0
+  m_Size: 0.6378632
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3857,11 +3868,11 @@ RectTransform:
   m_Father: {fileID: 8666204473357973666}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00018173564, y: -0.000034332275}
-  m_SizeDelta: {x: 986.0498, y: 221.49142}
-  m_Pivot: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 3010.0498, y: 221.49142}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!1 &4685660245195613596
 GameObject:
   m_ObjectHideFlags: 0
@@ -4957,7 +4968,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4510044014794268297}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1926177880819812359}
+        m_MethodName: OnPress_carThumb
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5361133479232949903
 GameObject:
   m_ObjectHideFlags: 0
@@ -5077,7 +5099,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1202722294725626069}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1926177880819812359}
+        m_MethodName: OnPress_carThumb
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5411863959703068246
 GameObject:
   m_ObjectHideFlags: 0
@@ -5601,7 +5634,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7625512706389924344}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1926177880819812359}
+        m_MethodName: OnPress_carThumb
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6246513434554100224
 GameObject:
   m_ObjectHideFlags: 0
@@ -5759,7 +5803,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2913682727904358017}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1926177880819812359}
+        m_MethodName: OnPress_carThumb
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6303573372470323061
 GameObject:
   m_ObjectHideFlags: 0
@@ -6079,7 +6134,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 442.7, y: -1.8}
+  m_AnchoredPosition: {x: 443, y: -1.7999992}
   m_SizeDelta: {x: 109.22998, y: 60.076492}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &8902783022139476194
@@ -6264,7 +6319,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 249856486209616062}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1926177880819812359}
+        m_MethodName: OnPress_carThumb
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7094341265958023785
 GameObject:
   m_ObjectHideFlags: 0
@@ -6655,7 +6721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f873a014ace0af48a7cf56250eb8243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goldTxt: {fileID: 0}
+  goldTxt: {fileID: 8014707459164837733}
   curIndex: 0
   environmentObj: {fileID: 0}
   objSpawnPoint: {fileID: 0}
@@ -6833,7 +6899,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2863566544885714547}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1926177880819812359}
+        m_MethodName: OnPress_carThumb
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7563108867047489063
 GameObject:
   m_ObjectHideFlags: 0
@@ -7963,7 +8040,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3653448401334574992}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1926177880819812359}
+        m_MethodName: OnPress_carThumb
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8939433094920716887
 GameObject:
   m_ObjectHideFlags: 0
