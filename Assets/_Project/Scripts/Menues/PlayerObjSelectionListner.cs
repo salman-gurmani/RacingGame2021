@@ -5,6 +5,7 @@ using CnControls;
 public class PlayerObjSelectionListner : MonoBehaviour
 {
 	public Text goldTxt;
+	public Text fuelTxt;
 
 	public int curIndex = 0;
 
@@ -38,6 +39,7 @@ public class PlayerObjSelectionListner : MonoBehaviour
 	{
 
 		goldTxt.text = Toolbox.DB.prefs.GoldCoins.ToString();
+		fuelTxt.text = Toolbox.DB.prefs.FuelTank.ToString();
 	}
 
     public void Update()

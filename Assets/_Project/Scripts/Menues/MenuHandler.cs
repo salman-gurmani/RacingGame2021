@@ -81,6 +81,7 @@ public class MenuHandler : MonoBehaviour {
 			//			Debug.LogError ("SCENE = " + Toolbox.Instance.userPrefs.currentLevel);
 			Toolbox.Soundmanager.Stop_PlayingBGSound();
 			Toolbox.GameManager.LoadScene(Constants.sceneIndex_Game, true, 0);
+			
 		}
 
 	}
