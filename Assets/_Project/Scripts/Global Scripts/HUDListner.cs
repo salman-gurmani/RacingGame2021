@@ -197,7 +197,10 @@ public class HUDListner : MonoBehaviour {
             //}
         }
     }
-
+    public void onPressNOS()
+    {
+       
+    }
 
     public void SetNStartTime(float _val) {
 
