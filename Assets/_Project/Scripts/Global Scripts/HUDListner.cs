@@ -36,13 +36,17 @@ public class HUDListner : MonoBehaviour {
 
     private float tempAccelnVal;
     private float tempTurnVal;
+    private float tempNosVal;
     private float accelDirection = 1;
     private float oldSpeed, newSpeedLimit;
+    public static float nosVal = 0;
 
     public float accelSwitchSpeed = 0.2f;
     public float steerSwitchSpeed = 0.2f;
+    public float nosSwitchSpeed = 2.5f;
 
     private bool startTime = false;
+    [HideInInspector] public bool canUseNOS = false;
 
     float tempTime = 0;
 
@@ -102,6 +106,8 @@ public class HUDListner : MonoBehaviour {
         }
 
         HandleTime();
+        nosVal = Mathf.MoveTowards(nosVal, nosSwitchSpeed, 2.5f);
+        //nosVal = Mathf.Clamp(tempNosVal * 2.5f, 1, nosSwitchSpeed);
 
         if (carController)
             playerSpeed.text = Mathf.RoundToInt(carController.speed).ToString();
@@ -199,12 +205,17 @@ public class HUDListner : MonoBehaviour {
     }
     public void onPressNOS()
     {
-        carController.maxspeed = 400;
-        carController.speed += 100;
+        //carController.maxspeed = 400;
+        //carController.speed += 100;
+        tempNosVal = 1;
+        canUseNOS = true;
+
     }
     public void onReleaseNOS()
     {
-        carController.maxspeed = 200;
+        //carController.maxspeed = 200;
+        tempNosVal = 0;
+        canUseNOS = false;
     }
     public void SetNStartTime(float _val) {
 
