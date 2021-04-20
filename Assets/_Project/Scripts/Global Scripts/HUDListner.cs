@@ -25,6 +25,10 @@ public class HUDListner : MonoBehaviour {
     public GameObject repairBtn;
     public Toggle sportsBtn, cruiseBtn;
     public Button accelBtn, respawn;
+    public Slider NosSlider;
+    public Button NosButton;
+   
+
 
     public static float accelVal = 0;
     public static float brakeVal = 0;
@@ -89,6 +93,20 @@ public class HUDListner : MonoBehaviour {
     }
     private void Update()
     {
+        if (NosSlider.value > 0)
+        {
+            NosButton.interactable = true;
+        }
+        else
+        {
+            NosButton.interactable = false;
+            canUseNOS = false;
+            tempNosVal = 0;
+        }
+        if (canUseNOS)
+        {
+            NosSlider.value -= 0.05f;
+        }
         accelVal = Mathf.MoveTowards(accelVal, tempAccelnVal, accelSwitchSpeed);
         //if (cruiseBtn.isOn) OnPress_Forward();
         switch (type)
