@@ -6102,6 +6102,7 @@ GameObject:
   - component: {fileID: 3126408607806377787}
   - component: {fileID: 3126408607806377786}
   - component: {fileID: 3126408607806377785}
+  - component: {fileID: -1074695135267776214}
   m_Layer: 0
   m_Name: AI Car 16
   m_TagString: AICar
@@ -6278,6 +6279,19 @@ MonoBehaviour:
   Position: 
   TextMesh: {fileID: 3126408607589134889}
   carpos: []
+--- !u!114 &-1074695135267776214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3126408607806377791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f99dd8844a4cc5943a2df556dc8aab93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BodyMat: {fileID: 2100000, guid: be8f008b6c27e074692ba2a94180fae1, type: 2}
 --- !u!1 &3126408607873765839
 GameObject:
   m_ObjectHideFlags: 0
