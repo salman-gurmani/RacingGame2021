@@ -332,11 +332,12 @@ public class HUDListner : MonoBehaviour {
     {
         StartTime = true;
         brakeVal = 1;
-
+        RCC_Settings.instance.behaviorType = RCC_Settings.BehaviorType.Drift;
     }
     public void OnRelease_Reverse()
     {
         brakeVal = 0;
+        RCC_Settings.instance.behaviorType = RCC_Settings.BehaviorType.Racing;
     }
     public void OnPress_TurnRight()
     {

@@ -20,7 +20,7 @@ public class RCC_InputNew : MonoBehaviour {
         rcc.steerInput = HUDListner.turnVal;
         rcc.handbrakeInput = HUDListner.handBrakeVal;
 
-        if (Toolbox.HUDListner.canUseNOS) rcc.boostInput = HUDListner.nosVal;
+        if (Toolbox.HUDListner!=null &&Toolbox.HUDListner.canUseNOS) rcc.boostInput = HUDListner.nosVal;
         else rcc.boostInput = HUDListner.accelVal;
         //rcc.boostInput = (DrivingInput.nos) ? 1 : 0;
 
