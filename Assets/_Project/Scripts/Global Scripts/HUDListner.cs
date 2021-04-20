@@ -199,9 +199,13 @@ public class HUDListner : MonoBehaviour {
     }
     public void onPressNOS()
     {
-       
+        carController.maxspeed = 400;
+        carController.speed += 100;
     }
-
+    public void onReleaseNOS()
+    {
+        carController.maxspeed = 200;
+    }
     public void SetNStartTime(float _val) {
 
         TempTime = _val;
