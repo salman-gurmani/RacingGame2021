@@ -40,22 +40,13 @@ public class LevelSelectionMenuListner : MonoBehaviour {
 		_object.effectPlayer.play = true;
 
 		//Enable previous level stars
-		for (int i = 0; i < Toolbox.DB.prefs.GameMode[Toolbox.DB.prefs.LastSelectedMode].LevelUnlocked.Length; i++)
-		{
-			if (Toolbox.DB.prefs.GameMode[Toolbox.DB.prefs.LastSelectedMode].LevelUnlocked[i + 1] == true)
-			{
-				buttons[i].ShowStars();
-			}
-			else return;
-			
-		}
+		if(Toolbox.DB.prefs.LastSelectedLevel !=0) buttons[Toolbox.DB.prefs.LastSelectedLevel-1].ShowStars();
 	}
 	private void SetLevelsButtonLockState()
     {
 		for (int i = 0; i < buttons.Length; i++)
 		{
 			buttons[i].SetButtonStats(i);
-			
 		}
 	}
 

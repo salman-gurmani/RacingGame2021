@@ -73,13 +73,10 @@ public class Prefs
 {
     [SerializeField] private bool gameAudio = true;
     [SerializeField] private bool gameMusic = true;
-    [SerializeField] private bool tiltControl = true;
 
     [SerializeField] private int goldCoins = 0;
     [SerializeField] private int highScore = 0;
     [SerializeField] private int difficulty = 0;
-
-    [SerializeField] private float gyroSensitivity = 0;
 
     [SerializeField] private int analytic_GameRunCount = 0;
 
@@ -161,8 +158,6 @@ public class Prefs
     public DateTime LastClaimedRewardTime { get => lastClaimedRewardTime; set => lastClaimedRewardTime = value; }
     public int RewardDay { get => rewardDay; set => rewardDay = value; }
     public int FuelTank { get => fuelTank; set => fuelTank = value; }
-    public bool TiltControl { get => tiltControl; set => tiltControl = value; }
-    public float GyroSensitivity { get => gyroSensitivity; set => gyroSensitivity = value; }
 }
 public class DB : MonoBehaviour {
        
