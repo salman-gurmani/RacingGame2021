@@ -206,6 +206,8 @@ public class HUDListner : MonoBehaviour {
     private void HandleTime()
     {
         if (StartTime) {
+            if (tempTime <= 10 && tempTime > 5) timeTxt.color = Color.yellow;
+            else if (tempTime <= 5) timeTxt.color = Color.red;
             TempTime -= Time.deltaTime;
             timeTxt.transform.parent.gameObject.SetActive(true);
             int roundedSec = Mathf.RoundToInt(TempTime);

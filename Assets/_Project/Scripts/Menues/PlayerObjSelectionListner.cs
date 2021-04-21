@@ -106,8 +106,10 @@ public class PlayerObjSelectionListner : MonoBehaviour
 		Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.buttonPressYes);
 
 		if (Toolbox.DB.prefs.PlayerObjectBought[curIndex])
+		{
 			Toolbox.DB.prefs.LastSelectedPlayerObj = curIndex;
-
+			Toolbox.DB.prefs.LastSelectedVehicleName = spawnedPlayerData.name;
+		}
 		Toolbox.MenuHandler.Show_NextUI();
 	}
 

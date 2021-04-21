@@ -17,6 +17,8 @@ public class GameplayScript : MonoBehaviour {
     public bool levelFailed = false;
     public bool stopmap;
 
+    private bool isLevelStatsAssigned = false;
+
     private int gameplayTime_Seconds = 0;
 
     private int score = 0;
@@ -29,6 +31,7 @@ public class GameplayScript : MonoBehaviour {
 
     [HideInInspector]
     private int levelCompleteTime = 0;
+    private int remainingTime = 0;
 
     [Header("Components")]
     public AudioListener camListner;
@@ -46,6 +49,7 @@ public class GameplayScript : MonoBehaviour {
 
     public GameObject PlayerObject { get => playerObject; set => playerObject = value; }
     public int LevelCompleteTime { get => levelCompleteTime; set => levelCompleteTime = value; }
+    public int RemainingTime { get => remainingTime; set => remainingTime = value; }
 
     void Awake() {
 
@@ -61,6 +65,7 @@ public class GameplayScript : MonoBehaviour {
         if (!Toolbox.DB.prefs.GameAudio)
             AudioListener.volume = 0.0f;
         if (Toolbox.DB.prefs.FuelTank > 0) Toolbox.DB.prefs.FuelTank -= 1;
+
         Toolbox.GameManager.Analytics_LevelStart();
 
         AdsManager.instance.RequestAd(AdsManager.AdType.INTERSTITIAL);
@@ -69,6 +74,7 @@ public class GameplayScript : MonoBehaviour {
         Toolbox.Soundmanager.PlayBGSound(Toolbox.Soundmanager.gameBG);
         StartCoroutine(GameplayTime());
         levelCompleted = false;
+
     }
 
     private void Update()
@@ -87,6 +93,7 @@ public class GameplayScript : MonoBehaviour {
             StartRaceHandling();
         }
 #endif
+        
     }
 
     public void StartGame()
@@ -147,6 +154,11 @@ public class GameplayScript : MonoBehaviour {
         
     }
 
+    public void EnableLevelStats()
+    {
+        Toolbox.HUDListner.SetNStartTime(levelsManager.CurLevelData.levelTime);
+    }
+
     public void InitEffectOnpoint(GameObject effect, Vector3 pos) {
 
         Instantiate(effect, pos, Quaternion.identity);
@@ -174,9 +186,9 @@ public class GameplayScript : MonoBehaviour {
 
         Toolbox.GameplayScript.stopmap = true;
 
+        LevelCompleteTime = (int) Toolbox.HUDListner.TempTime;
         levelCompleted = true;
         Toolbox.GameManager.Instantiate_LevelComplete(1);
-
         DisableHud();
     }
 
@@ -185,6 +197,7 @@ public class GameplayScript : MonoBehaviour {
         if (levelFailed || levelCompleted)
             return;
 
+        remainingTime = (int)Toolbox.HUDListner.TempTime;
 
         Toolbox.GameplayScript.stopmap = true;
         levelFailed = true;
@@ -214,5 +227,10 @@ public class GameplayScript : MonoBehaviour {
         }
 
         Toolbox.HUDListner.OnPress_Forward();
+        if (!isLevelStatsAssigned)
+        {
+            EnableLevelStats();
+            isLevelStatsAssigned = true;
+        }
     }
 }

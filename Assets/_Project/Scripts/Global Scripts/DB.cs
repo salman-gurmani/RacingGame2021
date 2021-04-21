@@ -83,6 +83,7 @@ public class Prefs
     [SerializeField] private int lastSelectedPlayerObj = 0;
     [SerializeField] private int lastSelectedMode = 0;
     [SerializeField] private int lastSelectedLevel = 0;
+    [SerializeField] private string lastSelectedVehicleName;
     [SerializeField] private int fuelTank = 0;
 
     [SerializeField] private bool fbLoggedIn = false;
@@ -158,6 +159,7 @@ public class Prefs
     public DateTime LastClaimedRewardTime { get => lastClaimedRewardTime; set => lastClaimedRewardTime = value; }
     public int RewardDay { get => rewardDay; set => rewardDay = value; }
     public int FuelTank { get => fuelTank; set => fuelTank = value; }
+    public string LastSelectedVehicleName { get => lastSelectedVehicleName; set => lastSelectedVehicleName = value; }
 }
 public class DB : MonoBehaviour {
        

@@ -42,5 +42,6 @@ public class LevelData : ScriptableObject
     public int allowedPanelties = 5;
     public bool isRaining = false;
     public bool isNight = false;
+    public float levelTime;
     public Passenger [] passenger;
 }
