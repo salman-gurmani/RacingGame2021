@@ -8,9 +8,12 @@ public class MainMenuListner : MonoBehaviour {
 
     private void OnEnable()
     {
+		
+	}
+    private void Update()
+    {
 		UpdateTxt();
 	}
-
     public void UpdateTxt(){
 
         goldTxt.text = Toolbox.DB.prefs.GoldCoins.ToString();
