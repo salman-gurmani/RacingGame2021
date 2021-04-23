@@ -20,7 +20,6 @@ public class RCC_WheelCollider : MonoBehaviour {
 	private Rigidbody carRigid;
 
 	private WheelCollider _wheelCollider;
-	public static RCC_WheelCollider Instance;
 	public WheelCollider wheelCollider{
 		get{
 			if(_wheelCollider == null)
@@ -77,7 +76,7 @@ public class RCC_WheelCollider : MonoBehaviour {
 	private float maxSidewaysStiffness = 1f;
 	
 	void Start (){
-		Instance = this;
+
 		carController = GetComponentInParent<RCC_CarControllerV3>();
 		carRigid = carController.GetComponent<Rigidbody>();
 		wheelCollider = GetComponent<WheelCollider>();
@@ -398,7 +397,7 @@ public class RCC_WheelCollider : MonoBehaviour {
 
 	}
 
-	public void Drift(float forwardSlip){
+	void Drift(float forwardSlip){
 		
 		Vector3 relativeVelocity = transform.InverseTransformDirection(carRigid.velocity);
 		float sqrVel = ((relativeVelocity.x * relativeVelocity.x)) / 200f;

@@ -26,7 +26,6 @@ public class HUDListner : MonoBehaviour {
     public Toggle sportsBtn, cruiseBtn;
     public Button accelBtn, respawn;
     public Slider NosSlider;
-    public Slider distanceBar;
     public Button NosButton;
    
 
@@ -38,7 +37,7 @@ public class HUDListner : MonoBehaviour {
 
     public static float speed = 0;
     public RCC_CarControllerV3 carController;
-   
+
     private float tempAccelnVal;
     private float tempTurnVal;
     private float tempNosVal;
@@ -66,7 +65,6 @@ public class HUDListner : MonoBehaviour {
 
     void Awake() {
         Toolbox.Set_HudListner(this.GetComponent<HUDListner>());
-
     }
 
     public void DisableHUD() {
@@ -90,13 +88,11 @@ public class HUDListner : MonoBehaviour {
 
         if(Toolbox.GameplayScript.PlayerObject)
             carController = Toolbox.GameplayScript.PlayerObject.GetComponent<RCC_CarControllerV3>();
-       
         
         //RCC.SetController(1);
     }
     private void Update()
     {
-       // distanceBar.maxValue = Toolbox.GameplayScript.distanceBar.GetComponent<distancecalculation>().accumulateDistance;
         if (NosSlider.value > 0)
         {
             NosButton.interactable = true;
@@ -336,10 +332,9 @@ public class HUDListner : MonoBehaviour {
     }
     public void OnPress_Reverse()
     {
-        WheelHit GroundHit;
         StartTime = true;
         brakeVal = 1;
-        //  RCC_Settings.instance.behaviorType = RCC_Settings.BehaviorType.Drift;
+        RCC_Settings.instance.behaviorType = RCC_Settings.BehaviorType.Drift;
     }
     public void OnRelease_Reverse()
     {
