@@ -75,11 +75,7 @@ public class GameplayScript : MonoBehaviour {
         Toolbox.Soundmanager.PlayBGSound(Toolbox.Soundmanager.gameBG);
         StartCoroutine(GameplayTime());
         levelCompleted = false;
-<<<<<<< Updated upstream
 
-=======
-       
->>>>>>> Stashed changes
     }
 
     private void Update()
