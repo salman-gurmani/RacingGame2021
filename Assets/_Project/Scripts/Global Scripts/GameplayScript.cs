@@ -36,6 +36,7 @@ public class GameplayScript : MonoBehaviour {
     [Header("Components")]
     public AudioListener camListner;
     public RCC_Camera cameraScript;
+    public GameObject distanceBar;
     public bool canShowReviewMenu = false;
     public LevelsManager levelsManager;
     public PositionController positionManager;
@@ -61,7 +62,7 @@ public class GameplayScript : MonoBehaviour {
 
     void Start()
     {
-
+        Application.targetFrameRate = 60;
         if (!Toolbox.DB.prefs.GameAudio)
             AudioListener.volume = 0.0f;
         if (Toolbox.DB.prefs.FuelTank > 0) Toolbox.DB.prefs.FuelTank -= 1;
@@ -74,11 +75,16 @@ public class GameplayScript : MonoBehaviour {
         Toolbox.Soundmanager.PlayBGSound(Toolbox.Soundmanager.gameBG);
         StartCoroutine(GameplayTime());
         levelCompleted = false;
+<<<<<<< Updated upstream
 
+=======
+       
+>>>>>>> Stashed changes
     }
 
     private void Update()
     {
+        distanceBar = GameObject.Find("Distance obj");
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.P))
         {
