@@ -37,8 +37,12 @@ public static class Constants{
 
     public const string coins_1 = "pack_1";
     public const string coins_2 = "pack_2";
+    public const string coins_3 = "pack_3";
+    public const string coins_4 = "pack_4";
+    public const string coins_5 = "pack_5";
     public const string unlockPlayerObj = "unlock_playerobj";
     public const string unlockLevels = "unlock_levels";
+    public const string buyFuel = "fueltank";
 
     //TestID
     //public const string admobId_Banner = "ca-app-pub-3940256099942544/6300978111";
