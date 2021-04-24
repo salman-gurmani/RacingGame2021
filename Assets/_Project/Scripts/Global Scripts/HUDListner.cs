@@ -215,12 +215,16 @@ public class HUDListner : MonoBehaviour {
             int seconds = roundedSec - (min * 60);
 
             timeTxt.text = String.Format("{0:D2} : {1:D2}", min, seconds);
+            if (Toolbox.DB.prefs.LastSelectedLevel == 1)
+            {
+                if (TempTime <= 0)
+                {
 
-            //if (TempTime <= 0) {
-
-            //    StartTime = false;
-            //    //Toolbox.GameplayScript.LevelFailHandling();
-            //}
+                    StartTime = false;
+                    Toolbox.GameplayScript.LevelFailHandling();
+                }
+            }
+            
         }
     }
     public void onPressNOS()
