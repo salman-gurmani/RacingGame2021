@@ -29,6 +29,7 @@ public class SoundManager : MonoBehaviour {
 	public AudioClip Repair;
 	public AudioClip CollectReward;
 	public AudioClip ThankYou_F, ThankYou_M;
+	public AudioClip raceSfx;
 
 	void Start () {
 

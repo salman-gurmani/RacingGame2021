@@ -45,6 +45,6 @@ public class CommonMethods : MonoBehaviour
 
     public void StartRace() {
 
-        Toolbox.GameplayScript.StartRaceHandling();
+        //Toolbox.GameplayScript.StartRaceHandling();
     }
 }
