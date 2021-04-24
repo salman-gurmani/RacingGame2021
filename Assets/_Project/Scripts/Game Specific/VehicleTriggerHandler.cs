@@ -8,6 +8,10 @@ public class VehicleTriggerHandler : MonoBehaviour
         {
             Toolbox.HUDListner.NosSlider.value = 100;
         }
+        if (other.gameObject.tag == "CheckPoint")
+        {
+            Toolbox.HUDListner.TempTime += 20;
+        }
     }
 }
 
