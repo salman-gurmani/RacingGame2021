@@ -6,6 +6,7 @@ public class LevelHandler : MonoBehaviour
     public GameObject cinemachineObj;
     public GameObject raceCountdown;
     public GameObject heliObj;
+    public float heliLife = 10f;
 
     private bool isCountdownstart = false;
 
