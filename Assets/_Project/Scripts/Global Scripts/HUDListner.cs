@@ -12,6 +12,7 @@ public class HUDListner : MonoBehaviour {
     public ControlType type = ControlType.STEERING;
 
     public Text timeTxt;
+    
     public Text speedTxt;
     public Text playerSpeed;
     public Text paneltiesTxt;
@@ -23,9 +24,11 @@ public class HUDListner : MonoBehaviour {
     public GameObject steeringObj;
     public GameObject arrowsObj;
     public GameObject repairBtn;
+    public GameObject centerText;
     public Toggle sportsBtn, cruiseBtn;
     public Button accelBtn, respawn;
     public Slider NosSlider;
+    public Slider distanceSlider;
     public Button NosButton;
    
 
@@ -61,6 +64,7 @@ public class HUDListner : MonoBehaviour {
 
     public bool StartTime { get => startTime; set => startTime = value; }
     public float TempTime { get => tempTime; set => tempTime = value; }
+    public float centerTime;
     public int PaneltiesRecieved { get => paneltiesRecieved; set => paneltiesRecieved = value; }
 
     void Awake() {
@@ -88,11 +92,14 @@ public class HUDListner : MonoBehaviour {
 
         if(Toolbox.GameplayScript.PlayerObject)
             carController = Toolbox.GameplayScript.PlayerObject.GetComponent<RCC_CarControllerV3>();
-        
+
         //RCC.SetController(1);
+        distanceSlider.maxValue = Toolbox.GameplayScript.distCalculation.mainDistance;
     }
     private void Update()
     {
+        
+        distanceSlider.value = carController.GetComponent<VehicleTriggerHandler>().distanceBar;
         if (NosSlider.value > 0)
         {
             NosButton.interactable = true;
@@ -206,7 +213,13 @@ public class HUDListner : MonoBehaviour {
     private void HandleTime()
     {
         if (StartTime) {
-            if (tempTime <= 10 && tempTime > 5) timeTxt.color = Color.yellow;
+            if (tempTime <= 10 && tempTime > 5)
+            {
+                centerTime = tempTime;
+                timeTxt.color = Color.yellow;
+                centerText.SetActive(true);
+                //centerTime -= Time.deltaTime;
+            }
             else if (tempTime <= 5) timeTxt.color = Color.red;
             TempTime -= Time.deltaTime;
             timeTxt.transform.parent.gameObject.SetActive(true);
