@@ -1,12 +1,39 @@
-﻿using UnityEngine;
+﻿//----------------------------------------------
+//            Realistic Car Controller
+//
+// Copyright © 2014 - 2020 BoneCracker Games
+// http://www.bonecrackergames.com
+// Buğra Özdoğanlar
+//
+//----------------------------------------------
+
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
 
-[AddComponentMenu("BoneCracker Games/Realistic Car Controller/UI/Mobile/Steering Wheel")]
+/// <summary>
+/// UI Steering Wheel controller.
+/// </summary>
+[AddComponentMenu("BoneCracker Games/Realistic Car Controller/UI/Mobile/RCC UI Steering Wheel")]
 public class RCC_UISteeringWheelController : MonoBehaviour {
 
-	//Steering Wheel.
+	// Getting an Instance of Main Shared RCC Settings.
+	#region RCC Settings Instance
+
+	private RCC_Settings RCCSettingsInstance;
+	private RCC_Settings RCCSettings {
+		get {
+			if (RCCSettingsInstance == null) {
+				RCCSettingsInstance = RCC_Settings.Instance;
+				return RCCSettingsInstance;
+			}
+			return RCCSettingsInstance;
+		}
+	}
+
+	#endregion
+
 	private GameObject steeringWheelGameObject;
 	private Image steeringWheelTexture;
 
@@ -34,20 +61,19 @@ public class RCC_UISteeringWheelController : MonoBehaviour {
 
 	void Update () {
 
-		if(!RCC_Settings.Instance.useSteeringWheelForSteering)
+		if(RCCSettings.mobileController != RCC_Settings.MobileController.SteeringWheel)
 			return;
 
-		if(!steeringWheelRect && steeringWheelTexture){
-			SteeringWheelInit();
-		}
-
+		SteeringWheelInit();
 		SteeringWheelControlling();
-
 		input = GetSteeringWheelInput();
 
 	}
 
 	void SteeringWheelInit(){
+
+		if (steeringWheelRect && !steeringWheelTexture)
+			return;
 
 		steeringWheelGameObject = steeringWheelTexture.gameObject;
 		steeringWheelRect = steeringWheelTexture.rectTransform;
@@ -112,10 +138,13 @@ public class RCC_UISteeringWheelController : MonoBehaviour {
 
 	public void SteeringWheelControlling (){
 
-		if(!steeringWheelCanvasGroup || !steeringWheelRect || !RCC_Settings.Instance.useSteeringWheelForSteering){
+		if(!steeringWheelCanvasGroup || !steeringWheelRect || RCCSettings.mobileController != RCC_Settings.MobileController.SteeringWheel){
+			
 			if(steeringWheelGameObject)
 				steeringWheelGameObject.SetActive(false);
+			
 			return;
+
 		}
 
 		if(!steeringWheelGameObject.activeSelf)

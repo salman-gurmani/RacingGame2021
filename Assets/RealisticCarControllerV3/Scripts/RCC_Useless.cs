@@ -1,11 +1,20 @@
-﻿using UnityEngine;
+﻿//----------------------------------------------
+//            Realistic Car Controller
+//
+// Copyright © 2014 - 2020 BoneCracker Games
+// http://www.bonecrackergames.com
+// Buğra Özdoğanlar
+//
+//----------------------------------------------
+
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
 public class RCC_Useless : MonoBehaviour {
 
 	public Useless useless;
-	public enum Useless{Controller, Behavior}
+	public enum Useless{MainController, MobileControllers, Behavior, Graphics}
 
 	// Use this for initialization
 	void Awake () {
@@ -14,37 +23,45 @@ public class RCC_Useless : MonoBehaviour {
 
 		if(useless == Useless.Behavior){
 
-			RCC_Settings.BehaviorType behavior = RCC_Settings.Instance.behaviorType;
+			type = RCC_Settings.Instance.behaviorSelectedIndex;
 
-			switch(behavior){
-			case(RCC_Settings.BehaviorType.Simulator):
+		}if(useless == Useless.MainController){
+
+			type = RCC_Settings.Instance.controllerSelectedIndex;
+
+		}if(useless == Useless.MobileControllers){
+
+			switch (RCC_Settings.Instance.mobileController) {
+
+			case RCC_Settings.MobileController.TouchScreen:
+
 				type = 0;
+
 				break;
-			case(RCC_Settings.BehaviorType.Racing):
+
+			case RCC_Settings.MobileController.Gyro:
+
 				type = 1;
+
 				break;
-			case(RCC_Settings.BehaviorType.SemiArcade):
+
+			case RCC_Settings.MobileController.SteeringWheel:
+
 				type = 2;
+
 				break;
-			case(RCC_Settings.BehaviorType.Drift):
+
+			case RCC_Settings.MobileController.Joystick:
+
 				type = 3;
+
 				break;
-			case(RCC_Settings.BehaviorType.Fun):
-				type = 4;
-				break;
-			case(RCC_Settings.BehaviorType.Custom):
-				type = 5;
-				break;
+
 			}
 
-		}else{
+		}if(useless == Useless.Graphics){
 
-			if(!RCC_Settings.Instance.useAccelerometerForSteering && !RCC_Settings.Instance.useSteeringWheelForSteering)
-				type = 0;
-			if(RCC_Settings.Instance.useAccelerometerForSteering)
-				type = 1;
-			if(RCC_Settings.Instance.useSteeringWheelForSteering)
-				type = 2;
+			type = QualitySettings.GetQualityLevel ();
 
 		}
 

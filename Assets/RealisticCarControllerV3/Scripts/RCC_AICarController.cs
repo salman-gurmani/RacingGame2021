@@ -1,337 +1,566 @@
 //----------------------------------------------
 //            Realistic Car Controller
 //
-// Copyright © 2015 BoneCracker Games
+// Copyright © 2014 - 2020 BoneCracker Games
 // http://www.bonecrackergames.com
+// Buğra Özdoğanlar
 //
 //----------------------------------------------
 
 using UnityEngine;
+using UnityEngine.AI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 
-[AddComponentMenu("BoneCracker Games/Realistic Car Controller/AI/AI Controller")]
+/// <summary>
+/// AI Controller of RCC. It's not professional, but it does the job. Follows all waypoints, or follows/chases the target gameobject.
+/// </summary>
+[RequireComponent(typeof(RCC_CarControllerV3))]
+[AddComponentMenu("BoneCracker Games/Realistic Car Controller/AI/RCC AI Car Controller")]
 public class RCC_AICarController : MonoBehaviour {
 
-	private RCC_CarControllerV3 carController;
-	private Rigidbody rigid;
-	
-	// Waypoint Container.
-	private RCC_AIWaypointsContainer waypointsContainer;
-	public int currentWaypoint = 0;
-	
-	// Raycast distances.
-	public LayerMask obstacleLayers = -1;
-	public int wideRayLength = 20;
-	public int tightRayLength = 20;
-	public int sideRayLength = 3;
-	private float rayInput = 0f;
-	private bool  raycasting = false;
-	private float resetTime = 0f; 
-	
-	// Steer, motor, and brake inputs.
-	private float steerInput = 0f;
-	private float gasInput = 0f;
-	private float brakeInput = 0f;
+	internal RCC_CarControllerV3 carController;		// Main RCC of this vehicle.
 
+	public RCC_AIWaypointsContainer waypointsContainer;					// Waypoints Container.
+	public int currentWaypointIndex = 0;											// Current index in Waypoint Container.
+	public Transform targetChase;											// Target Gameobject for chasing.
+	public string targetTag = "Player";									// Search and chase Gameobjects with tags.
+
+	// AI Type
+	public NavigationMode navigationMode;
+	public enum NavigationMode {FollowWaypoints, ChaseTarget, FollowTarget}
+
+	// Raycast distances used for detecting obstacles at front of the AI vehicle.
+	[Range(5f, 30f)]public float raycastLength = 3f;
+	[Range(10f, 90f)] public float raycastAngle = 30f;
+	public LayerMask obstacleLayers = -1;
+    public GameObject obstacle;
+
+	public bool useRaycasts = true;		//	Using forward and sideways raycasts to avoid obstacles.
+	private float rayInput = 0f;				// Total ray input affected by raycast distances.
+	private bool raycasting = false;		// Raycasts hits an obstacle now?
+	private float resetTime = 0f;           // This timer was used for deciding go back or not, after crashing.
+	private bool reversingNow = false;
+
+	// Steer, Motor, And Brake inputs. Will feed RCC_CarController with these inputs.
+	public float steerInput = 0f;
+	public float throttleInput = 0f;
+	public float brakeInput = 0f;
+	public float handbrakeInput = 0f;
+
+	// Limit speed.
 	public bool limitSpeed = false;
 	public float maximumSpeed = 100f;
 
+	// Smoothed steering.
 	public bool smoothedSteer = true;
 	
-	// Brake Zone.
-	private float maximumSpeedInBrakeZone = 0f;
-	private bool inBrakeZone = false;
-	
-	// Counts laps and how many waypoints passed.
+	// Counts laps and how many waypoints were passed.
 	public int lap = 0;
 	public int totalWaypointPassed = 0;
-	public int nextWaypointPassRadius = 40;
+	public int nextWaypointPassDistance = 20;
+	public int chaseDistance = 200;
+	public int startFollowDistance = 300;
+	public int stopFollowDistance = 30;
 	public bool ignoreWaypointNow = false;
 	
 	// Unity's Navigator.
-	private UnityEngine.AI.NavMeshAgent navigator;
-	private GameObject navigatorObject;
+	private NavMeshAgent navigator;
+
+	// Detector with Sphere Collider. Used for finding target Gameobjects in chasing mode.
+	private SphereCollider detector;
+	public List<Transform> targetsInZone = new List<Transform> ();
+
+	// Firing an event when each RCC AI vehicle spawned / enabled.
+	public delegate void onRCCAISpawned(RCC_AICarController RCCAI);
+	public static event onRCCAISpawned OnRCCAISpawned;
+
+	// Firing an event when each RCC AI vehicle disabled / destroyed.
+	public delegate void onRCCAIDestroyed(RCC_AICarController RCCAI);
+	public static event onRCCAIDestroyed OnRCCAIDestroyed;
 
 	void Awake() {
 
+		// Getting main controller and enabling external controller.
 		carController = GetComponent<RCC_CarControllerV3>();
-		rigid = GetComponent<Rigidbody>();
-		carController.AIController = true;
-//		carController.canEngineStall = false;
-//		carController.autoReverse = true;
-		waypointsContainer = FindObjectOfType(typeof(RCC_AIWaypointsContainer)) as RCC_AIWaypointsContainer;
+		carController.externalController = true;
 
-		navigatorObject = new GameObject("Navigator");
-		navigatorObject.transform.parent = transform;
-		navigatorObject.transform.localPosition = Vector3.zero;
-		navigatorObject.AddComponent<UnityEngine.AI.NavMeshAgent>();
-		navigatorObject.GetComponent<UnityEngine.AI.NavMeshAgent>().radius = 1;
-		navigatorObject.GetComponent<UnityEngine.AI.NavMeshAgent>().speed = 1f;
-		navigatorObject.GetComponent<UnityEngine.AI.NavMeshAgent>().height = 1;
-		navigatorObject.GetComponent<UnityEngine.AI.NavMeshAgent>().avoidancePriority = 99;
-		navigator = navigatorObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
+		// If Waypoints Container is not selected in Inspector Panel, find it on scene.
+		if(!waypointsContainer)
+			waypointsContainer = FindObjectOfType(typeof(RCC_AIWaypointsContainer)) as RCC_AIWaypointsContainer;
+
+		// Creating our Navigator and setting properties.
+		GameObject navigatorObject = new GameObject("Navigator");
+		navigatorObject.transform.SetParent (transform, false);
+		navigator = navigatorObject.AddComponent<NavMeshAgent>();
+		navigator.radius = 1;
+		navigator.speed = 1;
+		navigator.angularSpeed = 100000f;
+		navigator.acceleration = 100000f;
+		navigator.height = 1;
+		navigator.avoidancePriority = 0;
+
+		// Creating our Detector and setting properties. Used for getting nearest target gameobjects.
+		GameObject detectorGO = new GameObject ("Detector");
+		detectorGO.transform.SetParent (transform, false);
+		detectorGO.layer = LayerMask.NameToLayer("Ignore Raycast");
+		detector = detectorGO.gameObject.AddComponent<SphereCollider> ();
+		detector.isTrigger = true;
+		detector.radius = 10f;
+
+	}
+
+	void OnEnable(){
+
+		// Calling this event when AI vehicle spawned.
+		if (OnRCCAISpawned != null)
+			OnRCCAISpawned (this);
 
 	}
 	
 	void Update(){
-		
-		navigator.transform.localPosition = new Vector3(0, carController.FrontLeftWheelCollider.transform.localPosition.y, carController.FrontLeftWheelCollider.transform.localPosition.z);
-		
-	}
-	
-	void  FixedUpdate (){
 
+		// If not controllable, no need to go further.
 		if(!carController.canControl)
 			return;
 
-		Navigation();
-		FixedRaycasts();
-		ApplyTorques();
-		Resetting();
+		// Assigning navigator's position to front wheels of the vehicle.
+		//navigator.transform.localPosition = new Vector3(0f, carController.FrontLeftWheelCollider.transform.localPosition.y, carController.FrontLeftWheelCollider.transform.localPosition.z);
+		navigator.transform.localPosition = Vector3.zero;
+		navigator.transform.localPosition += Vector3.forward * carController.FrontLeftWheelCollider.transform.localPosition.z;
+
+		CheckTargets();
+
+	}
+	
+	void FixedUpdate (){
+
+		// If not controllable, no need to go further.
+		if(!carController.canControl)
+			return;
+
+		if (useRaycasts)
+			FixedRaycasts();            // Recalculates steerInput if one of raycasts detects an object front of AI vehicle.
+
+		Navigation();             // Calculates steerInput based on navigator.
+		CheckReset();           // Was used for deciding go back or not after crashing.
+		FeedRCC();              // Feeds inputs of the RCC.
 
 	}
 	
 	void Navigation (){
-		
-		if(!waypointsContainer){
-			Debug.LogError("Waypoints Container Couldn't Found!");
-			enabled = false;
-			return;
-		}
-		if(waypointsContainer && waypointsContainer.waypoints.Count < 1){
-			Debug.LogError("Waypoints Container Doesn't Have Any Waypoints!");
-			enabled = false;
-			return;
-		}
-		
-		// Next waypoint's position.
-		Vector3 nextWaypointPosition = transform.InverseTransformPoint( new Vector3(waypointsContainer.waypoints[currentWaypoint].position.x, transform.position.y, waypointsContainer.waypoints[currentWaypoint].position.z));
+
+		// Navigator Input is multiplied by 1.5f for fast reactions.
 		float navigatorInput = Mathf.Clamp(transform.InverseTransformDirection(navigator.desiredVelocity).x * 1.5f, -1f, 1f);
 
-		navigator.SetDestination(waypointsContainer.waypoints[currentWaypoint].position);
+		switch (navigationMode) {
 
-		//Steering Input.
-		if(carController.direction == 1){
-			if(!ignoreWaypointNow)
-				steerInput = Mathf.Clamp((navigatorInput + rayInput), -1f, 1f);
-			else
-				steerInput = Mathf.Clamp(rayInput, -1f, 1f);
-		}else{
-			steerInput = Mathf.Clamp((-navigatorInput - rayInput), -1f, 1f);
-		}
-		
-		if(!inBrakeZone){
-			if(carController.speed >= 25){
-				brakeInput = Mathf.Lerp(0f, .25f, (Mathf.Abs(steerInput)));
-			}else{
+			case NavigationMode.FollowWaypoints:
+
+				// If our scene doesn't have a Waypoint Container, return with error.
+				if (!waypointsContainer) {
+
+					Debug.LogError ("Waypoints Container Couldn't Found!");
+					Stop ();
+					return;
+
+				}
+
+				// If our scene has Waypoints Container and it doesn't have any waypoints, return with error.
+				if (waypointsContainer && waypointsContainer.waypoints.Count < 1) {
+
+					Debug.LogError ("Waypoints Container Doesn't Have Any Waypoints!");
+					Stop ();
+					return;
+
+				}
+
+				// Next waypoint and its position.
+				RCC_Waypoint currentWaypoint = waypointsContainer.waypoints [currentWaypointIndex];
+
+				// Checks for the distance to next waypoint. If it is less than written value, then pass to next waypoint.
+				float distanceToNextWaypoint = GetPathLength(navigator.path);
+
+				// Setting destination of the Navigator. 
+				if (!navigator.hasPath)
+					navigator.SetDestination(waypointsContainer.waypoints[currentWaypointIndex].transform.position);
+
+				if (distanceToNextWaypoint != 0 && distanceToNextWaypoint < nextWaypointPassDistance) {
+					
+					currentWaypointIndex++;
+					totalWaypointPassed++;
+
+                    // If all waypoints were passed, sets the current waypoint to first waypoint and increase lap.
+                    if (currentWaypointIndex >= waypointsContainer.waypoints.Count) {
+
+                        currentWaypointIndex = 0;
+                        lap++;
+
+                    }
+
+					// Setting destination of the Navigator. 
+					if (navigator.isOnNavMesh)
+						navigator.SetDestination(waypointsContainer.waypoints[currentWaypointIndex].transform.position);
+
+				}
+
+				if (!reversingNow) {
+
+					throttleInput = (distanceToNextWaypoint < (nextWaypointPassDistance * (carController.speed / 30f))) ? (Mathf.Clamp01(currentWaypoint.targetSpeed - carController.speed)) : 1f;
+					throttleInput *= Mathf.Clamp01(Mathf.Lerp(10f, 0f, (carController.speed) / maximumSpeed));
+					brakeInput = (distanceToNextWaypoint < (nextWaypointPassDistance * (carController.speed / 30f))) ? (Mathf.Clamp01(carController.speed - currentWaypoint.targetSpeed)) : 0f;
+					handbrakeInput = 0f;
+
+					if (carController.speed > 30f) {
+
+						throttleInput -= Mathf.Abs(navigatorInput) / 3f;
+						brakeInput += Mathf.Abs(navigatorInput) / 3f;
+
+					}
+
+				}
+
+				break;
+
+		case NavigationMode.ChaseTarget:
+
+				detector.radius = chaseDistance;
+
+				// If our scene doesn't have a Waypoints Container, return with error.
+				if (!targetChase){
+				
+				Stop();
+				return;
+	
+			}
+
+			// Setting destination of the Navigator. 
+			if(navigator.isOnNavMesh)
+				navigator.SetDestination (targetChase.position);
+
+			if (!reversingNow) {
+
+				throttleInput = 1f;
+				throttleInput *= Mathf.Clamp01(Mathf.Lerp(10f, 0f, (carController.speed) / maximumSpeed));
 				brakeInput = 0f;
-			}
-		}else{
-			brakeInput = Mathf.Lerp(0f, 1f, (carController.speed - maximumSpeedInBrakeZone) / maximumSpeedInBrakeZone);
-		}
+				handbrakeInput = 0f;
 
-		if(!inBrakeZone){
-			
-			if(carController.speed >= 10){
-				if(!carController.changingGear)
-					gasInput = Mathf.Clamp(1f - (Mathf.Abs(navigatorInput / 5f)  - Mathf.Abs(rayInput / 5f)), .5f, 1f);
-				else
-					gasInput = 0f;
-			}else{
-				if(!carController.changingGear)
-					gasInput = 1f;
-				else
-					gasInput = 0f;
+				if (carController.speed > 30f) {
+
+					throttleInput -= Mathf.Abs(navigatorInput) / 3f;
+					brakeInput += Mathf.Abs(navigatorInput) / 3f;
+
+				}
+
 			}
 
-		}else{
-			
-			if(!carController.changingGear)
-				gasInput = Mathf.Lerp(1f, 0f, (carController.speed) / maximumSpeedInBrakeZone);
-			else
-				gasInput = 0f;
+			break;
+
+			case NavigationMode.FollowTarget:
+
+				detector.radius = startFollowDistance;
+
+				// If our scene doesn't have a Waypoints Container, return with error.
+				if (!targetChase) {
+
+					Stop();
+					return;
+
+				}
+
+				// Setting destination of the Navigator. 
+				if (navigator.isOnNavMesh)
+					navigator.SetDestination(targetChase.position);
+
+				// Checks for the distance to target. 
+				float distanceToTarget = GetPathLength(navigator.path);
+				
+				if (!reversingNow) {
+
+					throttleInput = distanceToTarget < (stopFollowDistance * Mathf.Lerp(1f, 5f, carController.speed / 50f)) ? Mathf.Lerp(-5f, 1f, distanceToTarget / (stopFollowDistance / 1f)) : 1f;
+					throttleInput *= Mathf.Clamp01(Mathf.Lerp(10f, 0f, (carController.speed) / maximumSpeed));
+					brakeInput = distanceToTarget < (stopFollowDistance * Mathf.Lerp(1f, 5f, carController.speed / 50f)) ? Mathf.Lerp(5f, 0f, distanceToTarget / (stopFollowDistance / 1f)) : 0f;
+					handbrakeInput = 0f;
+
+					if (carController.speed > 30f) {
+
+						throttleInput -= Mathf.Abs(navigatorInput) / 3f;
+						brakeInput += Mathf.Abs(navigatorInput) / 3f;
+
+					}
+
+					if (throttleInput < .05f)
+						throttleInput = 0f;
+					if (brakeInput < .05f)
+						brakeInput = 0f;
+
+				}
+
+				break;
 
 		}
-		
-		// Checks for the distance to next waypoint. If it is less than written value, then pass to next waypoint.
-		if (nextWaypointPosition.magnitude < nextWaypointPassRadius){
-			currentWaypoint ++;
-			totalWaypointPassed ++;
-			
-			// If all waypoints are passed, sets the current waypoint to first waypoint and increase lap.
-			if (currentWaypoint >= waypointsContainer.waypoints.Count){
-				currentWaypoint = 0;
-				lap ++;
+
+        // Steer Input.
+        steerInput = (ignoreWaypointNow ? rayInput : navigatorInput + rayInput);
+        steerInput = Mathf.Clamp(steerInput, -1f, 1f) * carController.direction;
+        throttleInput = Mathf.Clamp01(throttleInput);
+		brakeInput = Mathf.Clamp01(brakeInput);
+		handbrakeInput = Mathf.Clamp01(handbrakeInput);
+
+		if (reversingNow) {
+
+			throttleInput = 0f;
+			brakeInput = 1f;
+			handbrakeInput = 0f;
+
+		} else {
+
+			if (carController.speed < 5f && brakeInput >= .5f) {
+
+				brakeInput = 0f;
+				handbrakeInput = 1f;
+
 			}
+		
 		}
-		
-	}
-	
-	void Resetting (){
-		
-		if(carController.speed <= 5 && transform.InverseTransformDirection(rigid.velocity).z < 1f)
-			resetTime += Time.deltaTime;
-		
-		if(resetTime >= 4)
-			carController.direction = -1;
 
-		if(resetTime >= 6 || carController.speed >= 25){
-			carController.direction = 1;
+    }
+		
+	void CheckReset (){
+
+		if (navigationMode == NavigationMode.FollowTarget && GetPathLength(navigator.path) < startFollowDistance) {
+
+			reversingNow = false;
 			resetTime = 0;
+			return;
+
+		}
+
+		// If unable to move forward, puts the gear to R.
+		if(carController.speed <= 5 && transform.InverseTransformDirection(carController.rigid.velocity).z < 1f)
+			resetTime += Time.deltaTime;
+
+		if (resetTime >= 2)
+			reversingNow = true;
+
+		if (resetTime >= 4 || carController.speed >= 25){
+
+			reversingNow = false;
+			resetTime = 0;
+
 		}
 		
 	}
-	
-	void FixedRaycasts(){
-		
-		Vector3 forward = transform.TransformDirection ( new Vector3(0, 0, 1));
-		Vector3 pivotPos = new Vector3(transform.localPosition.x, carController.FrontLeftWheelCollider.transform.position.y, transform.localPosition.z);
+
+	void FixedRaycasts() {
+
+		int[] anglesOfRaycasts = new int[5];
+		anglesOfRaycasts[0] = 0;
+		anglesOfRaycasts[1] = Mathf.FloorToInt(raycastAngle / 3f);
+		anglesOfRaycasts[2] = Mathf.FloorToInt(raycastAngle / 1f);
+		anglesOfRaycasts[3] = -Mathf.FloorToInt(raycastAngle / 1f);
+		anglesOfRaycasts[4] = -Mathf.FloorToInt(raycastAngle / 3f);
+
+		// Ray pivot position.
+		Vector3 pivotPos = transform.position;
+		pivotPos += transform.forward * carController.FrontLeftWheelCollider.transform.localPosition.z;
+
 		RaycastHit hit;
-		
-		// New bools effected by fixed raycasts.
-		bool  tightTurn = false;
-		bool  wideTurn = false;
-		bool  sideTurn = false;
-		bool  tightTurn1 = false;
-		bool  wideTurn1 = false;
-		bool  sideTurn1 = false;
-		
-		// New input steers effected by fixed raycasts.
-		float newinputSteer1 = 0f;
-		float newinputSteer2 = 0f;
-		float newinputSteer3 = 0f;
-		float newinputSteer4 = 0f;
-		float newinputSteer5 = 0f;
-		float newinputSteer6 = 0f;
-		
-		// Drawing Rays.
-		Debug.DrawRay (pivotPos, Quaternion.AngleAxis(25, transform.up) * forward * wideRayLength, Color.white);
-		Debug.DrawRay (pivotPos, Quaternion.AngleAxis(-25, transform.up) * forward * wideRayLength, Color.white);
-		
-		Debug.DrawRay (pivotPos, Quaternion.AngleAxis(7, transform.up) * forward * tightRayLength, Color.white);
-		Debug.DrawRay (pivotPos, Quaternion.AngleAxis(-7, transform.up) * forward * tightRayLength, Color.white);
+		rayInput = 0f;
+		bool casted = false;
 
-		Debug.DrawRay (pivotPos, Quaternion.AngleAxis(90, transform.up) * forward * sideRayLength, Color.white);
-		Debug.DrawRay (pivotPos, Quaternion.AngleAxis(-90, transform.up) * forward * sideRayLength, Color.white);
-		
-		// Wide Raycasts.
-		if (Physics.Raycast (pivotPos, Quaternion.AngleAxis(25, transform.up) * forward, out hit, wideRayLength, obstacleLayers) && !hit.collider.isTrigger && hit.transform.root != transform) {
-			Debug.DrawRay (pivotPos, Quaternion.AngleAxis(25, transform.up) * forward * wideRayLength, Color.red);
-			newinputSteer1 = Mathf.Lerp (-.5f, 0f, (hit.distance / wideRayLength));
-			wideTurn = true;
-		}
-		
-		else{
-			newinputSteer1 = 0f;
-			wideTurn = false;
-		}
-		
-		if (Physics.Raycast (pivotPos, Quaternion.AngleAxis(-25, transform.up) * forward, out hit, wideRayLength, obstacleLayers) && !hit.collider.isTrigger && hit.transform.root != transform) {
-			Debug.DrawRay (pivotPos, Quaternion.AngleAxis(-25, transform.up) * forward * wideRayLength, Color.red);
-			newinputSteer4 = Mathf.Lerp (.5f, 0f, (hit.distance / wideRayLength));
-			wideTurn1 = true;
-		}else{
-			newinputSteer4 = 0f;
-			wideTurn1 = false;
-		}
-		
-		// Tight Raycasts.
-		if (Physics.Raycast (pivotPos, Quaternion.AngleAxis(7, transform.up) * forward, out hit, tightRayLength, obstacleLayers) && !hit.collider.isTrigger && hit.transform.root != transform) {
-			Debug.DrawRay (pivotPos, Quaternion.AngleAxis(7, transform.up) * forward * tightRayLength , Color.red);
-			newinputSteer3 = Mathf.Lerp (-1f, 0f, (hit.distance / tightRayLength));
-			tightTurn = true;
-		}else{
-			newinputSteer3 = 0f;
-			tightTurn = false;
-		}
-		
-		if (Physics.Raycast (pivotPos, Quaternion.AngleAxis(-7, transform.up) * forward, out hit, tightRayLength, obstacleLayers) && !hit.collider.isTrigger && hit.transform.root != transform) {
-			Debug.DrawRay (pivotPos, Quaternion.AngleAxis(-7, transform.up) * forward * tightRayLength, Color.red);
-			newinputSteer2 = Mathf.Lerp (1f, 0f, (hit.distance / tightRayLength));
-			tightTurn1 = true;
-		}else{
-			newinputSteer2 = 0f;
-			tightTurn1 = false;
+		for (int i = 0; i < anglesOfRaycasts.Length; i++) {
+
+			Debug.DrawRay(pivotPos, Quaternion.AngleAxis(anglesOfRaycasts[i], transform.up) * transform.forward * raycastLength, Color.white);
+
+			if (Physics.Raycast(pivotPos, Quaternion.AngleAxis(anglesOfRaycasts[i], transform.up) * transform.forward, out hit, raycastLength, obstacleLayers) && !hit.collider.isTrigger && hit.transform.root != transform) {
+
+				switch (navigationMode) {
+
+					case NavigationMode.FollowWaypoints:
+
+						Debug.DrawRay(pivotPos, Quaternion.AngleAxis(anglesOfRaycasts[i], transform.up) * transform.forward * raycastLength, Color.red);
+						casted = true;
+
+						if (i != 0)
+							rayInput -= Mathf.Lerp(Mathf.Sign(anglesOfRaycasts[i]), 0f, (hit.distance / raycastLength));
+
+						break;
+
+					case NavigationMode.ChaseTarget:
+
+						if (targetChase && hit.transform != targetChase && !hit.transform.IsChildOf(targetChase)) {
+
+							Debug.DrawRay(pivotPos, Quaternion.AngleAxis(anglesOfRaycasts[i], transform.up) * transform.forward * raycastLength, Color.red);
+							casted = true;
+
+							if (i != 0)
+								rayInput -= Mathf.Lerp(Mathf.Sign(anglesOfRaycasts[i]), 0f, (hit.distance / raycastLength));
+
+						}
+
+						break;
+
+					case NavigationMode.FollowTarget:
+
+						Debug.DrawRay(pivotPos, Quaternion.AngleAxis(anglesOfRaycasts[i], transform.up) * transform.forward * raycastLength, Color.red);
+						casted = true;
+
+						if (i != 0)
+							rayInput -= Mathf.Lerp(Mathf.Sign(anglesOfRaycasts[i]), 0f, (hit.distance / raycastLength));
+
+						break;
+
+				}
+
+				if (casted)
+					obstacle = hit.transform.gameObject;
+				else
+					obstacle = null;
+
+			}
+
 		}
 
-		// Side Raycasts.
-		if (Physics.Raycast (pivotPos, Quaternion.AngleAxis(90, transform.up) * forward, out hit, sideRayLength, obstacleLayers) && !hit.collider.isTrigger && hit.transform.root != transform) {
-			Debug.DrawRay (pivotPos, Quaternion.AngleAxis(90, transform.up) * forward * sideRayLength , Color.red);
-			newinputSteer5 = Mathf.Lerp (-1f, 0f, (hit.distance / sideRayLength));
-			sideTurn = true;
-		}else{
-			newinputSteer5 = 0f;
-			sideTurn = false;
-		}
-		
-		if (Physics.Raycast (pivotPos, Quaternion.AngleAxis(-90, transform.up) * forward, out hit, sideRayLength, obstacleLayers) && !hit.collider.isTrigger && hit.transform.root != transform) {
-			Debug.DrawRay (pivotPos, Quaternion.AngleAxis(-90, transform.up) * forward * sideRayLength, Color.red);
-			newinputSteer6 = Mathf.Lerp (1f, 0f, (hit.distance / sideRayLength));
-			sideTurn1 = true;
-		}else{
-			newinputSteer6 = 0f;
-			sideTurn1 = false;
-		}
-		
-		if(wideTurn || wideTurn1 || tightTurn || tightTurn1 || sideTurn || sideTurn1)
-			raycasting = true;
-		else
-			raycasting = false;
-		
-		if(raycasting)
-			rayInput = (newinputSteer1 + newinputSteer2 + newinputSteer3 + newinputSteer4 + newinputSteer5 + newinputSteer6);
-		else
-			rayInput = 0f;
-		
-		if(raycasting && Mathf.Abs(rayInput) > .5f)
-			ignoreWaypointNow = true;
-		else
-			ignoreWaypointNow = false;
-		
+		raycasting = casted;
+        rayInput = Mathf.Clamp(rayInput, -1f, 1f);
+
+        if (raycasting && Mathf.Abs(rayInput) > .5f)
+            ignoreWaypointNow = true;
+        else
+            ignoreWaypointNow = false;
+
 	}
 
-	void ApplyTorques(){
+	void FeedRCC(){
 
-		if(carController.direction == 1){
-			if(!limitSpeed){
-				carController.gasInput = gasInput;
-			}else{
-				carController.gasInput = gasInput * Mathf.Clamp01(Mathf.Lerp(10f, 0f, (carController.speed) / maximumSpeed));
+		// Feeding gasInput of the RCC.
+		if (!carController.changingGear && !carController.cutGas)
+			carController.throttleInput = (carController.direction == 1 ? Mathf.Clamp01(throttleInput) : Mathf.Clamp01(brakeInput));
+		else
+			carController.throttleInput = 0f;
+
+		if (!carController.changingGear && !carController.cutGas)
+			carController.brakeInput = (carController.direction == 1 ? Mathf.Clamp01(brakeInput) : Mathf.Clamp01(throttleInput));
+		else
+			carController.brakeInput = 0f;
+
+		// Feeding steerInput of the RCC.
+		if (smoothedSteer)
+            carController.steerInput = Mathf.Lerp(carController.steerInput, steerInput, Time.deltaTime * 20f);
+        else
+            carController.steerInput = steerInput;
+
+		carController.handbrakeInput = handbrakeInput;
+
+    }
+
+	void Stop(){
+
+		throttleInput = 0f;
+		brakeInput = 0f;
+		steerInput = 0f;
+		handbrakeInput = 1f;
+
+	}
+
+	void CheckTargets() {
+
+		// Removing unnecessary targets in list.
+		for (int i = 0; i < targetsInZone.Count; i++) {
+
+			if (targetsInZone[i] == null)
+				targetsInZone.RemoveAt(i);
+
+			if (!targetsInZone[i].gameObject.activeInHierarchy)
+				targetsInZone.RemoveAt(i);
+
+			else {
+
+				if (Vector3.Distance(transform.position, targetsInZone[i].transform.position) > (detector.radius * 1.25f))
+					targetsInZone.RemoveAt(i);
+
 			}
-		}else{
-			carController.gasInput = 0f;
+
 		}
 
-		if(smoothedSteer)
-			carController.steerInput = Mathf.Lerp(carController.steerInput, steerInput, Time.deltaTime * 20f);
+		// If there is a target, get closest enemy.
+		if (targetsInZone.Count > 0)
+			targetChase = GetClosestEnemy(targetsInZone.ToArray());
 		else
-			carController.steerInput = steerInput;
-
-		if(carController.direction == 1)
-			carController.brakeInput = brakeInput;
-		else
-			carController.brakeInput = gasInput;
+			targetChase = null;
 
 	}
 	
 	void OnTriggerEnter (Collider col){
-		
-		if(col.gameObject.GetComponent<RCC_AIBrakeZone>()){
-			inBrakeZone = true;
-			maximumSpeedInBrakeZone = col.gameObject.GetComponent<RCC_AIBrakeZone>().targetSpeed;
+
+		if(col.transform.root.CompareTag(targetTag)){
+			
+			if (!targetsInZone.Contains (col.transform.root))
+				targetsInZone.Add (col.transform.root);
+
 		}
-		
+
 	}
-	
-	void OnTriggerExit (Collider col){
-		
-		if(col.gameObject.GetComponent<RCC_AIBrakeZone>()){
-			inBrakeZone = false;
-			maximumSpeedInBrakeZone = 0;
+
+	Transform GetClosestEnemy (Transform[] enemies){
+
+		Transform bestTarget = null;
+
+		float closestDistanceSqr = Mathf.Infinity;
+		Vector3 currentPosition = transform.position;
+
+		foreach(Transform potentialTarget in enemies){
+
+			Vector3 directionToTarget = potentialTarget.position - currentPosition;
+			float dSqrToTarget = directionToTarget.sqrMagnitude;
+
+			if(dSqrToTarget < closestDistanceSqr){
+
+				closestDistanceSqr = dSqrToTarget;
+				bestTarget = potentialTarget;
+
+			}
+
 		}
-		
+
+		return bestTarget;
+
+	}
+
+	public static bool GetPath(NavMeshPath path, Vector3 fromPos, Vector3 toPos, int passableMask) {
+
+		path.ClearCorners();
+
+		if (NavMesh.CalculatePath(fromPos, toPos, passableMask, path) == false)
+			return false;
+
+		return true;
+
+	}
+
+	public static float GetPathLength(NavMeshPath path) {
+
+		float lng = 0.0f;
+
+		if ((path.status != NavMeshPathStatus.PathInvalid) && (path.corners.Length > 1)) {
+
+			for (int i = 1; i < path.corners.Length; ++i)
+				lng += Vector3.Distance(path.corners[i - 1], path.corners[i]);
+
+		}
+
+		return lng;
+
+	}
+
+	void OnDisable(){
+
+		// Calling this event when AI vehicle is destroyed.
+		if (OnRCCAIDestroyed != null)
+			OnRCCAIDestroyed (this);
+
 	}
 	
 }

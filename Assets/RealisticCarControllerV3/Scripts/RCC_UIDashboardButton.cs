@@ -1,30 +1,42 @@
 ﻿//----------------------------------------------
 //            Realistic Car Controller
 //
-// Copyright © 2015 BoneCracker Games
+// Copyright © 2014 - 2020 BoneCracker Games
 // http://www.bonecrackergames.com
+// Buğra Özdoğanlar
 //
 //----------------------------------------------
 
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.EventSystems;
 
-[AddComponentMenu("BoneCracker Games/Realistic Car Controller/UI/Dashboard Button")]
-public class RCC_UIDashboardButton : MonoBehaviour {
+/// <summary>
+/// UI buttons used in options panel. It has an enum for all kind of buttons. 
+/// </summary>
+[AddComponentMenu("BoneCracker Games/Realistic Car Controller/UI/RCC UI Dashboard Button")]
+public class RCC_UIDashboardButton : MonoBehaviour, IPointerClickHandler {
 	
 	public ButtonType _buttonType;
-	public enum ButtonType{Start, ABS, ESP, TCS, Headlights, LeftIndicator, RightIndicator, Gear};
+	public enum ButtonType{Start, ABS, ESP, TCS, Headlights, LeftIndicator, RightIndicator, Gear, Low, Med, High, SH, GearUp, GearDown, HazardLights, SlowMo, Record, Replay, Neutral, ChangeCamera};
 	private Scrollbar gearSlider;
 
-	private RCC_CarControllerV3[] carControllers;
-	private int gearDirection = 0;
+	public int gearDirection = 0;
+
+	public void OnPointerClick(PointerEventData eventData ){
+		
+		OnClicked ();
+
+	}
 
 	void Start(){
 
-		if(GetComponentInChildren<Scrollbar>()){
+		if(_buttonType == ButtonType.Gear && GetComponentInChildren<Scrollbar>()){
+			
 			gearSlider = GetComponentInChildren<Scrollbar>();
 			gearSlider.onValueChanged.AddListener (delegate {ChangeGear ();});
+
 		}
 
 	}
@@ -35,105 +47,173 @@ public class RCC_UIDashboardButton : MonoBehaviour {
 
 	}
 	
-	public void OnClicked () {
-		
-		carControllers = GameObject.FindObjectsOfType<RCC_CarControllerV3>();
-		
-		switch(_buttonType){
-			
+	private void OnClicked () {
+
+		switch (_buttonType) {
+
+			case ButtonType.Low:
+
+				QualitySettings.SetQualityLevel(1);
+
+				break;
+
+			case ButtonType.Med:
+
+				QualitySettings.SetQualityLevel(3);
+
+				break;
+
+			case ButtonType.High:
+
+				QualitySettings.SetQualityLevel(5);
+
+				break;
+
+			case ButtonType.SlowMo:
+
+				if (Time.timeScale != .2f)
+					Time.timeScale = .2f;
+				else
+					Time.timeScale = 1f;
+
+				break;
+
+			case ButtonType.Record:
+
+				RCC.StartStopRecord();
+
+				break;
+
+			case ButtonType.Replay:
+
+				RCC.StartStopReplay();
+
+				break;
+
+			case ButtonType.Neutral:
+
+				RCC.StopRecordReplay();
+
+				break;
+
+			case ButtonType.ChangeCamera:
+
+				RCC.ChangeCamera();
+
+				break;
+
+
 		case ButtonType.Start:
-			
-			for(int i = 0; i < carControllers.Length; i++){
-				
-				if(carControllers[i].canControl)
-					carControllers[i].KillOrStartEngine();
-				
-			}
-			
-			break;
-			
+
+				if (RCC_SceneManager.Instance.activePlayerVehicle)
+					RCC_SceneManager.Instance.activePlayerVehicle.KillOrStartEngine();
+
+				break;
+		
 		case ButtonType.ABS:
-			
-			for(int i = 0; i < carControllers.Length; i++){
-				
-				if(carControllers[i].canControl)
-					carControllers[i].ABS = !carControllers[i].ABS;
-				
-			}
+
+				if (RCC_SceneManager.Instance.activePlayerVehicle)
+					RCC_SceneManager.Instance.activePlayerVehicle.ABS = !RCC_SceneManager.Instance.activePlayerVehicle.ABS;
 			
 			break;
 			
 		case ButtonType.ESP:
-			
-			for(int i = 0; i < carControllers.Length; i++){
-				
-				if(carControllers[i].canControl)
-					carControllers[i].ESP = !carControllers[i].ESP;
-				
-			}
+
+				if (RCC_SceneManager.Instance.activePlayerVehicle)
+					RCC_SceneManager.Instance.activePlayerVehicle.ESP = !RCC_SceneManager.Instance.activePlayerVehicle.ESP;
 			
 			break;
 			
 		case ButtonType.TCS:
+
+				if (RCC_SceneManager.Instance.activePlayerVehicle)
+					RCC_SceneManager.Instance.activePlayerVehicle.TCS = !RCC_SceneManager.Instance.activePlayerVehicle.TCS;
 			
-			for(int i = 0; i < carControllers.Length; i++){
-				
-				if(carControllers[i].canControl)
-					carControllers[i].TCS = !carControllers[i].TCS;
-				
-			}
-			
+			break;
+
+		case ButtonType.SH:
+
+				if (RCC_SceneManager.Instance.activePlayerVehicle)
+					RCC_SceneManager.Instance.activePlayerVehicle.steeringHelper = !RCC_SceneManager.Instance.activePlayerVehicle.steeringHelper;
+
 			break;
 			
 		case ButtonType.Headlights:
-			
-			for(int i = 0; i < carControllers.Length; i++){
-				
-				if(carControllers[i].canControl){
-					if(!carControllers[i].highBeamHeadLightsOn && carControllers[i].lowBeamHeadLightsOn){
-						carControllers[i].highBeamHeadLightsOn = true;
-						carControllers[i].lowBeamHeadLightsOn = true;
+
+				if (RCC_SceneManager.Instance.activePlayerVehicle) {
+
+					if (!RCC_SceneManager.Instance.activePlayerVehicle.highBeamHeadLightsOn && RCC_SceneManager.Instance.activePlayerVehicle.lowBeamHeadLightsOn) {
+
+						RCC_SceneManager.Instance.activePlayerVehicle.highBeamHeadLightsOn = true;
+						RCC_SceneManager.Instance.activePlayerVehicle.lowBeamHeadLightsOn = true;
 						break;
+
 					}
-					if(!carControllers[i].lowBeamHeadLightsOn)
-						carControllers[i].lowBeamHeadLightsOn = true;
-					if(carControllers[i].highBeamHeadLightsOn){
-						carControllers[i].lowBeamHeadLightsOn = false;
-						carControllers[i].highBeamHeadLightsOn = false;
+
+					if (!RCC_SceneManager.Instance.activePlayerVehicle.lowBeamHeadLightsOn)
+						RCC_SceneManager.Instance.activePlayerVehicle.lowBeamHeadLightsOn = true;
+
+					if (RCC_SceneManager.Instance.activePlayerVehicle.highBeamHeadLightsOn) {
+
+						RCC_SceneManager.Instance.activePlayerVehicle.lowBeamHeadLightsOn = false;
+						RCC_SceneManager.Instance.activePlayerVehicle.highBeamHeadLightsOn = false;
+
 					}
+
 				}
-				
-			}
 			
 			break;
 
 		case ButtonType.LeftIndicator:
 
-			for(int i = 0; i < carControllers.Length; i++){
+				if (RCC_SceneManager.Instance.activePlayerVehicle) {
 
-				if(carControllers[i].canControl){
-					if(carControllers[i].indicatorsOn != RCC_CarControllerV3.IndicatorsOn.Left)
-						carControllers[i].indicatorsOn = RCC_CarControllerV3.IndicatorsOn.Left;
+					if (RCC_SceneManager.Instance.activePlayerVehicle.indicatorsOn != RCC_CarControllerV3.IndicatorsOn.Left)
+						RCC_SceneManager.Instance.activePlayerVehicle.indicatorsOn = RCC_CarControllerV3.IndicatorsOn.Left;
 					else
-						carControllers[i].indicatorsOn = RCC_CarControllerV3.IndicatorsOn.Off;
-				}
+						RCC_SceneManager.Instance.activePlayerVehicle.indicatorsOn = RCC_CarControllerV3.IndicatorsOn.Off;
 
-			}
+				}
 
 			break;
 
 		case ButtonType.RightIndicator:
 
-			for(int i = 0; i < carControllers.Length; i++){
+				if (RCC_SceneManager.Instance.activePlayerVehicle) {
 
-				if(carControllers[i].canControl){
-					if(carControllers[i].indicatorsOn != RCC_CarControllerV3.IndicatorsOn.Right)
-						carControllers[i].indicatorsOn = RCC_CarControllerV3.IndicatorsOn.Right;
+					if (RCC_SceneManager.Instance.activePlayerVehicle.indicatorsOn != RCC_CarControllerV3.IndicatorsOn.Right)
+						RCC_SceneManager.Instance.activePlayerVehicle.indicatorsOn = RCC_CarControllerV3.IndicatorsOn.Right;
 					else
-						carControllers[i].indicatorsOn = RCC_CarControllerV3.IndicatorsOn.Off;
+						RCC_SceneManager.Instance.activePlayerVehicle.indicatorsOn = RCC_CarControllerV3.IndicatorsOn.Off;
+
 				}
 
-			}
+			break;
+
+		case ButtonType.HazardLights:
+
+				if (RCC_SceneManager.Instance.activePlayerVehicle) {
+
+					if (RCC_SceneManager.Instance.activePlayerVehicle.indicatorsOn != RCC_CarControllerV3.IndicatorsOn.All)
+						RCC_SceneManager.Instance.activePlayerVehicle.indicatorsOn = RCC_CarControllerV3.IndicatorsOn.All;
+					else
+						RCC_SceneManager.Instance.activePlayerVehicle.indicatorsOn = RCC_CarControllerV3.IndicatorsOn.Off;
+
+				}
+
+			break;
+
+		case ButtonType.GearUp:
+
+				if (RCC_SceneManager.Instance.activePlayerVehicle)
+					RCC_SceneManager.Instance.activePlayerVehicle.GearShiftUp ();
+
+			break;
+
+		case ButtonType.GearDown:
+
+				if (RCC_SceneManager.Instance.activePlayerVehicle)
+					RCC_SceneManager.Instance.activePlayerVehicle.GearShiftDown ();
 
 			break;
 			
@@ -144,60 +224,57 @@ public class RCC_UIDashboardButton : MonoBehaviour {
 	}
 	
 	public void Check(){
-		
-		carControllers = GameObject.FindObjectsOfType<RCC_CarControllerV3>();
+
+		if (!GetComponent<Image> ())
+			return;
+
+		if (!RCC_SceneManager.Instance.activePlayerVehicle)
+			return;
 		
 		switch(_buttonType){
 			
 		case ButtonType.ABS:
-			
-			for(int i = 0; i < carControllers.Length; i++){
-				
-				if(carControllers[i].canControl && carControllers[i].ABS)
-					GetComponent<Image>().color = new Color(1, 1, 1, 1);
-				else if(carControllers[i].canControl)
-					GetComponent<Image>().color = new Color(.25f, .25f, .25f, 1);
-				
-			}
+
+			if(RCC_SceneManager.Instance.activePlayerVehicle.ABS)
+				GetComponent<Image>().color = new Color(1, 1, 1, 1);
+			else
+				GetComponent<Image>().color = new Color(.25f, .25f, .25f, 1);
 			
 			break;
 			
 		case ButtonType.ESP:
-			
-			for(int i = 0; i < carControllers.Length; i++){
-				
-				if(carControllers[i].canControl && carControllers[i].ESP)
-					GetComponent<Image>().color = new Color(1, 1, 1, 1);
-				else if(carControllers[i].canControl)
-					GetComponent<Image>().color = new Color(.25f, .25f, .25f, 1);
-				
-			}
+
+			if(RCC_SceneManager.Instance.activePlayerVehicle.ESP)
+				GetComponent<Image>().color = new Color(1, 1, 1, 1);
+			else
+				GetComponent<Image>().color = new Color(.25f, .25f, .25f, 1);
 			
 			break;
 			
 		case ButtonType.TCS:
+
+			if(RCC_SceneManager.Instance.activePlayerVehicle.TCS)
+				GetComponent<Image>().color = new Color(1, 1, 1, 1);
+			else
+				GetComponent<Image>().color = new Color(.25f, .25f, .25f, 1);
 			
-			for(int i = 0; i < carControllers.Length; i++){
-				
-				if(carControllers[i].canControl && carControllers[i].TCS)
-					GetComponent<Image>().color = new Color(1, 1, 1, 1);
-				else if(carControllers[i].canControl)
-					GetComponent<Image>().color = new Color(.25f, .25f, .25f, 1);
-				
-			}
-			
+			break;
+
+		case ButtonType.SH:
+
+			if(RCC_SceneManager.Instance.activePlayerVehicle.steeringHelper)
+				GetComponent<Image>().color = new Color(1, 1, 1, 1);
+			else
+				GetComponent<Image>().color = new Color(.25f, .25f, .25f, 1);
+
 			break;
 			
 		case ButtonType.Headlights:
-			
-			for(int i = 0; i < carControllers.Length; i++){
-				
-				if(carControllers[i].canControl && carControllers[i].lowBeamHeadLightsOn || carControllers[i].highBeamHeadLightsOn)
-					GetComponent<Image>().color = new Color(1, 1, 1, 1);
-				else if(carControllers[i].canControl)
-					GetComponent<Image>().color = new Color(.25f, .25f, .25f, 1);
-				
-			}
+
+			if(RCC_SceneManager.Instance.activePlayerVehicle.lowBeamHeadLightsOn || RCC_SceneManager.Instance.activePlayerVehicle.highBeamHeadLightsOn)
+				GetComponent<Image>().color = new Color(1, 1, 1, 1);
+			else
+				GetComponent<Image>().color = new Color(.25f, .25f, .25f, 1);
 			
 			break;
 			
@@ -207,23 +284,31 @@ public class RCC_UIDashboardButton : MonoBehaviour {
 
 	public void ChangeGear(){
 
-		if(gearDirection == (int)gearSlider.value)
+		if (!RCC_SceneManager.Instance.activePlayerVehicle)
 			return;
 
-		gearDirection = (int)gearSlider.value;
+		if(gearDirection == Mathf.CeilToInt(gearSlider.value * 2))
+			return;
 
-		for(int i = 0; i < carControllers.Length; i++){
+		gearDirection = Mathf.CeilToInt(gearSlider.value * 2);
 
-			if(carControllers[i].canControl){
-				
-				carControllers[i].semiAutomaticGear = true;
+		RCC_SceneManager.Instance.activePlayerVehicle.semiAutomaticGear = true;
 
-				if(gearDirection == 1)
-					carControllers[i].StartCoroutine("ChangingGear", -1);
-				else
-					carControllers[i].StartCoroutine("ChangingGear", 0);
-				
-			}
+		switch(gearDirection){
+
+		case 0:
+			RCC_SceneManager.Instance.activePlayerVehicle.StartCoroutine("ChangeGear", 0);
+			RCC_SceneManager.Instance.activePlayerVehicle.NGear = false;
+			break;
+
+		case 1:
+			RCC_SceneManager.Instance.activePlayerVehicle.NGear = true;
+			break;
+
+		case 2:
+			RCC_SceneManager.Instance.activePlayerVehicle.StartCoroutine("ChangeGear", -1);
+			RCC_SceneManager.Instance.activePlayerVehicle.NGear = false;
+			break;
 
 		}
 
@@ -231,18 +316,14 @@ public class RCC_UIDashboardButton : MonoBehaviour {
 
 	void OnDisable(){
 
-		if(_buttonType == ButtonType.Gear){
-
-			carControllers = GameObject.FindObjectsOfType<RCC_CarControllerV3>();
-
-			foreach(RCC_CarControllerV3 rcc in carControllers){
-
-				if(rcc.canControl)
-					rcc.semiAutomaticGear = false;
-
-			}
-
-		}
+//		if (!RCC_SceneManager.Instance.activePlayerVehicle)
+//			return;
+//
+//		if(_buttonType == ButtonType.Gear){
+//
+//			RCC_SceneManager.Instance.activePlayerVehicle.semiAutomaticGear = false;
+//
+//		}
 
 	}
 	

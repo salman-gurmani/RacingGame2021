@@ -1,8 +1,18 @@
-﻿using UnityEngine;
+﻿//----------------------------------------------
+//            Realistic Car Controller
+//
+// Copyright © 2014 - 2020 BoneCracker Games
+// http://www.bonecrackergames.com
+// Buğra Özdoğanlar
+//
+//----------------------------------------------
+
+using UnityEngine;
 using UnityEditor;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 [CustomEditor(typeof(RCC_GroundMaterials))]
 public class RCC_GroundMaterialsEditor : Editor {
@@ -22,13 +32,13 @@ public class RCC_GroundMaterialsEditor : Editor {
 
 		EditorGUILayout.Space();
 		EditorGUILayout.LabelField("Wheels Editor", EditorStyles.boldLabel);
-		EditorGUILayout.LabelField("This editor will keep update necessary .asset files in your project. Don't change directory of the ''Resources/HR_Assets''.", EditorStyles.helpBox);
+		EditorGUILayout.LabelField("This editor will keep update necessary .asset files in your project. Don't change directory of the ''Resources/RCC Assets''.", EditorStyles.helpBox);
 		EditorGUILayout.Space();
 
 		scrollPos = EditorGUILayout.BeginScrollView(scrollPos, false, false );
 
 		EditorGUIUtility.labelWidth = 110f;
-		//EditorGUIUtility.fieldWidth = 10f;
+//		EditorGUIUtility.fieldWidth = 10f;
 
 		GUILayout.Label("Ground Materials", EditorStyles.boldLabel);
 
@@ -36,34 +46,41 @@ public class RCC_GroundMaterialsEditor : Editor {
 
 			EditorGUILayout.BeginVertical(GUI.skin.box);
 			EditorGUILayout.Space();
+			EditorGUILayout.BeginHorizontal ();
 
 			if(prop.frictions[i].groundMaterial)
-				EditorGUILayout.LabelField(prop.frictions[i].groundMaterial.name, EditorStyles.boldLabel);
+				EditorGUILayout.LabelField(prop.frictions[i].groundMaterial.name + (i == 0 ? " (Default)" : ""), EditorStyles.boldLabel);
 
+			GUI.color = Color.red;		if(GUILayout.Button("X", GUILayout.Width(25f))){RemoveGroundMaterial(i);}	GUI.color = orgColor;
+
+			EditorGUILayout.EndHorizontal ();
 			EditorGUILayout.Space();
 			EditorGUILayout.BeginHorizontal();
 
 			prop.frictions[i].groundMaterial = (PhysicMaterial)EditorGUILayout.ObjectField("Physic Material", prop.frictions[i].groundMaterial, typeof(PhysicMaterial), false, GUILayout.Width(250f));
-			prop.frictions[i].forwardStiffness = EditorGUILayout.FloatField("Forward Stiffness", prop.frictions[i].forwardStiffness, GUILayout.Width(250f));
+			prop.frictions[i].forwardStiffness = EditorGUILayout.FloatField("Forward Stiffness", prop.frictions[i].forwardStiffness, GUILayout.Width(150f));
 
 			EditorGUILayout.EndHorizontal();
 
 			EditorGUILayout.BeginHorizontal();
 			prop.frictions[i].groundSound = (AudioClip)EditorGUILayout.ObjectField("Wheel Sound", prop.frictions[i].groundSound, typeof(AudioClip), false, GUILayout.Width(250f));
-			prop.frictions[i].sidewaysStiffness = EditorGUILayout.FloatField("Sideways Stiffness", prop.frictions[i].sidewaysStiffness, GUILayout.Width(250f));
+			prop.frictions[i].sidewaysStiffness = EditorGUILayout.FloatField("Sideways Stiffness", prop.frictions[i].sidewaysStiffness, GUILayout.Width(150f));
 
 			EditorGUILayout.EndHorizontal();
+
+			prop.frictions[i].volume = EditorGUILayout.Slider("Volume", prop.frictions[i].volume, 0f, 1f, GUILayout.Width(250f));
+
 			EditorGUILayout.BeginHorizontal();
-			prop.frictions[i].groundParticles = (GameObject)EditorGUILayout.ObjectField("Wheel Particles", prop.frictions[i].groundParticles, typeof(GameObject), false, GUILayout.Width(250f));
-			prop.frictions[i].slip = EditorGUILayout.FloatField("Slip", prop.frictions[i].slip, GUILayout.Width(250f));
+			prop.frictions[i].groundParticles = (GameObject)EditorGUILayout.ObjectField("Wheel Particles", prop.frictions[i].groundParticles, typeof(GameObject), false, GUILayout.Width(200f));
+			prop.frictions[i].skidmark = (RCC_Skidmarks)EditorGUILayout.ObjectField("Wheel Skidmarks", prop.frictions[i].skidmark, typeof(RCC_Skidmarks), false, GUILayout.Width(200f));
 
 			EditorGUILayout.Space();
 
 			EditorGUILayout.EndHorizontal();
 
 			EditorGUILayout.BeginHorizontal();
-			prop.frictions[i].damp = EditorGUILayout.FloatField("Damp", prop.frictions[i].damp, GUILayout.Width(250f));
-			GUI.color = Color.red;		if(GUILayout.Button("Remove", GUILayout.Width(75f))){RemoveGroundMaterial(i);}	GUI.color = orgColor;
+			prop.frictions[i].slip = EditorGUILayout.FloatField("Slip", prop.frictions[i].slip, GUILayout.Width(150f));
+			prop.frictions[i].damp = EditorGUILayout.FloatField("Damp", prop.frictions[i].damp, GUILayout.Width(150f));
 			EditorGUILayout.EndHorizontal();
 
 			EditorGUILayout.Space();
@@ -73,12 +90,9 @@ public class RCC_GroundMaterialsEditor : Editor {
 
 		EditorGUILayout.BeginVertical(GUI.skin.box);
 		GUILayout.Label("Terrain Ground Materials", EditorStyles.boldLabel);
-		EditorGUILayout.Space();
-		EditorGUILayout.PropertyField(serializedObject.FindProperty("useTerrainSplatMapForGroundFrictions"), new GUIContent("Use Terrain SplatMap For Ground Physics"), false);
-		if(prop.useTerrainSplatMapForGroundFrictions){
-			EditorGUILayout.PropertyField(serializedObject.FindProperty("terrainPhysicMaterial"), new GUIContent("Terrain Physic Material"), true);
-			EditorGUILayout.PropertyField(serializedObject.FindProperty("terrainSplatMapIndex"), new GUIContent("Terrain Splat Map Index"), true);
-		}
+
+		EditorGUILayout.PropertyField (serializedObject.FindProperty ("terrainFrictions"), new GUIContent ("Terrain Physic Material"), true);
+
 		EditorGUILayout.Space();
 		EditorGUILayout.EndVertical();
 

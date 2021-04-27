@@ -1,18 +1,32 @@
-﻿using UnityEngine;
+﻿//----------------------------------------------
+//            Realistic Car Controller
+//
+// Copyright © 2014 - 2020 BoneCracker Games
+// http://www.bonecrackergames.com
+// Buğra Özdoğanlar
+//
+//----------------------------------------------
+
+using UnityEngine;
 using System.Collections;
 
-[AddComponentMenu("BoneCracker Games/Realistic Car Controller/Misc/Animator Controller")]
+/// <summary>
+/// Animates Driver Sofie (Credits to 3DMaesen). Simply feeds floats and bools of Sofie's animator component.
+/// </summary>
+[AddComponentMenu("BoneCracker Games/Realistic Car Controller/Misc/RCC Animator Controller")]
 public class RCC_CharacterController : MonoBehaviour {
 
 	private RCC_CarControllerV3 carController;
 	private Rigidbody carRigid;
-	private Animator animator;
+	public Animator animator;
 
+	// String parameters of animator.
 	public string driverSteeringParameter;
 	public string driverShiftingGearParameter;
 	public string driverDangerParameter;
 	public string driverReversingParameter;
 
+	// Inputs for feeding animator.
 	public float steerInput = 0f;
 	public float directionInput = 0f;
 	public bool reversing = false;
@@ -21,7 +35,9 @@ public class RCC_CharacterController : MonoBehaviour {
 
 	void Start () {
 
-		animator = GetComponent<Animator>();
+		if(!animator)
+			animator = GetComponentInChildren<Animator>();
+		
 		carController = GetComponent<RCC_CarControllerV3>();
 		carRigid = GetComponent<Rigidbody>();
 		
