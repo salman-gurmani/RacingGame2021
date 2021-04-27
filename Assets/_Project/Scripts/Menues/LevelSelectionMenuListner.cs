@@ -38,9 +38,7 @@ public class LevelSelectionMenuListner : MonoBehaviour {
 		_object.effectPlayer.loop = true;
 		_object.effectPlayer.duration = 2.7f;
 		_object.effectPlayer.play = true;
-
-		//Enable previous level stars
-		if(Toolbox.DB.prefs.LastSelectedLevel !=0) buttons[Toolbox.DB.prefs.LastSelectedLevel-1].ShowStars();
+	
 	}
 	private void SetLevelsButtonLockState()
     {
