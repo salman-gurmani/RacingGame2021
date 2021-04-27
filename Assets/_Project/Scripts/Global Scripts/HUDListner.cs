@@ -217,7 +217,7 @@ public class HUDListner : MonoBehaviour {
             {
                 centerTime = tempTime;
                 timeTxt.color = Color.yellow;
-                centerText.SetActive(true);
+               // centerText.SetActive(true);
                 //centerTime -= Time.deltaTime;
             }
             else if (tempTime <= 5) timeTxt.color = Color.red;
