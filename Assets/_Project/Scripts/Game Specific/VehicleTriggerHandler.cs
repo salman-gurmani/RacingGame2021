@@ -16,9 +16,9 @@ public class VehicleTriggerHandler : MonoBehaviour
         if (other.gameObject.tag == "Distance")
         {
 
-            Toolbox.GameplayScript.distCalculation.points.Remove(other.gameObject.transform);
-            Toolbox.GameplayScript.distCalculation.calculatingDistance();
-            distanceBar = Toolbox.GameplayScript.distCalculation.mainDistance - Toolbox.GameplayScript.distCalculation.accumulateDistance;
+            Toolbox.GameplayScript.levelsManager.CurLevelHandler.distScript.points.Remove(other.gameObject.transform);
+            Toolbox.GameplayScript.levelsManager.CurLevelHandler.distScript.calculatingDistance();
+            distanceBar = Toolbox.GameplayScript.levelsManager.CurLevelHandler.distScript.mainDistance - Toolbox.GameplayScript.levelsManager.CurLevelHandler.distScript.accumulateDistance;
         }
     }
 }

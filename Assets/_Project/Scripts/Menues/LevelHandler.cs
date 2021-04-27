@@ -7,6 +7,7 @@ public class LevelHandler : MonoBehaviour
     public GameObject raceCountdown;
     public GameObject heliObj;
     public float heliLife = 10f;
+    public DistanceCalculation distScript;
 
     private bool isCountdownstart = false;
 

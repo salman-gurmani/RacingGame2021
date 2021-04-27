@@ -38,7 +38,6 @@ public class GameplayScript : MonoBehaviour {
     public RCC_Camera cameraScript;
     public bool canShowReviewMenu = false;
     public LevelsManager levelsManager;
-    public DistanceCalculation distCalculation;
     public PositionController positionManager;
     public List<GameObject> aiCars = new List<GameObject>();
 

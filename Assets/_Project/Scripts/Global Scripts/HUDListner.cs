@@ -94,11 +94,11 @@ public class HUDListner : MonoBehaviour {
             carController = Toolbox.GameplayScript.PlayerObject.GetComponent<RCC_CarControllerV3>();
 
         //RCC.SetController(1);
-        distanceSlider.maxValue = Toolbox.GameplayScript.distCalculation.mainDistance;
+        
     }
     private void Update()
     {
-        
+        distanceSlider.maxValue = Toolbox.GameplayScript.levelsManager.CurLevelHandler.distScript.mainDistance;
         distanceSlider.value = carController.GetComponent<VehicleTriggerHandler>().distanceBar;
         if (NosSlider.value > 0)
         {
