@@ -12113,6 +12113,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11495930, guid: 0722a9e01046ddd4289c83d741ad6252, type: 3}
+      propertyPath: brakeTorque
+      value: 5500
+      objectReference: {fileID: 0}
+    - target: {fileID: 11495930, guid: 0722a9e01046ddd4289c83d741ad6252, type: 3}
       propertyPath: engineClipLow
       value: 
       objectReference: {fileID: 8300000, guid: 50b31fdf67d91d44cbe737d6c4a66049, type: 3}
@@ -12179,6 +12183,34 @@ PrefabInstance:
     - target: {fileID: 11495930, guid: 0722a9e01046ddd4289c83d741ad6252, type: 3}
       propertyPath: engineTorqueCurve.m_Curve.Array.data[2].outSlope
       value: -0.0952381
+      objectReference: {fileID: 0}
+    - target: {fileID: 212514509, guid: 0722a9e01046ddd4289c83d741ad6252, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.50000185
+      objectReference: {fileID: 0}
+    - target: {fileID: 212514509, guid: 0722a9e01046ddd4289c83d741ad6252, type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 2.0371966
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721108449, guid: 0722a9e01046ddd4289c83d741ad6252, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.000005632639
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721108449, guid: 0722a9e01046ddd4289c83d741ad6252, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.43599987
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721108449, guid: 0722a9e01046ddd4289c83d741ad6252, type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.7439946
+      objectReference: {fileID: 0}
+    - target: {fileID: 1966374066, guid: 0722a9e01046ddd4289c83d741ad6252, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.49999577
+      objectReference: {fileID: 0}
+    - target: {fileID: 1966374066, guid: 0722a9e01046ddd4289c83d741ad6252, type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -1.8924148
       objectReference: {fileID: 0}
     - target: {fileID: 378895563769332497, guid: 0722a9e01046ddd4289c83d741ad6252,
         type: 3}
