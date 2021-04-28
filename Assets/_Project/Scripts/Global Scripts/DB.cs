@@ -73,6 +73,7 @@ public class Prefs
 {
     [SerializeField] private bool gameAudio = true;
     [SerializeField] private bool gameMusic = true;
+    [SerializeField] private bool tiltControl = false;
 
     [SerializeField] private int goldCoins = 0;
     [SerializeField] private int highScore = 0;
@@ -85,6 +86,8 @@ public class Prefs
     [SerializeField] private int lastSelectedLevel = 0;
     [SerializeField] private string lastSelectedVehicleName;
     [SerializeField] private int fuelTank = 0;
+
+    [SerializeField] private float tiltSensitivity = 0;
 
     [SerializeField] private bool fbLoggedIn = false;
 
@@ -160,6 +163,8 @@ public class Prefs
     public int RewardDay { get => rewardDay; set => rewardDay = value; }
     public int FuelTank { get => fuelTank; set => fuelTank = value; }
     public string LastSelectedVehicleName { get => lastSelectedVehicleName; set => lastSelectedVehicleName = value; }
+    public bool TiltControl { get => tiltControl; set => tiltControl = value; }
+    public float TiltSensitivity { get => tiltSensitivity; set => tiltSensitivity = value; }
 }
 public class DB : MonoBehaviour {
        
