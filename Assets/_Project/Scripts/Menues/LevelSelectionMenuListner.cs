@@ -68,5 +68,10 @@ public class LevelSelectionMenuListner : MonoBehaviour {
 		Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.back);
 		Toolbox.MenuHandler.Show_PrevUI();
 	}
-	
+
+	public void OnPress_UnlockAllVehicles()
+	{
+		InAppManager.instance.Buy_UnlockAllLevels();
+		Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.buttonPressYes);
+	}
 }

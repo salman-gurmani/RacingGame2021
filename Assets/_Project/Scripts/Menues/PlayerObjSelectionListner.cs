@@ -27,11 +27,14 @@ public class PlayerObjSelectionListner : MonoBehaviour
 	public Image[] specs;
 
 	private float xAxix;
+	private Animator envAnim;
 	private void OnEnable()
 	{
 		UpdateTxt();
 		curIndex = Toolbox.DB.prefs.LastSelectedPlayerObj;
 		SpawnObject(curIndex);
+		envAnim = environmentObj.GetComponent<Animator>();
+		envAnim.SetTrigger("SpawnEffect");
 	}
 
 
@@ -115,9 +118,11 @@ public class PlayerObjSelectionListner : MonoBehaviour
 
 	public void OnPress_carThumb(int no)
     {
+		envAnim.SetTrigger("SpawnEffect");
 		Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.Select);
 		curIndex = no;
 		SpawnObject(curIndex);
+		Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.rampSfx);
 	}
 
 	public void OnPress_Unlock()
@@ -167,5 +172,11 @@ public class PlayerObjSelectionListner : MonoBehaviour
 			specs[i].fillAmount = spawnedPlayerData.specs[i];
 		}
 
+	}
+
+	public void OnPress_UnlockAllVehicles()
+    {
+		InAppManager.instance.Buy_UnlockAllCars();
+		Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.buttonPressYes);
 	}
 }
