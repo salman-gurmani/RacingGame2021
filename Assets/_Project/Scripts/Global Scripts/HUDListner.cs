@@ -59,6 +59,7 @@ public class HUDListner : MonoBehaviour {
 
     private bool isAccPressed = false;
 
+    public RCC_Inputs rccInputs;
 
     int paneltiesRecieved = 0;
 
@@ -69,6 +70,7 @@ public class HUDListner : MonoBehaviour {
 
     void Awake() {
         Toolbox.Set_HudListner(this.GetComponent<HUDListner>());
+        rccInputs = RCC_InputManager.GetInputs();
     }
 
     public void DisableHUD() {
@@ -115,6 +117,7 @@ public class HUDListner : MonoBehaviour {
             NosSlider.value -= 0.05f;
         }
         accelVal = Mathf.MoveTowards(accelVal, tempAccelnVal, accelSwitchSpeed);
+        
         //if (cruiseBtn.isOn) OnPress_Forward();
         switch (type)
         {
@@ -131,6 +134,7 @@ public class HUDListner : MonoBehaviour {
         }
 
         HandleTime();
+        Handle_RCCInputs();
         nosVal = Mathf.MoveTowards(nosVal, nosSwitchSpeed, 2.5f);
         //nosVal = Mathf.Clamp(tempNosVal * 2.5f, 1, nosSwitchSpeed);
 
@@ -144,6 +148,15 @@ public class HUDListner : MonoBehaviour {
         HandlingKeyboardControls();
 #endif
 
+    }
+
+    public void Handle_RCCInputs()
+    {
+        rccInputs.throttleInput = accelVal;
+        rccInputs.steerInput = turnVal;
+        rccInputs.brakeInput = brakeVal;
+        rccInputs.boostInput = nosVal;
+        rccInputs.handbrakeInput = handBrakeVal;
     }
 
     public void SetLvlTxt(string _str) {
@@ -336,6 +349,7 @@ public class HUDListner : MonoBehaviour {
     {
         StartTime = true;
         tempAccelnVal = accelDirection;
+        //rccInputs.throttleInput = tempAccelnVal;
     }
     //To disable Cruise Control on first click
     public void onClick_Forward()
