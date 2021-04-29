@@ -987,71 +987,79 @@ public class RCC_CarControllerV3 : RCC_Core {
 
 				inputs = RCC_InputManager.GetInputs();
 
-				//throttleInput = HUDListner.accelVal;
-				//brakeInput = HUDListner.brakeVal;
+                //throttleInput = HUDListner.accelVal;
+                //brakeInput = HUDListner.brakeVal;
+				throttleInput = inputs.throttleInput;
+				brakeInput = inputs.brakeInput;
 
 				//steerInput = HUDListner.turnVal;
 
-				//if (!automaticGear || semiAutomaticGear) {
-				//	if (!changingGear && !cutGas)
-				//		throttleInput = inputs.throttleInput;
-				//	else
-				//		throttleInput = 0f;
-				//} else {
-				//	if (!changingGear && !cutGas)
-				//		throttleInput = (direction == 1 ? Mathf.Clamp01(inputs.throttleInput) : Mathf.Clamp01(inputs.brakeInput));
-				//	else
-				//		throttleInput = 0f;
-				//}
-
-				//if (!automaticGear || semiAutomaticGear) {
-				//	brakeInput = Mathf.Clamp01(inputs.brakeInput);
-				//} else {
-				//	if (!cutGas)
-				//		brakeInput = (direction == 1 ? Mathf.Clamp01(inputs.brakeInput) : Mathf.Clamp01(inputs.throttleInput));
-				//	else
-				//		brakeInput = 0f;
-				//}
-
-				//steerInput = inputs.steerInput;
-				//boostInput = inputs.boostInput;
-				//handbrakeInput = inputs.handbrakeInput;
-
-				//if(!useAutomaticClutch)
-				//	clutchInput = inputs.clutchInput;
-
-				//            GetExternalInputs();
-
 				if (!automaticGear || semiAutomaticGear)
+                {
+                    if (!changingGear && !cutGas)
+                        throttleInput = inputs.throttleInput;
+                    else
+                        throttleInput = 0f;
+                }
+                else
+                {
+                    if (!changingGear && !cutGas)
+                        throttleInput = (direction == 1 ? Mathf.Clamp01(inputs.throttleInput) : Mathf.Clamp01(inputs.brakeInput));
+                    else
+                        throttleInput = 0f;
+                }
+
+                if (!automaticGear || semiAutomaticGear)
+                {
+                    brakeInput = Mathf.Clamp01(inputs.brakeInput);
+                }
+                else
+                {
+                    if (!cutGas)
+                        brakeInput = (direction == 1 ? Mathf.Clamp01(inputs.brakeInput) : Mathf.Clamp01(inputs.throttleInput));
+                    else
+                        brakeInput = 0f;
+                }
+
+                steerInput = inputs.steerInput;
+                boostInput = inputs.boostInput;
+                handbrakeInput = inputs.handbrakeInput;
+
+                if (!useAutomaticClutch)
+                    clutchInput = inputs.clutchInput;
+
+                GetExternalInputs();
+
+                if (!automaticGear || semiAutomaticGear)
 				{
 					if (!changingGear && !cutGas)
-						throttleInput = HUDListner.accelVal;
+						throttleInput = inputs.throttleInput;
 					else
 						throttleInput = 0f;
 				}
 				else
 				{
 					if (!changingGear && !cutGas)
-						throttleInput = (direction == 1 ? Mathf.Clamp01(HUDListner.accelVal) : Mathf.Clamp01(HUDListner.brakeVal));
+						throttleInput = (direction == 1 ? Mathf.Clamp01(inputs.throttleInput) : Mathf.Clamp01(inputs.brakeInput));
 					else
 						throttleInput = 0f;
 				}
 
 				if (!automaticGear || semiAutomaticGear)
 				{
-					brakeInput = Mathf.Clamp01(HUDListner.brakeVal);
+					brakeInput = Mathf.Clamp01(inputs.brakeInput);
 				}
 				else
 				{
 					if (!cutGas)
-						brakeInput = (direction == 1 ? Mathf.Clamp01(HUDListner.brakeVal) : Mathf.Clamp01(HUDListner.accelVal));
+						brakeInput = (direction == 1 ? Mathf.Clamp01(inputs.brakeInput) : Mathf.Clamp01(inputs.throttleInput));
 					else
 						brakeInput = 0f;
 				}
 
-				steerInput = HUDListner.turnVal;
-				boostInput = HUDListner.nosVal;
-				handbrakeInput = HUDListner.handBrakeVal;
+				steerInput = inputs.steerInput;
+				boostInput = inputs.boostInput;
+				handbrakeInput = inputs.handbrakeInput;
 
 				if (!useAutomaticClutch)
 					clutchInput = inputs.clutchInput;
