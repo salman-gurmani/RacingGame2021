@@ -105,7 +105,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196a38f32d421d44eb21abcc703e8589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultIntensity: 0
+  flareBrightness: 1.5
   lightType: 0
+  inertia: 1
+  flare: {fileID: 0}
+  refreshRate: 30
 --- !u!1 &104598958
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,7 +216,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196a38f32d421d44eb21abcc703e8589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultIntensity: 0
+  flareBrightness: 1.5
   lightType: 1
+  inertia: 1
+  flare: {fileID: 0}
+  refreshRate: 30
 --- !u!1 &205715936
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,7 +327,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196a38f32d421d44eb21abcc703e8589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultIntensity: 0
+  flareBrightness: 1.5
   lightType: 3
+  inertia: 1
+  flare: {fileID: 0}
+  refreshRate: 30
 --- !u!1 &261491980
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,7 +438,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196a38f32d421d44eb21abcc703e8589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultIntensity: 0
+  flareBrightness: 1.5
   lightType: 1
+  inertia: 1
+  flare: {fileID: 0}
+  refreshRate: 30
 --- !u!1 &297881910
 GameObject:
   m_ObjectHideFlags: 0
@@ -5062,8 +5082,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1f6e470573725a743b5415d4eca751df, type: 2}
-  - {fileID: 2100000, guid: 1f6e470573725a743b5415d4eca751df, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5273,7 +5293,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196a38f32d421d44eb21abcc703e8589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultIntensity: 0
+  flareBrightness: 1.5
   lightType: 0
+  inertia: 1
+  flare: {fileID: 0}
+  refreshRate: 30
 --- !u!1 &556854387
 GameObject:
   m_ObjectHideFlags: 0
@@ -5411,7 +5436,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196a38f32d421d44eb21abcc703e8589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultIntensity: 0
+  flareBrightness: 1.5
   lightType: 3
+  inertia: 1
+  flare: {fileID: 0}
+  refreshRate: 30
 --- !u!1 &953373158
 GameObject:
   m_ObjectHideFlags: 0
@@ -5517,7 +5547,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196a38f32d421d44eb21abcc703e8589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultIntensity: 0
+  flareBrightness: 1.5
   lightType: 2
+  inertia: 1
+  flare: {fileID: 0}
+  refreshRate: 30
 --- !u!1 &1030680698
 GameObject:
   m_ObjectHideFlags: 0
@@ -10378,9 +10413,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flame: {fileID: 1446778959}
+  flareBrightness: 1
   flameTime: 0
   flameColor: {r: 1, g: 0.6000001, b: 0, a: 1}
   boostFlameColor: {r: 0, g: 1, b: 1, a: 1}
+  previewFlames: 0
+  minEmission: 5
+  maxEmission: 50
+  minSize: 2.5
+  maxSize: 5
+  minSpeed: 0.5
+  maxSpeed: 5
 --- !u!1 &1238538713
 GameObject:
   m_ObjectHideFlags: 0
@@ -10486,7 +10529,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196a38f32d421d44eb21abcc703e8589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultIntensity: 0
+  flareBrightness: 1.5
   lightType: 0
+  inertia: 1
+  flare: {fileID: 0}
+  refreshRate: 30
 --- !u!1 &1381766260
 GameObject:
   m_ObjectHideFlags: 0
@@ -15189,9 +15237,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flame: {fileID: 297881914}
+  flareBrightness: 1
   flameTime: 0
   flameColor: {r: 1, g: 0.6000001, b: 0, a: 1}
   boostFlameColor: {r: 0, g: 1, b: 1, a: 1}
+  previewFlames: 0
+  minEmission: 5
+  maxEmission: 50
+  minSize: 2.5
+  maxSize: 5
+  minSpeed: 0.5
+  maxSpeed: 5
 --- !u!1 &1429813364
 GameObject:
   m_ObjectHideFlags: 0
@@ -15297,7 +15353,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196a38f32d421d44eb21abcc703e8589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultIntensity: 0
+  flareBrightness: 1.5
   lightType: 2
+  inertia: 1
+  flare: {fileID: 0}
+  refreshRate: 30
 --- !u!1 &1446778955
 GameObject:
   m_ObjectHideFlags: 0
@@ -19936,8 +19997,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1f6e470573725a743b5415d4eca751df, type: 2}
-  - {fileID: 2100000, guid: 1f6e470573725a743b5415d4eca751df, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20147,7 +20208,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196a38f32d421d44eb21abcc703e8589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultIntensity: 0
+  flareBrightness: 1.5
   lightType: 0
+  inertia: 1
+  flare: {fileID: 0}
+  refreshRate: 30
 --- !u!1 &1719700417
 GameObject:
   m_ObjectHideFlags: 0
@@ -20253,7 +20319,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196a38f32d421d44eb21abcc703e8589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultIntensity: 0
+  flareBrightness: 1.5
   lightType: 3
+  inertia: 1
+  flare: {fileID: 0}
+  refreshRate: 30
 --- !u!1 &1870357758
 GameObject:
   m_ObjectHideFlags: 0
@@ -20359,7 +20430,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196a38f32d421d44eb21abcc703e8589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultIntensity: 0
+  flareBrightness: 1.5
   lightType: 3
+  inertia: 1
+  flare: {fileID: 0}
+  refreshRate: 30
 --- !u!1 &1946459873
 GameObject:
   m_ObjectHideFlags: 0
@@ -20432,7 +20508,7 @@ Transform:
   m_LocalScale: {x: 0.20719177, y: 0.20719177, z: 0.20719177}
   m_Children: []
   m_Father: {fileID: 2037947443799897379}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &2037947443492472922
 MeshRenderer:
@@ -20506,9 +20582,8 @@ GameObject:
   - component: {fileID: 2037947443799897379}
   - component: {fileID: 2037947443799897376}
   - component: {fileID: 2037947443799897377}
-  - component: {fileID: 2037947443799897566}
-  - component: {fileID: 2037947443799897567}
   - component: {fileID: 2037947443799897564}
+  - component: {fileID: 1985159710577694725}
   m_Layer: 8
   m_Name: 2
   m_TagString: Player
@@ -20530,7 +20605,6 @@ Transform:
   - {fileID: 2037947445263380044}
   - {fileID: 2037947444409267649}
   - {fileID: 2037947443822392204}
-  - {fileID: 2037947445545958312}
   - {fileID: 2037947445420866001}
   - {fileID: 2037947443492472925}
   - {fileID: 8044538201944343398}
@@ -20565,235 +20639,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c25271813931d814680ab7c84ef90710, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AIController: 0
+  canControl: 1
+  isGrounded: 0
   FrontLeftWheelTransform: {fileID: 8044538201944343418}
   FrontRightWheelTransform: {fileID: 8044538201944343416}
   RearLeftWheelTransform: {fileID: 1030680699}
   RearRightWheelTransform: {fileID: 1093188812}
+  ExtraRearWheelsTransform: []
   FrontLeftWheelCollider: {fileID: 2037947444063815539}
   FrontRightWheelCollider: {fileID: 2037947445034383921}
   RearLeftWheelCollider: {fileID: 2037947443882932183}
   RearRightWheelCollider: {fileID: 2037947444920626892}
-  ExtraRearWheelsTransform: []
   ExtraRearWheelsCollider: []
+  allWheelColliders: []
+  overrideWheels: 1
+  poweredWheels: 0
   applyEngineTorqueToExtraRearWheelColliders: 0
+  configureVehicleSubsteps:
+    speedThreshold: 10
+    stepsBelowThreshold: 5
+    stepsAboveThreshold: 5
   SteeringWheel: {fileID: 0}
-  _wheelTypeChoise: 2
-  biasedWheelTorque: 100
+  steeringWheelRotateAround: 0
+  steeringWheelAngleMultiplier: 11
+  wheelTypeChoise: 1
+  externalController: 0
+  rigid: {fileID: 0}
   COM: {fileID: 2037947443822392204}
-  canControl: 1
-  engineRunning: 0
-  semiAutomaticGear: 0
-  automaticClutch: 1
-  engineTorqueCurve:
-  - serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 48
-      value: 1
-      inSlope: -0.025
-      outSlope: -0.025
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 68
-      value: 0
-      inSlope: -0.05
-      outSlope: -0.05
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  - serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.15
-      inSlope: 0.014583334
-      outSlope: 0.014583334
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 48
-      value: 0.85
-      inSlope: -0.00052083284
-      outSlope: -0.00052083284
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 96
-      value: 0.1
-      inSlope: -0.023958333
-      outSlope: -0.023958333
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 192
-      value: -3
-      inSlope: -0.032291666
-      outSlope: -0.032291666
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  - serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.099999994
-      inSlope: 0.00625
-      outSlope: 0.00625
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 96
-      value: 0.7
-      inSlope: -0.0031249996
-      outSlope: -0.0031249996
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 144
-      value: 0.1
-      inSlope: -0.017013889
-      outSlope: -0.017013889
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 288
-      value: -3
-      inSlope: -0.021527776
-      outSlope: -0.021527776
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  - serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.049999997
-      inSlope: 0.0034722218
-      outSlope: 0.0034722218
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 144
-      value: 0.54999995
-      inSlope: -0.0029513887
-      outSlope: -0.0029513887
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 192
-      value: 0.1
-      inSlope: -0.012760416
-      outSlope: -0.012760416
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 384
-      value: -3
-      inSlope: -0.016145833
-      outSlope: -0.016145833
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  - serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0.0020833332
-      outSlope: 0.0020833332
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 192
-      value: 0.39999998
-      inSlope: -0.0020833332
-      outSlope: -0.0020833332
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 240
-      value: 0.1
-      inSlope: -0.0095833335
-      outSlope: -0.0095833335
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 480
-      value: -3
-      inSlope: -0.012916666
-      outSlope: -0.012916666
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  gearSpeed:
-  - 48
-  - 96
-  - 144
-  - 192
-  - 240
-  engineTorque: 9000
-  maxEngineRPM: 9000
-  minEngineRPM: 1000
-  engineInertia: 1.5
-  useRevLimiter: 1
-  useExhaustFlame: 1
+  brakeTorque: 2000
   steerAngle: 35
   highspeedsteerAngle: 25
   highspeedsteerAngleAtspeed: 100
@@ -20801,100 +20674,151 @@ MonoBehaviour:
   antiRollRearHorizontal: 3500
   antiRollVertical: 0
   downForce: 200
+  useCounterSteering: 1
+  counterSteeringFactor: 0.5
   speed: 0
-  brake: 7500
   maxspeed: 240
-  fuelInput: 1
+  engineTorqueCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  autoGenerateEngineRPMCurve: 1
+  maxEngineTorque: 250
+  maxEngineTorqueAtRPM: 4500
+  minEngineRPM: 1000
+  maxEngineRPM: 9000
+  engineRPM: 0
+  engineInertia: 1.5
+  useRevLimiter: 1
+  useExhaustFlame: 1
+  engineRunning: 0
+  useFuelConsumption: 0
+  fuelTankCapacity: 62
+  fuelTank: 62
+  fuelConsumptionRate: 0.1
+  useEngineHeat: 0
+  engineHeat: 15
+  engineCoolingWaterThreshold: 60
+  engineHeatRate: 1
+  engineCoolRate: 1
+  gears:
+  - maxRatio: 4.35
+    maxSpeed: 40
+    targetSpeedForNextGear: 30
+  - maxRatio: 2.5
+    maxSpeed: 80
+    targetSpeedForNextGear: 60
+  - maxRatio: 1.66
+    maxSpeed: 120
+    targetSpeedForNextGear: 90
+  - maxRatio: 1.23
+    maxSpeed: 160
+    targetSpeedForNextGear: 120
+  - maxRatio: 1
+    maxSpeed: 200
+    targetSpeedForNextGear: 150
+  - maxRatio: 0.85
+    maxSpeed: 240
+    targetSpeedForNextGear: 180
+  totalGears: 6
   currentGear: 0
-  totalGears: 5
+  NGear: 0
+  finalRatio: 3.23
   gearShiftingDelay: 0.106
+  gearShiftingThreshold: 0.75
+  clutchInertia: 0.25
+  gearShiftUpRPM: 5250
+  gearShiftDownRPM: 3000
   changingGear: 0
   direction: 1
-  autoGenerateGearCurves: 1
-  autoGenerateTargetSpeedsForChangingGear: 1
+  launched: 0
+  audioType: 0
+  autoCreateEngineOffSounds: 1
   engineStartClip: {fileID: 8300000, guid: 8d3ddfbc69660b342b48f88b496dedee, type: 3}
-  engineClipOn: {fileID: 8300000, guid: 31fd0a2629cb7834a960aaccdedfd920, type: 3}
-  engineClipOff: {fileID: 8300000, guid: 564c758eecd74e7409764690d6c0169d, type: 3}
+  engineClipHigh: {fileID: 0}
+  engineClipMed: {fileID: 0}
+  engineClipLow: {fileID: 0}
   engineClipIdle: {fileID: 8300000, guid: b681aa3d75dcfb641bedad8208bc030e, type: 3}
+  engineClipHighOff: {fileID: 0}
+  engineClipMedOff: {fileID: 0}
+  engineClipLowOff: {fileID: 0}
   minEngineSoundPitch: 0.897
   maxEngineSoundPitch: 1.75
   minEngineSoundVolume: 0.05
   maxEngineSoundVolume: 0.85
-  gasInput: 0
+  idleEngineSoundVolume: 0.85
+  engineSoundPosition: {x: 0, y: 0, z: 1.5}
+  gearSoundPosition: {x: 0, y: -0.5, z: 0.5}
+  turboSoundPosition: {x: 0, y: 0, z: 1.5}
+  exhaustSoundPosition: {x: 0, y: -0.5, z: 2}
+  windSoundPosition: {x: 0, y: 0, z: 2}
+  inputs:
+    throttleInput: 0
+    brakeInput: 0
+    steerInput: 0
+    clutchInput: 0
+    handbrakeInput: 0
+    boostInput: 0
+    gearInput: 0
+  throttleInput: 0
   brakeInput: 0
   steerInput: 0
   clutchInput: 0
   handbrakeInput: 0
   boostInput: 1
+  fuelInput: 1
   cutGas: 0
-  idleInput: 0
-  chassis: {fileID: 8044538201944586054}
   lowBeamHeadLightsOn: 0
   highBeamHeadLightsOn: 0
   indicatorsOn: 0
   indicatorTimer: 0
   useDamage: 1
+  useWheelDamage: 0
+  wheelDamageRadius: 1
+  wheelDamageMultiplier: 0.1
   deformableMeshFilters: []
+  damageFilter:
+    serializedVersion: 2
+    m_Bits: 4294967295
   randomizeVertices: 1
   damageRadius: 0.5
-  sleep: 1
+  repairNow: 0
+  repaired: 1
   maximumDamage: 0.5
   damageMultiplier: 1
   maximumContactSparkle: 5
-  repairNow: 0
+  detachableParts: []
+  velocityDirection: {fileID: 0}
+  steeringDirection: {fileID: 0}
+  velocityAngle: 0
   ABS: 1
   TCS: 1
   ESP: 1
   steeringHelper: 1
   tractionHelper: 1
-  ABSAct: 0
-  TCSAct: 0
-  ESPAct: 0
+  angularDragHelper: 0
   ABSThreshold: 0.25
-  TCSThreshold: 0.25
   TCSStrength: 0.5
   ESPThreshold: 0.18
   ESPStrength: 0.55
-  steerHelperStrength: 0.3
+  steerHelperLinearVelStrength: 0.1
+  steerHelperAngularVelStrength: 0.1
   tractionHelperStrength: 0.1
-  overSteering: 0
-  underSteering: 0
-  frontCamber: 0
-  rearCamber: 5
+  angularDragHelperStrength: 0.1
+  ABSAct: 0
+  TCSAct: 0
+  ESPAct: 0
   frontSlip: 0
   rearSlip: 0
+  underSteering: 0
+  overSteering: 0
   turboBoost: 0
   NoS: 100
   useNOS: 1
   useTurbo: 1
---- !u!114 &2037947443799897566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037947443799897565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96451058ec4ed5346bb03b1603f4b98c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  automatic: 1
-  distance: 10
-  height: 5
---- !u!114 &2037947443799897567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037947443799897565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbda14690478c6c408f9bd44053cbcfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rcc: {fileID: 2037947443799897377}
+  attachedTrailer: {fileID: 0}
 --- !u!114 &2037947443799897564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20913,6 +20837,19 @@ MonoBehaviour:
   Position: 
   TextMesh: {fileID: 2037947443492472923}
   carpos: []
+--- !u!114 &1985159710577694725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037947443799897565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00c0674bcd90cb842a0c480590b1435f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceBar: 0
 --- !u!1 &2037947443822392205
 GameObject:
   m_ObjectHideFlags: 0
@@ -21018,7 +20955,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelModel: {fileID: 0}
+  isGrounded: 0
+  canPower: 0
+  powerMultiplier: 1
+  canSteer: 0
+  steeringMultiplier: 1
+  canBrake: 0
+  brakingMultiplier: 1
+  canHandbrake: 0
+  handbrakeMultiplier: 1
+  width: 0.275
+  offset: 0.05
   camber: 5
+  caster: 0
+  toe: 0
+  bumpForce: 0
+  oldForce: 0
 --- !u!1 &2037947444063815534
 GameObject:
   m_ObjectHideFlags: 0
@@ -21094,7 +21046,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelModel: {fileID: 0}
+  isGrounded: 0
+  canPower: 0
+  powerMultiplier: 1
+  canSteer: 0
+  steeringMultiplier: 1
+  canBrake: 0
+  brakingMultiplier: 1
+  canHandbrake: 0
+  handbrakeMultiplier: 1
+  width: 0.275
+  offset: 0.05
   camber: 0
+  caster: 0
+  toe: 0
+  bumpForce: 0
+  oldForce: 0
 --- !u!1 &2037947444350730773
 GameObject:
   m_ObjectHideFlags: 0
@@ -21222,8 +21189,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dfa7b2df62615c448ab1f5df1d1e5b05, type: 2}
-  - {fileID: 2100000, guid: 174289ad6f7a01d40a1a98e87172977e, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21319,7 +21286,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelModel: {fileID: 0}
+  isGrounded: 0
+  canPower: 0
+  powerMultiplier: 1
+  canSteer: 0
+  steeringMultiplier: 1
+  canBrake: 0
+  brakingMultiplier: 1
+  canHandbrake: 0
+  handbrakeMultiplier: 1
+  width: 0.275
+  offset: 0.05
   camber: 5
+  caster: 0
+  toe: 0
+  bumpForce: 0
+  oldForce: 0
 --- !u!1 &2037947444979125052
 GameObject:
   m_ObjectHideFlags: 0
@@ -21378,8 +21360,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dfa7b2df62615c448ab1f5df1d1e5b05, type: 2}
-  - {fileID: 2100000, guid: 174289ad6f7a01d40a1a98e87172977e, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21475,7 +21457,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelModel: {fileID: 0}
+  isGrounded: 0
+  canPower: 0
+  powerMultiplier: 1
+  canSteer: 0
+  steeringMultiplier: 1
+  canBrake: 0
+  brakingMultiplier: 1
+  canHandbrake: 0
+  handbrakeMultiplier: 1
+  width: 0.275
+  offset: 0.05
   camber: 0
+  caster: 0
+  toe: 0
+  bumpForce: 0
+  oldForce: 0
 --- !u!1 &2037947445238421392
 GameObject:
   m_ObjectHideFlags: 0
@@ -21534,8 +21531,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dfa7b2df62615c448ab1f5df1d1e5b05, type: 2}
-  - {fileID: 2100000, guid: 174289ad6f7a01d40a1a98e87172977e, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21620,7 +21617,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2037947443799897379}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!119 &2037947445420866003
 Projector:
@@ -21711,8 +21708,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dfa7b2df62615c448ab1f5df1d1e5b05, type: 2}
-  - {fileID: 2100000, guid: 174289ad6f7a01d40a1a98e87172977e, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21733,49 +21730,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &2037947445545958313
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2037947445545958312}
-  - component: {fileID: 2037947445545958315}
-  m_Layer: 8
-  m_Name: Wheel Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2037947445545958312
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037947445545958313}
-  m_LocalRotation: {x: 0.08647443, y: 0.20517994, z: 0.024908187, w: 0.9745784}
-  m_LocalPosition: {x: -1.9599915, y: 0.45046234, z: -3.4471436}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2037947443799897379}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2037947445545958315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037947445545958313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fd05545683465b46ae8c5861ae3526c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8044538201944586048
 GameObject:
   m_ObjectHideFlags: 0
@@ -22063,7 +22017,7 @@ Transform:
   - {fileID: 1946459874}
   - {fileID: 556854388}
   m_Father: {fileID: 2037947443799897379}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 197.91399, z: 0}
 --- !u!1 &8044538201944586070
 GameObject:
