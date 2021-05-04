@@ -32,13 +32,13 @@ public class RCC_LightEmission : MonoBehaviour {
 	void Start () {
 
 		sharedLight = GetComponent<Light>();
-		material = lightRenderer.materials [materialIndex];
-		material.EnableKeyword("_EMISSION");
+		//material = lightRenderer.materials [materialIndex];
+		//material.EnableKeyword("_EMISSION");
 		emissionColorID = Shader.PropertyToID("_EmissionColor");
 		colorID = Shader.PropertyToID("_Color");
 
-		if (!material.HasProperty (emissionColorID))
-			enabled = false;
+		//if (!material.HasProperty (emissionColorID))
+		//	enabled = false;
 
 	}
 
@@ -52,11 +52,11 @@ public class RCC_LightEmission : MonoBehaviour {
 		else
 			targetColor = sharedLight.color * sharedLight.intensity * multiplier;
 
-		if (applyAlpha)
-			material.SetColor (colorID, new Color(1f, 1f, 1f, sharedLight.intensity * multiplier));
+		//if (applyAlpha)
+		//	material.SetColor (colorID, new Color(1f, 1f, 1f, sharedLight.intensity * multiplier));
 
-		if (material.GetColor (emissionColorID) != (targetColor))
-			material.SetColor (emissionColorID, targetColor);
+		//if (material.GetColor (emissionColorID) != (targetColor))
+		//	material.SetColor (emissionColorID, targetColor);
 		
 	}
 
