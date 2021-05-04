@@ -55,7 +55,7 @@ namespace UnityStandardAssets.Vehicles.Car
         public float MaxSpeed{get { return m_Topspeed; }}
         public float Revs { get; private set; }
         public float AccelInput { get; private set; }
-
+        public bool rotateWheel;
         // Use this for initialization
         private void Start()
         {
@@ -73,7 +73,10 @@ namespace UnityStandardAssets.Vehicles.Car
 
             m_Rigidbody.isKinematic = true;
         }
-
+        private void Update()
+        {
+            
+        }
 
         private void GearChanging()
         {
@@ -137,7 +140,11 @@ namespace UnityStandardAssets.Vehicles.Car
                 Vector3 position;
                 m_WheelColliders[i].GetWorldPose(out position, out quat);
                 m_WheelMeshes[i].transform.position = position;
-                m_WheelMeshes[i].transform.rotation = quat;
+                if (rotateWheel)
+                {
+                    m_WheelMeshes[i].transform.rotation = quat;
+                }
+               
             }
 
             //clamp input values

@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using UnityStandardAssets.Vehicles.Car;
 public class VehicleTriggerHandler : MonoBehaviour
 {
     public float distanceBar;
@@ -19,6 +19,18 @@ public class VehicleTriggerHandler : MonoBehaviour
             Toolbox.GameplayScript.levelsManager.CurLevelHandler.distScript.points.Remove(other.gameObject.transform);
             Toolbox.GameplayScript.levelsManager.CurLevelHandler.distScript.calculatingDistance();
             distanceBar = Toolbox.GameplayScript.levelsManager.CurLevelHandler.distScript.mainDistance - Toolbox.GameplayScript.levelsManager.CurLevelHandler.distScript.accumulateDistance;
+        }
+        if (other.gameObject.tag == "AICar")
+        {
+            other.gameObject.GetComponentInParent<CarController>().rotateWheel = true;
+
+        }
+    }
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "AICar")
+        {
+            other.gameObject.GetComponentInParent<CarController>().rotateWheel = false;
         }
     }
 }
