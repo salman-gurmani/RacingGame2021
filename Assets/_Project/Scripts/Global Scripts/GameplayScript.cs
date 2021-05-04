@@ -226,7 +226,7 @@ public class GameplayScript : MonoBehaviour {
             item.GetComponent<Rigidbody>().isKinematic = false;
         }
 
-        Toolbox.HUDListner.OnPress_Forward();
+       // Toolbox.HUDListner.OnPress_Forward();
         if (!isLevelStatsAssigned)
         {
             EnableLevelStats();

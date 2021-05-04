@@ -6025,7 +6025,7 @@ Transform:
   m_GameObject: {fileID: 4255889104031205337}
   m_LocalRotation: {x: -0, y: -0.26207012, z: -0, w: 0.96504885}
   m_LocalPosition: {x: -8.8, y: 20.649551, z: -43.64}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4255889104097745198}
   - {fileID: 4255889102596007597}
@@ -6045,7 +6045,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4255889104031205337}
   serializedVersion: 2
-  m_Mass: 1000
+  m_Mass: 1350
   m_Drag: 0.1
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -6072,10 +6072,10 @@ MonoBehaviour:
   - {fileID: 4255889102628821909}
   - {fileID: 4255889102857569554}
   m_WheelMeshes:
-  - {fileID: 6271013397488212689}
   - {fileID: 6271013397488212695}
-  - {fileID: 6271013397488212711}
+  - {fileID: 6271013397488212689}
   - {fileID: 6271013397488212709}
+  - {fileID: 6271013397488212711}
   m_WheelEffects:
   - {fileID: 4255889103470192774}
   - {fileID: 4255889103021991350}
@@ -6094,6 +6094,7 @@ MonoBehaviour:
   m_RevRangeBoundary: 1
   m_SlipLimit: 0.4
   m_BrakeTorque: 20000
+  rotateWheel: 0
 --- !u!114 &4255889104031205346
 MonoBehaviour:
   m_ObjectHideFlags: 0

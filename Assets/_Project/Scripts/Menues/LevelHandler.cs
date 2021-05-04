@@ -30,6 +30,7 @@ public class LevelHandler : MonoBehaviour
     public void Disable_RaceCountdown()
     {
         raceCountdown.SetActive(false);
+        Toolbox.HUDListner.controls.SetActive(true);
         Toolbox.GameplayScript.StartRaceHandling();
     }
 
