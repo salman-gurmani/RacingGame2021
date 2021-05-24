@@ -26,24 +26,39 @@ public class PositionController : MonoBehaviour
             if (pos == 1)
             {
                 cpm.TextMesh.text = "1st";
+                cpm.Position = "1st";
             }
             else if (pos == 2)
             {
                 cpm.TextMesh.text = "2nd";
+                cpm.Position = "2nd";
 
             }
             else if (pos == 3)
             {
                 cpm.TextMesh.text = "3rd";
+                cpm.Position = "3rd";
             }
             else if (pos == 4)
             {
                 cpm.TextMesh.text = "4th";
+                cpm.Position = "4th";
 
             }
-            else
+            else if (pos == 5)
             {
                 cpm.TextMesh.text = "5th";
+                cpm.Position = "5th";
+            }
+            else if (pos == 6)
+            {
+                cpm.TextMesh.text = "6th";
+                cpm.Position = "6th";
+            }
+            else if (pos == 7)
+            {
+                cpm.TextMesh.text = "7th";
+                cpm.Position = "7th";
             }
 
 
@@ -77,9 +92,10 @@ public class PositionController : MonoBehaviour
             int pos = 0;
             List<CarPositionManager> tmp = new List<CarPositionManager>();
             tmp = carpos.OrderByDescending(x => x.lapCounter).ThenByDescending(x => x.Counter).ThenBy(x=>x.Distance).ToList();
+           
             foreach (CarPositionManager cpm in tmp)
             {
-
+               
                 pos++;
 
                 if (pos == 1)
@@ -100,10 +116,19 @@ public class PositionController : MonoBehaviour
                     cpm.TextMesh.text = "4th";
 
                 }
-                else
+                else if (pos == 5)
                 {
                     cpm.TextMesh.text = "5th";
                 }
+                else if (pos == 6)
+                {
+                    cpm.TextMesh.text = "6th";
+                }
+                else if (pos == 7)
+                {
+                    cpm.TextMesh.text = "7th";
+                }
+
 
 
             }

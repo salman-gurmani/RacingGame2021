@@ -11,7 +11,7 @@ public class VehicleTriggerHandler : MonoBehaviour
         }
         if (other.gameObject.tag == "CheckPoint")
         {
-            Toolbox.HUDListner.TempTime += 20;
+          //  Toolbox.HUDListner.TempTime += 20;
         }
         if (other.gameObject.tag == "Distance")
         {

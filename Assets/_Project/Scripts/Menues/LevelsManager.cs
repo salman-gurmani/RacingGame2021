@@ -1,15 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+
 public class LevelsManager : MonoBehaviour
 {
     public bool testMode = false;
-
+    
     private LevelHandler curLevelHandler;
     [SerializeField] private LevelData curLevelData;
 
     public LevelData CurLevelData { get => curLevelData; set => curLevelData = value; }
     public LevelHandler CurLevelHandler { get => curLevelHandler; set => curLevelHandler = value; }
+
+    [Range(0.0f, 10.0f)]
+
+    public float mySliderFloat;
 
     private void Start()
     {

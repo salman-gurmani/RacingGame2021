@@ -29,7 +29,7 @@ public class WayPointGetter
         float lerpValue=0.0f;
         
       
-         float editorVisualisationSubsteps = 300;
+         float editorVisualisationSubsteps = 500;
 
         List<Transform> listOfGameObjects = new List<Transform>();
         GameObject Waypoint=GameObject.FindGameObjectWithTag("WayPoint");
@@ -67,7 +67,7 @@ public class WayPointGetter
                 cubeParent.tag = "PositionSystem";
                 cubeParent.name = "PositionSystem";
                 numPoints = Waypoints.Length;
-
+                cubeParent.AddComponent<PositionController>();
                 CachePositionsAndDistances();
                 Length = distances[distances.Length - 1];
 

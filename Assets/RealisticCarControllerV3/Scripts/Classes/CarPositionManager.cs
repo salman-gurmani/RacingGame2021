@@ -13,64 +13,71 @@ public class CarPositionManager : MonoBehaviour
     public int Counter = 0;
     public int lapCounter = 0;
     public float Distance = 0.0f;
+    public int totalCheckPoints = 0;
+    public int CheckPointTraversed = 0 ;
     public String Position;
     public TextMesh TextMesh;
     bool[] myArray = new bool[10];
     bool lapCheck = true;
+    private int index = 0;
     CarPositionManager[] Cars;
     public List<CarPositionManager> carpos = new List<CarPositionManager>();
     List<PositionClass> PositionsList = new List<PositionClass>();
     
     void Start()
     {
-        if (Toolbox.GameplayScript) {
+       
 
-            GameObject PositionSystem = Toolbox.GameplayScript.positionManager.gameObject;
+            GameObject PositionSystem = GameObject.FindGameObjectWithTag("PositionSystem");
             Cars = GameObject.FindObjectsOfType<CarPositionManager>();
 
             foreach (CarPositionManager car in Cars)
             {
-                // if(this.gameObject.GetInstanceID()!=car.GetInstanceID())
+               // if(this.gameObject.GetInstanceID()!=car.GetInstanceID())
                 carpos.Add(car);
 
             }
 
-            //for (int i = 0; i < PositionSystem.transform.childCount; ++i)
-            //{
-            //    PositionClass ps = new PositionClass(PositionSystem.transform.GetChild(i).gameObject, false);
-            //    PositionsList.Add(ps);
-            //}
-
-            //Distance = Vector3.Distance(PositionsList.ElementAt(0).position.transform.position, this.gameObject.transform.position);
-        }
+            for (int i = 0; i < PositionSystem.transform.childCount; ++i)
+            {
+            if (PositionSystem.transform.GetChild(i).gameObject.tag.Contains("CheckPoint"))
+                totalCheckPoints++;
+                PositionClass ps = new PositionClass(PositionSystem.transform.GetChild(i).gameObject, false);
+                PositionsList.Add(ps);
+            }
+            if(PositionsList.Count>0)
+            Distance = Vector3.Distance(PositionsList.ElementAt(0).position.transform.position, this.gameObject.transform.position);
+       
 
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
+        if(!other.CompareTag("FinishPoint"))
         CheckPosition(other.gameObject);
-
-        if (other.CompareTag("FinishLine"))
+        
+        if (other.tag.Contains("FinishPoint"))
         {
-            //if (CheckAllCheckPointTeversed())
-            //{
-            //if (lapCheck)
-            //{
-            //    lapCounter++;
-            //    DisableAllCheckPoints();
-            //    Counter = 0;
-            //    lapCheck = false;
-            //}
+            Debug.Log("Coming in FinishLine");
+            if (CheckAllCheckPointTeversed())
+            {
+                if (lapCheck)
+                {
+                    lapCounter++;
+                    DisableAllCheckPoints();
+                    Counter = 0;
+                    lapCheck = false;
+                }
 
-            if (this.gameObject.CompareTag("Player"))
+                if (this.gameObject.CompareTag("Player"))
             {
 
                 DisableAllCheckPoints();
                 Counter = 0;
                 lapCheck = false;
 
-                Toolbox.GameplayScript.LevelCompleteHandling();
+               // Toolbox.GameplayScript.LevelCompleteHandling();
             }
             else { 
             
@@ -78,21 +85,25 @@ public class CarPositionManager : MonoBehaviour
             }
 
 
-            //}
+            }
         }
 
-
+        if (other.CompareTag("CheckPoint"))
+        {
+            CheckPointTraversed++;
+        }
     }
 
 
     public bool CheckPosition(GameObject go)
     {
-        int index = 0;
+         index = 0;
+     
         foreach (PositionClass ps in PositionsList)
         {
 
 
-
+           
             if (go == ps.position)
             {
 
@@ -105,7 +116,6 @@ public class CarPositionManager : MonoBehaviour
 
                 }
                 index++;
-                Distance = Vector3.Distance(PositionsList.ElementAt(index).position.transform.position, this.gameObject.transform.position);
                 return true;
 
             }
@@ -121,10 +131,12 @@ public class CarPositionManager : MonoBehaviour
 
         foreach (PositionClass ps in PositionsList)
         {
-
+            Debug.Log("ps tag:" + ps.position.tag + "Check:" + ps.check);
             if (ps.position.tag == "CheckPoint" && !ps.check)
             {
+                CheckPointTraversed = 0;
                 return false;
+                
             }
         }
         return true;
@@ -144,6 +156,11 @@ public class CarPositionManager : MonoBehaviour
 
 
 
+    }
+    private void Update()
+    {
+       if(PositionsList!=null)
+        Distance = Vector3.Distance(PositionsList.ElementAt(index).position.transform.position, this.gameObject.transform.position);
     }
 
 }
