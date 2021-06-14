@@ -3,6 +3,8 @@
 public class LevelHandler : MonoBehaviour
 {
     public Transform playerSpawnPoint;
+    public Transform[] aiSpawnPoints;
+
     public GameObject cinemachineObj;
     public GameObject raceCountdown;
     public GameObject heliObj;
@@ -18,7 +20,10 @@ public class LevelHandler : MonoBehaviour
     public void Start_RaceCountdown()
     {
         isCountdownstart = true;
-        raceCountdown.SetActive(true);
+
+        if(raceCountdown)
+            raceCountdown.SetActive(true);
+        
         Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.raceSfx);
         Invoke("Disable_RaceCountdown", 4);
         if (heliObj) { 
@@ -29,7 +34,9 @@ public class LevelHandler : MonoBehaviour
 
     public void Disable_RaceCountdown()
     {
-        raceCountdown.SetActive(false);
+        if (raceCountdown)
+            raceCountdown.SetActive(false);
+
         Toolbox.HUDListner.controls.SetActive(true);
         Toolbox.GameplayScript.StartRaceHandling();
     }

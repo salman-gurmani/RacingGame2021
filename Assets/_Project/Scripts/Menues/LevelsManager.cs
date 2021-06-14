@@ -13,9 +13,7 @@ public class LevelsManager : MonoBehaviour
     public LevelData CurLevelData { get => curLevelData; set => curLevelData = value; }
     public LevelHandler CurLevelHandler { get => curLevelHandler; set => curLevelHandler = value; }
 
-    [Range(0.0f, 10.0f)]
 
-    public float mySliderFloat;
 
     private void Start()
     {
@@ -29,8 +27,8 @@ public class LevelsManager : MonoBehaviour
             InstantiateLevel();
         }
 
-        SpawnPlayer();
         LevelDataHandling();
+        SpawnPlayer();
     }
 
     private void InstantiateLevel()
@@ -50,6 +48,11 @@ public class LevelsManager : MonoBehaviour
 
         GameObject obj = (GameObject)Instantiate(Resources.Load(path), curLevelHandler.playerSpawnPoint.position, curLevelHandler.playerSpawnPoint.rotation);
 
+        for (int i = 0; i < curLevelData.aiCars.Length; i++)
+        {
+            Instantiate(curLevelData.aiCars[i], curLevelHandler.aiSpawnPoints[i].position, curLevelHandler.aiSpawnPoints[i].rotation);
+        }
+
         Toolbox.GameplayScript.EnableHud();
 
         Toolbox.GameplayScript.PlayerObject = obj;
@@ -66,11 +69,6 @@ public class LevelsManager : MonoBehaviour
         //Toolbox.GameManager.Log("Level Data path = " + path);
         // All level specs related handling
         curLevelData = (LevelData)Resources.Load(path);
-
-        if (curLevelData.isRaining)
-            Toolbox.GameplayScript.RainStatus(true);
-
-        Toolbox.HUDListner.SetTotalPanelties(curLevelData.allowedPanelties);
 
         Toolbox.HUDListner.SetLvlTxt("Level " + (Toolbox.DB.prefs.LastSelectedLevel + 1).ToString());
     }

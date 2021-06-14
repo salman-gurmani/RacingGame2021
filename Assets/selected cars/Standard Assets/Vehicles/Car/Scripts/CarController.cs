@@ -57,6 +57,12 @@ namespace UnityStandardAssets.Vehicles.Car
         public float AccelInput { get; private set; }
         public bool rotateWheel;
         // Use this for initialization
+
+        private void Awake()
+        {            
+            m_Rigidbody = GetComponent<Rigidbody>();
+        }
+
         private void Start()
         {
             m_WheelMeshLocalRotations = new Quaternion[4];
@@ -68,14 +74,9 @@ namespace UnityStandardAssets.Vehicles.Car
 
             m_MaxHandbrakeTorque = float.MaxValue;
 
-            m_Rigidbody = GetComponent<Rigidbody>();
-            m_CurrentTorque = m_FullTorqueOverAllWheels - (m_TractionControl*m_FullTorqueOverAllWheels);
+            m_CurrentTorque = m_FullTorqueOverAllWheels - (m_TractionControl * m_FullTorqueOverAllWheels);
 
-           // m_Rigidbody.isKinematic = true; 
-        }
-        private void Update()
-        {
-            
+            // m_Rigidbody.isKinematic = true; 
         }
 
         private void GearChanging()

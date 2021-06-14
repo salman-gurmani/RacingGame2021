@@ -100,8 +100,8 @@ public class HUDListner : MonoBehaviour {
     }
     private void Update()
     {
-        distanceSlider.maxValue = Toolbox.GameplayScript.levelsManager.CurLevelHandler.distScript.mainDistance;
-        distanceSlider.value = carController.GetComponent<VehicleTriggerHandler>().distanceBar;
+        //distanceSlider.maxValue = Toolbox.GameplayScript.levelsManager.CurLevelHandler.distScript.mainDistance;
+        //distanceSlider.value = carController.GetComponent<VehicleTriggerHandler>().distanceBar;
         if (NosSlider.value > 0)
         {
             NosButton.interactable = true;
@@ -141,8 +141,8 @@ public class HUDListner : MonoBehaviour {
         if (carController)
             playerSpeed.text = Mathf.RoundToInt(carController.speed).ToString();
 
-        if (carController.speed >= 20f && !isAccPressed) cruiseBtn.interactable = true;
-        else cruiseBtn.interactable = false;
+        //if (carController.speed >= 20f && !isAccPressed) cruiseBtn.interactable = true;
+        //else cruiseBtn.interactable = false;
 
 #if UNITY_EDITOR
         HandlingKeyboardControls();
@@ -217,10 +217,6 @@ public class HUDListner : MonoBehaviour {
         paneltiesRecieved += _val;
         paneltiesTxt.text = paneltiesRecieved.ToString();
 
-        if (paneltiesRecieved >= Toolbox.GameplayScript.levelsManager.CurLevelData.allowedPanelties) {
-
-            Toolbox.GameplayScript.LevelFailHandling();
-        }
     }
 
     private void HandleTime()

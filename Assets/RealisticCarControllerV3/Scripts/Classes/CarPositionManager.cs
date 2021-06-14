@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class CarPositionManager : MonoBehaviour
 {
@@ -23,31 +24,45 @@ public class CarPositionManager : MonoBehaviour
     CarPositionManager[] Cars;
     public List<CarPositionManager> carpos = new List<CarPositionManager>();
     List<PositionClass> PositionsList = new List<PositionClass>();
-    
+
+    public bool isMenuScene = false;
+
     void Start()
     {
-       
+        if (Toolbox.MenuHandler)
+        {
+            isMenuScene = true;
+        }
+        else
+        {
+            isMenuScene = false;
+        }
 
-            GameObject PositionSystem = GameObject.FindGameObjectWithTag("PositionSystem");
-            Cars = GameObject.FindObjectsOfType<CarPositionManager>();
+        GameObject PositionSystem = GameObject.FindGameObjectWithTag("PositionSystem");
 
-            foreach (CarPositionManager car in Cars)
-            {
-               // if(this.gameObject.GetInstanceID()!=car.GetInstanceID())
-                carpos.Add(car);
+        if (!PositionSystem)
+            return;
 
-            }
+        Cars = GameObject.FindObjectsOfType<CarPositionManager>();
 
-            for (int i = 0; i < PositionSystem.transform.childCount; ++i)
-            {
-            if (PositionSystem.transform.GetChild(i).gameObject.tag.Contains("CheckPoint"))
-                totalCheckPoints++;
-                PositionClass ps = new PositionClass(PositionSystem.transform.GetChild(i).gameObject, false);
-                PositionsList.Add(ps);
-            }
-            if(PositionsList.Count>0)
-            Distance = Vector3.Distance(PositionsList.ElementAt(0).position.transform.position, this.gameObject.transform.position);
-       
+        foreach (CarPositionManager car in Cars)
+        {
+            // if(this.gameObject.GetInstanceID()!=car.GetInstanceID())
+            carpos.Add(car);
+
+        }
+
+        for (int i = 0; i < PositionSystem.transform.childCount; ++i)
+        {
+        if (PositionSystem.transform.GetChild(i).gameObject.tag.Contains("CheckPoint"))
+            totalCheckPoints++;
+            PositionClass ps = new PositionClass(PositionSystem.transform.GetChild(i).gameObject, false);
+            PositionsList.Add(ps);
+        }
+        if(PositionsList.Count>0)
+        Distance = Vector3.Distance(PositionsList.ElementAt(0).position.transform.position, this.gameObject.transform.position);
+
+
 
     }
 
@@ -159,8 +174,11 @@ public class CarPositionManager : MonoBehaviour
     }
     private void Update()
     {
-       if(PositionsList!=null)
-        Distance = Vector3.Distance(PositionsList.ElementAt(index).position.transform.position, this.gameObject.transform.position);
+        if (isMenuScene)
+            return;
+
+        if(PositionsList!=null)
+            Distance = Vector3.Distance(PositionsList.ElementAt(index).position.transform.position, this.gameObject.transform.position);
     }
 
 }

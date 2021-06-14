@@ -28,7 +28,7 @@ public class GameplayScript : MonoBehaviour {
     public GameObject rainObj;
     public Material NightSkybox, DaySkybox;
     public GameObject NightLight, DayLight;
-
+    
     [HideInInspector]
     private int levelCompleteTime = 0;
     private int remainingTime = 0;
@@ -37,6 +37,9 @@ public class GameplayScript : MonoBehaviour {
     public AudioListener camListner;
     public RCC_Camera cameraScript;
     public bool canShowReviewMenu = false;
+    
+    public GameObject circuit;
+
     public LevelsManager levelsManager;
     public PositionController positionManager;
     public List<GameObject> aiCars = new List<GameObject>();
@@ -142,16 +145,10 @@ public class GameplayScript : MonoBehaviour {
 
         score += _val;
 
-        if (score >= levelsManager.CurLevelData.passenger.Length - 1)
-        {
-            LevelCompleteHandling();
-        }
     }
 
     public void EnableCurrentPassengerStats() {
-
-        Toolbox.HUDListner.SetNStartTime(levelsManager.CurLevelData.passenger[ridesCompleted].timeLimit);
-        
+                
     }
 
     public void EnableLevelStats()
