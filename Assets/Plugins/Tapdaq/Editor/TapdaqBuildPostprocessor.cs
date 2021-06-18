@@ -112,31 +112,33 @@ public class TapdaqBuildPostprocessor : MonoBehaviour{
     }
 
     private static string GetUnityFrameworkTargetGuid(string path) {
-        var proj = new UnityEditor.iOS.Xcode.PBXProject();
-        proj.ReadFromString(File.ReadAllText(path));
-        string unityFrameworkTargetGuid = null;
-                
-        var unityFrameworkTargetGuidMethod = proj.GetType().GetMethod("GetUnityFrameworkTargetGuid");
-                        
-        if (unityFrameworkTargetGuidMethod != null) {
-            unityFrameworkTargetGuid = (string)unityFrameworkTargetGuidMethod.Invoke(proj, null);
-        }
-        return unityFrameworkTargetGuid;
+        //var proj = new UnityEditor.iOS.Xcode.PBXProject();
+        //proj.ReadFromString(File.ReadAllText(path));
+        //string unityFrameworkTargetGuid = null;
+
+        //var unityFrameworkTargetGuidMethod = proj.GetType().GetMethod("GetUnityFrameworkTargetGuid");
+
+        //if (unityFrameworkTargetGuidMethod != null) {
+        //    unityFrameworkTargetGuid = (string)unityFrameworkTargetGuidMethod.Invoke(proj, null);
+        //}
+        //return unityFrameworkTargetGuid;
+        return null;
     }
 
 
     private static string GetUnityIPhoneTargetGuid(string path) {
-        var proj = new UnityEditor.iOS.Xcode.PBXProject();
-        proj.ReadFromString(File.ReadAllText(path));
-        string mainTargetGuid = null;
-                
-        var unityMainTargetGuidMethod = proj.GetType().GetMethod("GetUnityMainTargetGuid");                       
-        if (unityMainTargetGuidMethod != null) {
-            mainTargetGuid = (string)unityMainTargetGuidMethod.Invoke(proj, null);
-        } else {
-            mainTargetGuid = proj.TargetGuidByName ("Unity-iPhone");
-        }
-        return mainTargetGuid;
+        //var proj = new UnityEditor.iOS.Xcode.PBXProject();
+        //proj.ReadFromString(File.ReadAllText(path));
+        //string mainTargetGuid = null;
+
+        //var unityMainTargetGuidMethod = proj.GetType().GetMethod("GetUnityMainTargetGuid");                       
+        //if (unityMainTargetGuidMethod != null) {
+        //    mainTargetGuid = (string)unityMainTargetGuidMethod.Invoke(proj, null);
+        //} else {
+        //    mainTargetGuid = proj.TargetGuidByName ("Unity-iPhone");
+        //}
+        //return mainTargetGuid;
+        return null;
     }
 
     private static void SetBuildProperties(PBXProject proj, string unityIPhoneTargetGuid, string unityFrameworkTargetGuid) {
