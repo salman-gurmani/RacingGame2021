@@ -7,8 +7,8 @@ public class VehicleTriggerHandler : MonoBehaviour
     {
         if (other.CompareTag("FinishLine"))
         {
-            Toolbox.GameManager.Instantiate_LevelComplete(1);
-            Toolbox.HUDListner.DisableHUD();
+            if(Toolbox.GameplayScript.levelsManager.CurLevelData.type != LevelData.LevelType.LAP)
+                Toolbox.GameplayScript.RaceEndHandling();
         }
 
         if (other.gameObject.tag == "NOS")

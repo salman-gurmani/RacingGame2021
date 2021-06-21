@@ -19,7 +19,7 @@ public class GameplayScript : MonoBehaviour {
 
     private bool isLevelStatsAssigned = false;
 
-    private int gameplayTime_Seconds = 0;
+    public int gameplayTime_Seconds = 0;
 
     private int score = 0;
     private int ridesCompleted = 0;
@@ -32,6 +32,7 @@ public class GameplayScript : MonoBehaviour {
     [HideInInspector]
     private int levelCompleteTime = 0;
     private int remainingTime = 0;
+    public int playerPositionVal;
 
     [Header("Components")]
     public AudioListener camListner;
@@ -75,7 +76,6 @@ public class GameplayScript : MonoBehaviour {
         //map.ShowAsNavigator();
 
         Toolbox.Soundmanager.PlayBGSound(Toolbox.Soundmanager.gameBG);
-        StartCoroutine(GameplayTime());
         levelCompleted = false;
 
     }
@@ -111,10 +111,17 @@ public class GameplayScript : MonoBehaviour {
 
         while (true) {
 
-            yield return new WaitForSeconds(1);            
-            gameplayTime_Seconds++;
+            yield return new WaitForSeconds(1);
 
-            TImeRelatedFucntionsHandler();
+            if (levelFailed || levelCompleted)
+            {
+
+            }
+            else {
+                gameplayTime_Seconds++;
+                TImeRelatedFucntionsHandler();
+            }
+
         }
 
     }
@@ -153,7 +160,6 @@ public class GameplayScript : MonoBehaviour {
 
     public void EnableLevelStats()
     {
-        Toolbox.HUDListner.SetNStartTime(levelsManager.CurLevelData.levelTime);
     }
 
     public void InitEffectOnpoint(GameObject effect, Vector3 pos) {
@@ -167,10 +173,13 @@ public class GameplayScript : MonoBehaviour {
         return randomColors[Random.Range(0, randomColors.Length - 1)];
     }
 
+   
+
     public void LevelCompleteHandling() {
 
         if (levelFailed || levelCompleted)
             return;
+
 
         Toolbox.GameplayScript.stopmap = true;
 
@@ -222,5 +231,76 @@ public class GameplayScript : MonoBehaviour {
         }
 
         Toolbox.HUDListner.EnableHud();
+        Toolbox.GameplayScript.StartGame();
+
+        switch (levelsManager.CurLevelData.type) {
+
+            case LevelData.LevelType.SPRINT:
+
+                break;
+
+            case LevelData.LevelType.LAP:
+
+                Toolbox.HUDListner.SetLapTxt(1);
+
+                break;
+
+            case LevelData.LevelType.TIMESPRINT:
+
+                Toolbox.HUDListner.SetNStartTime(levelsManager.CurLevelData.levelTime);
+                break;
+        }
+    }
+
+    public void RaceEndHandling()
+    {
+        PlayerObject.GetComponent<CarPositionManager>().TextMesh.gameObject.SetActive(false);
+        playerPositionVal = PlayerObject.GetComponent<CarPositionManager>().positionVal;
+
+
+
+        switch (levelsManager.CurLevelData.type)
+        {
+
+            case LevelData.LevelType.SPRINT:
+
+                if (playerPositionVal > 3)
+                {
+                    LevelFailHandling();
+                }
+                else
+                {
+
+                    LevelCompleteHandling();
+                }
+
+                break;
+
+            case LevelData.LevelType.LAP:
+
+                if (playerPositionVal > 3)
+                {
+                    LevelFailHandling();
+                }
+                else
+                {
+                    LevelCompleteHandling();
+                }
+
+                break;
+
+            case LevelData.LevelType.TIMESPRINT:
+
+                if (Toolbox.HUDListner.outofTime)
+                {
+                    LevelFailHandling();
+                }
+                else
+                {
+
+                    LevelCompleteHandling();
+                }
+                break;
+        }
     }
 }

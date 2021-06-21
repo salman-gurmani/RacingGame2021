@@ -17,6 +17,7 @@ public class CarPositionManager : MonoBehaviour
     public float Distance = 0.0f;
     public int totalCheckPoints = 0;
     public int CheckPointTraversed = 0 ;
+    public int positionVal = 0;
     public String Position;
     public TextMesh TextMesh;
     bool[] myArray = new bool[10];
@@ -87,7 +88,7 @@ public class CarPositionManager : MonoBehaviour
 
             if (other.tag.Contains("FinishPoint"))
             {
-                Debug.Log("Coming in FinishLine");
+                //Debug.Log("Coming in FinishLine");
                 if (CheckAllCheckPointTeversed())
                 {
                     if (lapCheck)
@@ -96,6 +97,19 @@ public class CarPositionManager : MonoBehaviour
                         DisableAllCheckPoints();
                         Counter = 0;
                         lapCheck = false;
+
+                        if (Toolbox.GameplayScript.levelsManager.CurLevelData.type == LevelData.LevelType.LAP) {
+
+                            if (lapCounter >= Toolbox.GameplayScript.levelsManager.CurLevelData.laps)
+                            {
+                                Toolbox.GameplayScript.RaceEndHandling();
+                            }
+                            else
+                            {
+                                Toolbox.HUDListner.SetLapTxt(lapCounter + 1);
+                            }
+                        }
+                        
                     }
 
                     if (this.gameObject.CompareTag("Player"))

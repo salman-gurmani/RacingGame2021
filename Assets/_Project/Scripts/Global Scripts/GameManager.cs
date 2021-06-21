@@ -141,6 +141,14 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	public int GetLastSelectedLevelSceneIndex() {
+
+		string path = Constants.PrefabFolderPath + Constants.LevelsScriptablesFolderPath + Toolbox.DB.prefs.LastSelectedLevel.ToString();
+		LevelData curLevelData = (LevelData)Resources.Load(path);
+
+		return curLevelData.sceneNum;
+	}
+
 	//Runtime Menu Handling
 	public void Instantiate_PauseMenu(){
         
