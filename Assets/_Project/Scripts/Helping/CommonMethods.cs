@@ -45,6 +45,7 @@ public class CommonMethods : MonoBehaviour
 
     public void StartRace() {
 
-        //Toolbox.GameplayScript.StartRaceHandling();
+        Toolbox.GameplayScript.levelsManager.CurLevelHandler.Start_RaceCountdown();
+        Toolbox.GameplayScript.camListner.GetComponent<Camera>().enabled = true;
     }
 }

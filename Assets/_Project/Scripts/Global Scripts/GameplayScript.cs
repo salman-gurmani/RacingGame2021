@@ -101,7 +101,7 @@ public class GameplayScript : MonoBehaviour {
 
     public void StartGame()
     {
-        EnableHud();
+        Toolbox.HUDListner.EnableHud();
         Toolbox.Soundmanager.PlayBGSound(Toolbox.Soundmanager.gameBG);
 
         StartCoroutine(GameplayTime());
@@ -161,15 +161,6 @@ public class GameplayScript : MonoBehaviour {
         Instantiate(effect, pos, Quaternion.identity);
     }
 
-    public void EnableHud() {
-        Toolbox.HUDListner.gameObject.SetActive(true);
-    }
-
-    public void DisableHud() {
-
-        Toolbox.HUDListner.ResetControls();
-        Toolbox.HUDListner.gameObject.SetActive(false);
-    }
     
     public Color Get_RandomColor() {
 
@@ -186,7 +177,7 @@ public class GameplayScript : MonoBehaviour {
         LevelCompleteTime = (int) Toolbox.HUDListner.TempTime;
         levelCompleted = true;
         Toolbox.GameManager.Instantiate_LevelComplete(1);
-        DisableHud();
+        Toolbox.HUDListner.DisableHUD();
     }
 
     public void LevelFailHandling() {
@@ -200,7 +191,7 @@ public class GameplayScript : MonoBehaviour {
         levelFailed = true;
 
         Toolbox.GameManager.Instantiate_LevelFail(1);
-        DisableHud();
+        Toolbox.HUDListner.DisableHUD();
     }
 
     public void RainStatus(bool _val) {
@@ -229,5 +220,7 @@ public class GameplayScript : MonoBehaviour {
             EnableLevelStats();
             isLevelStatsAssigned = true;
         }
+
+        Toolbox.HUDListner.EnableHud();
     }
 }

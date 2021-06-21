@@ -28,7 +28,7 @@ public class PauseListner : MonoBehaviour {
 
 	public void Press_Play(){
 		Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.buttonPressYes);
-		Toolbox.GameplayScript.EnableHud ();
+		Toolbox.HUDListner.EnableHud();
 
 		Destroy(this.gameObject);
 	}

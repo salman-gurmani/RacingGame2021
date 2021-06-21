@@ -6450,7 +6450,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0000012218952, y: 0.43600464, z: 0.74400777}
+  m_ConnectedAnchor: {x: -0.0000051259995, y: 0.43600464, z: 0.74400353}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 0, z: 0}
   m_XMotion: 1
@@ -7492,7 +7492,7 @@ GameObject:
   - component: {fileID: 4678497905332416618}
   - component: {fileID: 8243881061788985599}
   m_Layer: 8
-  m_Name: Car01
+  m_Name: 4
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7787,6 +7787,7 @@ MonoBehaviour:
   Position: 
   TextMesh: {fileID: 5703219528291757756}
   carpos: []
+  isMenuScene: 0
 --- !u!114 &8243881061788985599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23523,7 +23524,7 @@ GameObject:
   - component: {fileID: 5703219528291757730}
   - component: {fileID: 5703219528291757757}
   - component: {fileID: 5703219528291757756}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: New Text (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

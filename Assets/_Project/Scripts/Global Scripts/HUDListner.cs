@@ -73,6 +73,11 @@ public class HUDListner : MonoBehaviour {
         rccInputs = RCC_InputManager.GetInputs();
     }
 
+    public void EnableHud() {
+
+        uiParent.SetActive(true);
+    }
+
     public void DisableHUD() {
         
         ResetControls();
@@ -134,7 +139,9 @@ public class HUDListner : MonoBehaviour {
         }
 
         HandleTime();
+       
         Handle_RCCInputs();
+
         nosVal = Mathf.MoveTowards(nosVal, nosSwitchSpeed, 2.5f);
         //nosVal = Mathf.Clamp(tempNosVal * 2.5f, 1, nosSwitchSpeed);
 
@@ -441,6 +448,12 @@ public class HUDListner : MonoBehaviour {
         brakeVal = 0;
         handBrakeVal = 0;
         turnVal = 0;
+
+        rccInputs.throttleInput = accelVal;
+        rccInputs.steerInput = turnVal;
+        rccInputs.brakeInput = brakeVal;
+        rccInputs.boostInput = nosVal;
+        rccInputs.handbrakeInput = handBrakeVal;
 
         uiParent.SetActive(false);
     }

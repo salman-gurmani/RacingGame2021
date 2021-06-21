@@ -6005,7 +6005,7 @@ GameObject:
   - component: {fileID: 3126408607589134888}
   - component: {fileID: 3126408607589134890}
   - component: {fileID: 3126408607589134889}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: New Text (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6276,9 +6276,12 @@ MonoBehaviour:
   Counter: 0
   lapCounter: 0
   Distance: 0
+  totalCheckPoints: 0
+  CheckPointTraversed: 0
   Position: 
   TextMesh: {fileID: 3126408607589134889}
   carpos: []
+  isMenuScene: 0
 --- !u!1 &3126408607873765839
 GameObject:
   m_ObjectHideFlags: 0

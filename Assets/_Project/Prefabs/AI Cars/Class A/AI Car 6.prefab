@@ -6183,9 +6183,12 @@ MonoBehaviour:
   Counter: 0
   lapCounter: 0
   Distance: 0
+  totalCheckPoints: 0
+  CheckPointTraversed: 0
   Position: 
   TextMesh: {fileID: 4255889104348871375}
   carpos: []
+  isMenuScene: 0
 --- !u!1 &4255889104097745193
 GameObject:
   m_ObjectHideFlags: 0
@@ -6230,7 +6233,7 @@ GameObject:
   - component: {fileID: 4255889104348871374}
   - component: {fileID: 4255889104348871372}
   - component: {fileID: 4255889104348871375}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: New Text (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -51,7 +51,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
         public Transform mCam;
 
-        private void Start()
+        private void OnEnable()
         {
             mCam = Camera.main.transform;
         }

@@ -5,6 +5,12 @@ public class VehicleTriggerHandler : MonoBehaviour
     public float distanceBar;
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("FinishLine"))
+        {
+            Toolbox.GameManager.Instantiate_LevelComplete(1);
+            Toolbox.HUDListner.DisableHUD();
+        }
+
         if (other.gameObject.tag == "NOS")
         {
             Toolbox.HUDListner.NosSlider.value = 100;

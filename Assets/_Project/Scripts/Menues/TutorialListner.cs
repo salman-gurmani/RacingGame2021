@@ -50,7 +50,7 @@ public class TutorialListner : MonoBehaviour
     public void OnPress_Close() {
 
         if(Toolbox.GameplayScript)
-            Toolbox.GameplayScript.EnableHud();
+            Toolbox.HUDListner.EnableHud();
 
         Destroy(this.gameObject);
     }
@@ -178,7 +178,7 @@ public class TutorialListner : MonoBehaviour
         {
             case 1:
 
-                Toolbox.GameplayScript.EnableHud();
+                Toolbox.HUDListner.EnableHud();
 
                 break;
 
