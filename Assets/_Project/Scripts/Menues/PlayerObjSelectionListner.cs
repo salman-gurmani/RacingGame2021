@@ -27,14 +27,15 @@ public class PlayerObjSelectionListner : MonoBehaviour
 	public Image[] specs;
 
 	private float xAxix;
-	private Animator envAnim;
+	//private Animator envAnim;
 	private void OnEnable()
 	{
 		UpdateTxt();
+		environmentObj.SetActive(true);
 		curIndex = Toolbox.DB.prefs.LastSelectedPlayerObj;
 		SpawnObject(curIndex);
-		envAnim = environmentObj.GetComponent<Animator>();
-		envAnim.SetTrigger("SpawnEffect");
+		//envAnim = environmentObj.GetComponent<Animator>();
+		//envAnim.SetTrigger("SpawnEffect");
 	}
 
 
@@ -118,7 +119,7 @@ public class PlayerObjSelectionListner : MonoBehaviour
 
 	public void OnPress_carThumb(int no)
     {
-		envAnim.SetTrigger("SpawnEffect");
+		//envAnim.SetTrigger("SpawnEffect");
 		Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.Select);
 		curIndex = no;
 		SpawnObject(curIndex);

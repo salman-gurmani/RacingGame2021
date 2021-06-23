@@ -987,14 +987,17 @@ public class RCC_CarControllerV3 : RCC_Core {
 
 				inputs = RCC_InputManager.GetInputs();
 
+                throttleInput = inputs.throttleInput;
+                brakeInput = inputs.brakeInput;
+
                 //throttleInput = HUDListner.accelVal;
                 //brakeInput = HUDListner.brakeVal;
-				throttleInput = inputs.throttleInput;
-				brakeInput = inputs.brakeInput;
+                //steerInput = HUDListner.turnVal;
 
-				//steerInput = HUDListner.turnVal;
+                //Debug.LogError("Throttle = " + inputs.throttleInput);
+                //Debug.LogError("steerInput = " + steerInput);
 
-				if (!automaticGear || semiAutomaticGear)
+                if (!automaticGear || semiAutomaticGear)
                 {
                     if (!changingGear && !cutGas)
                         throttleInput = inputs.throttleInput;

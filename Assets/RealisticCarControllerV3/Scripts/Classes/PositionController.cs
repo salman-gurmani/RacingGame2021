@@ -22,11 +22,13 @@ public class PositionController : MonoBehaviour
         {
 
             pos++;
+            cpm.positionVal = pos;
 
             if (pos == 1)
             {
                 cpm.TextMesh.text = "1st";
                 cpm.Position = "1st";
+
             }
             else if (pos == 2)
             {
@@ -97,6 +99,7 @@ public class PositionController : MonoBehaviour
             {
                
                 pos++;
+                cpm.positionVal = pos;
 
                 if (pos == 1)
                 {

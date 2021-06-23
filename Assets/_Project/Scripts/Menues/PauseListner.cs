@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseListner : MonoBehaviour {
 
@@ -28,7 +29,7 @@ public class PauseListner : MonoBehaviour {
 
 	public void Press_Play(){
 		Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.buttonPressYes);
-		Toolbox.GameplayScript.EnableHud ();
+		Toolbox.HUDListner.EnableHud();
 
 		Destroy(this.gameObject);
 	}
@@ -37,7 +38,8 @@ public class PauseListner : MonoBehaviour {
 	{
 		Toolbox.GameplayScript.cameraScript.enabled = false;
 		Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.buttonPressYes);
-		Toolbox.GameManager.LoadScene(Constants.sceneIndex_Game, true, 0);
+        Toolbox.GameManager.LoadScene(SceneManager.GetActiveScene().buildIndex, true, 0);
+
 		Toolbox.GameplayScript.stopmap = true;
 		Destroy(this.gameObject);
 	}

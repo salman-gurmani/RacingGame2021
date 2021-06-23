@@ -18,6 +18,7 @@ public class HUDListner : MonoBehaviour {
     public Text paneltiesTxt;
     public Text paneltiesLimitTxt;
     public Text levelTxt;
+    public Text lapTxt;
 
     public GameObject uiParent;
     public GameObject controls;
@@ -25,14 +26,14 @@ public class HUDListner : MonoBehaviour {
     public GameObject arrowsObj;
     public GameObject repairBtn;
     public GameObject centerText;
+    public GameObject timeObj;
+    public GameObject lapObj;
     public Toggle sportsBtn, cruiseBtn;
     public Button accelBtn, respawn;
     public Slider NosSlider;
     public Slider distanceSlider;
     public Button NosButton;
    
-
-
     public static float accelVal = 0;
     public static float brakeVal = 0;
     public static float handBrakeVal = 0;
@@ -52,7 +53,11 @@ public class HUDListner : MonoBehaviour {
     public float steerSwitchSpeed = 0.2f;
     public float nosSwitchSpeed = 2.5f;
 
+    public bool isTimeSprintMode = false;
+
     private bool startTime = false;
+    public bool outofTime = false;
+
     [HideInInspector] public bool canUseNOS = false;
 
     float tempTime = 0;
@@ -71,6 +76,11 @@ public class HUDListner : MonoBehaviour {
     void Awake() {
         Toolbox.Set_HudListner(this.GetComponent<HUDListner>());
         rccInputs = RCC_InputManager.GetInputs();
+    }
+
+    public void EnableHud() {
+
+        uiParent.SetActive(true);
     }
 
     public void DisableHUD() {
@@ -134,7 +144,9 @@ public class HUDListner : MonoBehaviour {
         }
 
         HandleTime();
+       
         Handle_RCCInputs();
+
         nosVal = Mathf.MoveTowards(nosVal, nosSwitchSpeed, 2.5f);
         //nosVal = Mathf.Clamp(tempNosVal * 2.5f, 1, nosSwitchSpeed);
 
@@ -163,6 +175,13 @@ public class HUDListner : MonoBehaviour {
 
         levelTxt.text = _str;
     }
+
+    public void SetLapTxt(int _str)
+    {
+        lapObj.SetActive(true);
+        lapTxt.text = "Lap: " + _str.ToString() + "/" + Toolbox.GameplayScript.levelsManager.CurLevelData.laps;
+    }
+
 
     private void HandlingKeyboardControls()
     {
@@ -221,6 +240,10 @@ public class HUDListner : MonoBehaviour {
 
     private void HandleTime()
     {
+        if (!isTimeSprintMode)
+            return;
+
+
         if (StartTime) {
             if (tempTime <= 10 && tempTime > 5)
             {
@@ -237,16 +260,14 @@ public class HUDListner : MonoBehaviour {
             int seconds = roundedSec - (min * 60);
 
             timeTxt.text = String.Format("{0:D2} : {1:D2}", min, seconds);
-            if (Toolbox.DB.prefs.LastSelectedLevel == 1 || Toolbox.DB.prefs.LastSelectedLevel == 2)
-            {
-                if (TempTime <= 0)
-                {
-
-                    StartTime = false;
-                    Toolbox.GameplayScript.LevelFailHandling();
-                }
-            }
             
+            if (TempTime <= 0)
+            {
+                StartTime = false;
+                outofTime = true;
+
+                Toolbox.GameplayScript.RaceEndHandling();
+            }            
         }
     }
     public void onPressNOS()
@@ -267,6 +288,9 @@ public class HUDListner : MonoBehaviour {
 
         TempTime = _val;
         StartTime = true;
+        isTimeSprintMode = true;
+
+        timeObj.SetActive(true);
     }
 
     public void Press_Pause() {
@@ -441,6 +465,12 @@ public class HUDListner : MonoBehaviour {
         brakeVal = 0;
         handBrakeVal = 0;
         turnVal = 0;
+
+        rccInputs.throttleInput = accelVal;
+        rccInputs.steerInput = turnVal;
+        rccInputs.brakeInput = brakeVal;
+        rccInputs.boostInput = nosVal;
+        rccInputs.handbrakeInput = handBrakeVal;
 
         uiParent.SetActive(false);
     }

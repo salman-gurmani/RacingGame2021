@@ -985,6 +985,8 @@ MonoBehaviour:
   cashTxt: {fileID: 6775001323632095900}
   remainingTime: {fileID: 8667849530887341268}
   playerVehicleTxt: {fileID: 4423226132935279178}
+  playerPositionTxt: {fileID: 5150780816832337820}
+  levelType: {fileID: 3217082990967749155}
   star:
   - {fileID: 2830808960361664155}
   - {fileID: 4435169765135366885}
@@ -2818,7 +2820,7 @@ GameObject:
   - component: {fileID: 1896608429148001805}
   - component: {fileID: 3217082990967749155}
   m_Layer: 5
-  m_Name: AnyText
+  m_Name: LevelType
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2864,7 +2866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2883,7 +2885,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1146PP
+  m_Text: 123
 --- !u!1 &8147851387241444284
 GameObject:
   m_ObjectHideFlags: 0

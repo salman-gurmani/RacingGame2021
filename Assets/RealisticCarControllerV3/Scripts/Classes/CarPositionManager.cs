@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.Vehicles.Car;
 
 public class CarPositionManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class CarPositionManager : MonoBehaviour
     public float Distance = 0.0f;
     public int totalCheckPoints = 0;
     public int CheckPointTraversed = 0 ;
+    public int positionVal = 0;
     public String Position;
     public TextMesh TextMesh;
     bool[] myArray = new bool[10];
@@ -69,44 +71,69 @@ public class CarPositionManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!other.CompareTag("FinishPoint"))
-        CheckPosition(other.gameObject);
-        
-        if (other.tag.Contains("FinishPoint"))
+        try
         {
-            Debug.Log("Coming in FinishLine");
-            if (CheckAllCheckPointTeversed())
+
+            if (other.CompareTag("FinishLine"))
             {
-                if (lapCheck)
+                //Debug.LogError("FinishLine Passed!");
+                this.GetComponent<CarAIControl>().enabled = false;
+
+                return;
+            }
+
+
+            if (!other.CompareTag("FinishPoint"))
+                CheckPosition(other.gameObject);
+
+            if (other.tag.Contains("FinishPoint"))
+            {
+                //Debug.Log("Coming in FinishLine");
+                if (CheckAllCheckPointTeversed())
                 {
-                    lapCounter++;
-                    DisableAllCheckPoints();
-                    Counter = 0;
-                    lapCheck = false;
+                    if (lapCheck)
+                    {
+                        lapCounter++;
+                        DisableAllCheckPoints();
+                        Counter = 0;
+                        lapCheck = false;
+
+                        if (Toolbox.GameplayScript.levelsManager.CurLevelData.type == LevelData.LevelType.LAP) {
+
+                            if (lapCounter >= Toolbox.GameplayScript.levelsManager.CurLevelData.laps)
+                            {
+                                Toolbox.GameplayScript.RaceEndHandling();
+                            }
+                            else
+                            {
+                                Toolbox.HUDListner.SetLapTxt(lapCounter + 1);
+                            }
+                        }
+                        
+                    }
+
+                    if (this.gameObject.CompareTag("Player"))
+                    {
+                        DisableAllCheckPoints();
+                        Counter = 0;
+                        lapCheck = false;
+
+                        // Toolbox.GameplayScript.LevelCompleteHandling();
+                    }
                 }
+            }
 
-                if (this.gameObject.CompareTag("Player"))
+            if (other.CompareTag("CheckPoint"))
             {
-
-                DisableAllCheckPoints();
-                Counter = 0;
-                lapCheck = false;
-
-               // Toolbox.GameplayScript.LevelCompleteHandling();
-            }
-            else { 
-            
-
-            }
-
-
+                CheckPointTraversed++;
             }
         }
-
-        if (other.CompareTag("CheckPoint"))
+        catch (Exception ex)
         {
-            CheckPointTraversed++;
+
+            Debug.Log("Some error in OnTriggerEnter");
         }
+
     }
 
 

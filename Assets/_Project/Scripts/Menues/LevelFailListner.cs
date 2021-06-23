@@ -7,6 +7,9 @@ public class LevelFailListner : MonoBehaviour {
 	public Text cashTxt;
 	public Text remainingTime;
 	public Text playerVehicleTxt;
+	public Text playerPositionTxt;
+	public Text levelType;
+
 	public int levelReward = 0;
 	
 	private int cashEarned = 0;
@@ -25,12 +28,31 @@ public class LevelFailListner : MonoBehaviour {
 	}
 	private void StatsHandling()
 	{
+		playerPositionTxt.text = Toolbox.GameplayScript.playerPositionVal.ToString();
+
 		cashEarned = UnityEngine.Random.Range(100, 499);
 
 		cashTxt.text = cashEarned.ToString();
 
 		Toolbox.DB.prefs.GoldCoins += cashEarned;
 		playerVehicleTxt.text = Toolbox.DB.prefs.LastSelectedVehicleName;
+
+		switch (Toolbox.GameplayScript.levelsManager.CurLevelData.type)
+		{
+			case LevelData.LevelType.SPRINT:
+				levelType.text = "Sprint";
+
+				break;
+
+			case LevelData.LevelType.LAP:
+				levelType.text = "Lap";
+
+				break;
+
+			case LevelData.LevelType.TIMESPRINT:
+				levelType.text = "Time Sprint";
+				break;
+		}
 	}
 
 	public void Press_SkipLevel()
@@ -41,7 +63,7 @@ public class LevelFailListner : MonoBehaviour {
 	public void Press_Restart()
 	{
 		Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.buttonPressYes);
-		Toolbox.GameManager.LoadScene(Constants.sceneIndex_Game, true, 0);
+		Toolbox.GameManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex, true, 0);
 
 		Destroy(this.gameObject);
 	}
@@ -56,7 +78,7 @@ public class LevelFailListner : MonoBehaviour {
 
 	public void ShowRemainingTime()
 	{
-		int roundedSec = Mathf.RoundToInt(Toolbox.GameplayScript.RemainingTime);
+		int roundedSec = Mathf.RoundToInt(Toolbox.GameplayScript.gameplayTime_Seconds);
 		int min = roundedSec / 60;
 		int seconds = roundedSec - (min * 60);
 		if (Toolbox.GameplayScript.RemainingTime <= 5) remainingTime.color = Color.red;
