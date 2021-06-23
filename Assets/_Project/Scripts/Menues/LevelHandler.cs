@@ -13,10 +13,13 @@ public class LevelHandler : MonoBehaviour
 
     private bool isCountdownstart = false;
 
-    public void Update()
+
+    private void Start()
     {
-        if (!cinemachineObj.activeInHierarchy && !isCountdownstart) Start_RaceCountdown();
+        cinemachineObj.SetActive(true);
+        Toolbox.GameplayScript.camListner.GetComponent<Camera>().enabled = false;
     }
+
     public void Start_RaceCountdown()
     {
         isCountdownstart = true;

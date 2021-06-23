@@ -12,24 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d9492b67302df428665f63dbcea5e9, type: 3}
   m_Name: 2
   m_EditorClassIdentifier: 
-  allowedPanelties: 10
-  isRaining: 0
-  isNight: 0
-  levelTime: 10
-  passenger:
-  - name: Eliet
-    type: 0
-    prefab: {fileID: 5165130707571120135, guid: f49ce45caa37bc048a3abff65cace7f3,
-      type: 3}
-    destination: Office
-    description: Eliet is late for office. Speed up a bit and if you reach the office
-      in time you will win the tip.
-    speedLimit: 80
-    timeLimit: 100
-    hasSpecialEvent: 1
-    startRaining: 1
-    description_SE: Eliets Son school principal called. She wants to see her. She
-      thinks its urgent so, speed up.
-    destination_SE: School
-    speedLimit_SE: 80
-    timeLimit_SE: 180
+  type: 0
+  laps: 0
+  levelTime: 0
+  carPower: 0
+  sceneNum: 3
+  aiCars: []

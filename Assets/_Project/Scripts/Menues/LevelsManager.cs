@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
-
 public class LevelsManager : MonoBehaviour
 {
     public bool testMode = false;
@@ -50,10 +48,11 @@ public class LevelsManager : MonoBehaviour
 
         for (int i = 0; i < curLevelData.aiCars.Length; i++)
         {
-            Instantiate(curLevelData.aiCars[i], curLevelHandler.aiSpawnPoints[i].position, curLevelHandler.aiSpawnPoints[i].rotation);
-        }
+            GameObject tempObj = (GameObject) Instantiate(curLevelData.aiCars[i], curLevelHandler.aiSpawnPoints[i].position, curLevelHandler.aiSpawnPoints[i].rotation);
+            tempObj.GetComponent<UnityStandardAssets.Vehicles.Car.CarAIControl>().enabled = false;
 
-        Toolbox.GameplayScript.EnableHud();
+            Toolbox.GameplayScript.AddAiCar(tempObj);
+        }
 
         Toolbox.GameplayScript.PlayerObject = obj;
 

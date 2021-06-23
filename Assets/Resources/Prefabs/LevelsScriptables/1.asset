@@ -12,22 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d9492b67302df428665f63dbcea5e9, type: 3}
   m_Name: 1
   m_EditorClassIdentifier: 
-  allowedPanelties: 10
-  isRaining: 0
-  isNight: 0
+  type: 1
+  laps: 2
   levelTime: 20
-  passenger:
-  - name: Salman
-    type: 0
-    prefab: {fileID: 6280236942284849466, guid: 7dec572ad55d59f4aac60bdb7023ff1d,
-      type: 3}
-    destination: Restraunt
-    description: Salman is going for a meeting in restraunt. Drive at normal speed.
-    speedLimit: 70
-    timeLimit: 115
-    hasSpecialEvent: 0
-    startRaining: 0
-    description_SE: 
-    destination_SE: 
-    speedLimit_SE: 50
-    timeLimit_SE: 60
+  carPower: 0
+  aiCars:
+  - {fileID: 1558409412042920103, guid: 72863bc1d990baa4d897c7a0d3f0db81, type: 3}
+  - {fileID: 1173470301211859902, guid: ac2fd7632ac55a54e8ac96d8fdb23a8b, type: 3}

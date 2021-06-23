@@ -8,6 +8,8 @@ public class LevelCompleteListner : MonoBehaviour {
 	public GameObject doubleRewardButton;
 	public Text rewardTxt, rankTxt, cashTxt;
 	public Text remainingTime,playerVehicleTxt;
+	public Text playerPositionTxt;
+	public Text levelType;
 	public GameObject[] star;
 	public int levelReward = 100;
 	
@@ -24,13 +26,15 @@ public class LevelCompleteListner : MonoBehaviour {
 
 		Toolbox.GameManager.Analytics_LevelComplete();
 
-		if(Toolbox.DB.prefs.FuelTank < 8) Toolbox.DB.prefs.FuelTank += 1;
+		if (Toolbox.DB.prefs.FuelTank < 8) Toolbox.DB.prefs.FuelTank += 1;
+		
 		UnlockNextLevel();
+		
 		StatsHandling();
-		ShowRemainingTime();
+
+		//ShowRemainingTime();
 
 	}
-
     private void UnlockNextLevel()
     {
 		if (Toolbox.DB.prefs.LastSelectedLevel < Toolbox.DB.prefs.GameMode[Toolbox.DB.prefs.LastSelectedMode].GetLastUnlockedLevel())
@@ -51,28 +55,38 @@ public class LevelCompleteListner : MonoBehaviour {
 	//Handles Stats, stars and Reward
 	private void StatsHandling()
 	{
-		if (Toolbox.GameplayScript.LevelCompleteTime <= 10)
+
+		playerPositionTxt.text = Toolbox.GameplayScript.playerPositionVal.ToString();
+
+		int roundedSec = Mathf.RoundToInt(Toolbox.GameplayScript.gameplayTime_Seconds);
+		int min = roundedSec / 60;
+		int seconds = roundedSec - (min * 60);
+		//Debug.LogError("Sec = " + roundedSec);
+		remainingTime.text = String.Format("{0:D2} : {1:D2}", min, seconds);
+
+
+		if (Toolbox.GameplayScript.playerPositionVal == 3)
 		{
 			star[0].SetActive(true);
 			levelReward *= 1;
 			AssignRank(5, 20);
 			cashEarned = UnityEngine.Random.Range(500, 1000);
 		}
-		else if (Toolbox.GameplayScript.LevelCompleteTime <= 15)
+		else if (Toolbox.GameplayScript.playerPositionVal == 2)
 		{
 			star[0].SetActive(true);
 			star[1].SetActive(true);
-			
+
 			levelReward *= 2;
 			AssignRank(20, 50);
 			cashEarned = UnityEngine.Random.Range(1500, 2500);
 		}
-		else {
+		else if (Toolbox.GameplayScript.playerPositionVal == 1)
+		{
+			star[0].SetActive(true);
+			star[1].SetActive(true);
+			star[2].SetActive(true);
 
-			for (int i = 0; i < star.Length; i++)
-			{
-				star[i].SetActive(true);
-			}
 
 			levelReward *= 3;
 			AssignRank(50, 100);
@@ -85,6 +99,25 @@ public class LevelCompleteListner : MonoBehaviour {
 
 		Toolbox.DB.prefs.GoldCoins += levelReward;
 		Toolbox.DB.prefs.GoldCoins += cashEarned;
+
+
+		switch (Toolbox.GameplayScript.levelsManager.CurLevelData.type)
+		{
+
+			case LevelData.LevelType.SPRINT:
+				levelType.text = "Sprint";
+
+				break;
+
+			case LevelData.LevelType.LAP:
+				levelType.text = "Lap";
+
+				break;
+
+			case LevelData.LevelType.TIMESPRINT:
+				levelType.text = "Time Sprint";
+				break;
+		}
 
 	}
 
@@ -102,7 +135,7 @@ public class LevelCompleteListner : MonoBehaviour {
 	public void Press_Restart()
 	{
 		Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.buttonPressYes);
-		Toolbox.GameManager.LoadScene(Constants.sceneIndex_Game, true, 0);
+		Toolbox.GameManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex, true, 0);
 
 		Destroy(this.gameObject);
 	}

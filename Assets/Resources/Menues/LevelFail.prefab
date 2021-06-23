@@ -791,8 +791,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 98782e256e67dbe4698d30014d5743e9, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 53376d46aa93495498e77d97f3dd13b2, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -950,6 +950,8 @@ MonoBehaviour:
   cashTxt: {fileID: 7493925093335760541}
   remainingTime: {fileID: 7412323478645879122}
   playerVehicleTxt: {fileID: 8843117117708628733}
+  playerPositionTxt: {fileID: 414248349691784607}
+  levelType: {fileID: 7212562679388449860}
   levelReward: 0
 --- !u!225 &2116938147153217917
 CanvasGroup:
@@ -2300,7 +2302,7 @@ GameObject:
   - component: {fileID: 5634373995635509912}
   - component: {fileID: 7212562679388449860}
   m_Layer: 5
-  m_Name: AnyText
+  m_Name: Type
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2346,7 +2348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
