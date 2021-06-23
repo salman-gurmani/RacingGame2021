@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1429719100986135788}
   - component: {fileID: 1429719100986135699}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: HeadlightLeftSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1429719101005872196}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Lights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1429719101131787282}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: CameraFocusPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1429719101255238954}
   - component: {fileID: 1429719101255238953}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: HeadlighRightSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1429719101332466743}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Helpers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,7 +287,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1429719101397529773}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 1429719101494957395}
   - component: {fileID: 1429719101494957393}
   - component: {fileID: 1429719101494957394}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Wheel_R B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -398,7 +398,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1429719101584223335}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: WaypointTargetObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -428,7 +428,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1429719101755384520}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: WheelHubs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -468,7 +468,7 @@ GameObject:
   - component: {fileID: 1429719101767872153}
   - component: {fileID: 1429719101767872159}
   - component: {fileID: 1429719101767872152}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: ParticleBurnoutSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5115,7 +5115,7 @@ GameObject:
   - component: {fileID: 1429719101807221412}
   - component: {fileID: 1429719101807221413}
   - component: {fileID: 1429719101807221414}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: ColliderFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5208,7 +5208,7 @@ GameObject:
   - component: {fileID: 1429719101866222248}
   - component: {fileID: 1429719101866222250}
   - component: {fileID: 1429719101866222249}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: WheelHubFrontRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5380,7 +5380,7 @@ GameObject:
   - component: {fileID: 1429719101943652985}
   - component: {fileID: 1429719101943652991}
   - component: {fileID: 1429719101943652984}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Wheel_L B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5461,7 +5461,7 @@ GameObject:
   - component: {fileID: 1429719102002411264}
   - component: {fileID: 1429719102002411265}
   - component: {fileID: 1429719102002411266}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: ColliderBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5554,7 +5554,7 @@ GameObject:
   - component: {fileID: 1429719102205745280}
   - component: {fileID: 1429719102205745282}
   - component: {fileID: 1429719102205745283}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: WheelHubRearLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5727,7 +5727,7 @@ GameObject:
   - component: {fileID: 1429719102491901324}
   - component: {fileID: 1429719102491901325}
   - component: {fileID: 1429719102491901326}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: ColliderBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5823,7 +5823,8 @@ GameObject:
   - component: {fileID: 1429719102599412411}
   - component: {fileID: 1429719102599412404}
   - component: {fileID: 1429719102599412405}
-  m_Layer: 0
+  - component: {fileID: -8926606917675942096}
+  m_Layer: 17
   m_Name: AI Car 1
   m_TagString: AICar
   m_Icon: {fileID: 0}
@@ -5999,10 +6000,45 @@ MonoBehaviour:
   Distance: 0
   totalCheckPoints: 0
   CheckPointTraversed: 0
+  positionVal: 0
   Position: 
   TextMesh: {fileID: 1429719102697656256}
   carpos: []
   isMenuScene: 0
+--- !u!114 &-8926606917675942096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429719102599412406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f131dd35d296fca4e90efc4ed717e48b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 1429719102599412415}
+  OffSet: {x: 0, y: 0, z: 0}
+  Icon: {fileID: 21300048, guid: b2ff3b281537fbc4d91af3e848afde5c, type: 3}
+  DeathIcon: {fileID: 0}
+  IconColor: {r: 0.23921567, g: 0.7552242, b: 1, a: 1}
+  Size: 25
+  ShowCircleArea: 0
+  CircleAreaRadius: 10
+  CircleAreaColor: {r: 1, g: 1, b: 1, a: 0.9}
+  isInteractable: 0
+  interacableAction: 0
+  InfoItem: Info Icon here
+  keepTextAlwaysFacingUp: 0
+  OffScreen: 0
+  DestroyWithObject: 0
+  BorderOffScreen: 0
+  OffScreenSize: 1
+  isHoofdPunt: 0
+  RenderDelay: 0
+  m_Effect: 2
+  useCustomIconPrefab: 0
+  CustomIconPrefab: {fileID: 0}
 --- !u!1 &1429719102697656257
 GameObject:
   m_ObjectHideFlags: 0
@@ -6014,7 +6050,7 @@ GameObject:
   - component: {fileID: 1429719102697656262}
   - component: {fileID: 1429719102697656263}
   - component: {fileID: 1429719102697656256}
-  m_Layer: 16
+  m_Layer: 17
   m_Name: New Text (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6108,7 +6144,7 @@ GameObject:
   - component: {fileID: 1429719102851166495}
   - component: {fileID: 1429719102851166489}
   - component: {fileID: 1429719102851166488}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: WheelHubFrontLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6278,7 +6314,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1429719102884651590}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6314,7 +6350,7 @@ GameObject:
   - component: {fileID: 1429719102942217073}
   - component: {fileID: 1429719102942217075}
   - component: {fileID: 1429719102942217074}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: WheelHubRearRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6486,7 +6522,7 @@ GameObject:
   - component: {fileID: 3487444728694216609}
   - component: {fileID: 3487444728693446529}
   - component: {fileID: 3487444728692446273}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Taillights_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6565,7 +6601,7 @@ GameObject:
   - component: {fileID: 3487444728694216613}
   - component: {fileID: 3487444728693446533}
   - component: {fileID: 3487444728692446277}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Wheel_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6645,7 +6681,7 @@ GameObject:
   - component: {fileID: 3487444728694216615}
   - component: {fileID: 3487444728693446535}
   - component: {fileID: 3487444728692446279}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Wheel_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6725,7 +6761,7 @@ GameObject:
   - component: {fileID: 3487444728694216617}
   - component: {fileID: 3487444728693446537}
   - component: {fileID: 3487444728692446281}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Car_03_Interior
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6802,7 +6838,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3487444728694216633}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6839,7 +6875,7 @@ GameObject:
   - component: {fileID: 3487444728694216635}
   - component: {fileID: 3487444728693446555}
   - component: {fileID: 3487444728692446299}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Body_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6918,7 +6954,7 @@ GameObject:
   - component: {fileID: 3487444728694216637}
   - component: {fileID: 3487444728693446557}
   - component: {fileID: 3487444728692446301}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Glass_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6997,7 +7033,7 @@ GameObject:
   - component: {fileID: 3487444728694216639}
   - component: {fileID: 3487444728693446559}
   - component: {fileID: 3487444728692446303}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Matte_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

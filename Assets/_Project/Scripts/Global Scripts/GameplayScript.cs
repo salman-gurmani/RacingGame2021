@@ -26,6 +26,7 @@ public class GameplayScript : MonoBehaviour {
 
     private GameObject playerObject;
     public GameObject rainObj;
+    public Canvas mapCanvas;
     public Material NightSkybox, DaySkybox;
     public GameObject NightLight, DayLight;
     
@@ -37,6 +38,7 @@ public class GameplayScript : MonoBehaviour {
     [Header("Components")]
     public AudioListener camListner;
     public RCC_Camera cameraScript;
+    public bl_MiniMap map;
     public bool canShowReviewMenu = false;
     
     public GameObject circuit;
@@ -232,6 +234,13 @@ public class GameplayScript : MonoBehaviour {
 
         Toolbox.HUDListner.EnableHud();
         Toolbox.GameplayScript.StartGame();
+
+        if (mapCanvas) {
+
+            map.Target = PlayerObject.transform;
+            mapCanvas.enabled = true;
+        }
+        
 
         switch (levelsManager.CurLevelData.type) {
 
