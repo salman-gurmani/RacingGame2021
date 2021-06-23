@@ -256,6 +256,7 @@ public class GameplayScript : MonoBehaviour {
 
             case LevelData.LevelType.TIMESPRINT:
 
+                PlayerObject.GetComponent<CarPositionManager>().TextMesh.gameObject.SetActive(false);
                 Toolbox.HUDListner.SetNStartTime(levelsManager.CurLevelData.levelTime);
                 break;
         }

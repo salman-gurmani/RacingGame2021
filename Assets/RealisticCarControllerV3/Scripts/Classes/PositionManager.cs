@@ -8,9 +8,15 @@ public class PositionManager : MonoBehaviour
     // Start is called before the first frame update
     public CarPositionManager[] Cars;
     List<CarPositionManager> carpos;
+
+    public void SetCars() {
+
+        Cars = GameObject.FindObjectsOfType<CarPositionManager>();
+
+    }
+
     void Start()
     {
-        Cars = GameObject.FindObjectsOfType<CarPositionManager>();
         carpos = new List<CarPositionManager>();
 
         foreach (CarPositionManager car in Cars)

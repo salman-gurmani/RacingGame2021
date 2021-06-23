@@ -54,6 +54,8 @@ public class LevelsManager : MonoBehaviour
             Toolbox.GameplayScript.AddAiCar(tempObj);
         }
 
+        Toolbox.GameplayScript.positionManager.SetCars();
+
         Toolbox.GameplayScript.PlayerObject = obj;
 
         Toolbox.GameManager.Instantiate_Blackout();
