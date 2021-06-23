@@ -12,21 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d9492b67302df428665f63dbcea5e9, type: 3}
   m_Name: 8
   m_EditorClassIdentifier: 
-  allowedPanelties: 10
-  isRaining: 0
-  passenger:
-  - name: Sufian
-    type: 0
-    prefab: {fileID: 6280236942284849466, guid: 7dec572ad55d59f4aac60bdb7023ff1d,
-      type: 3}
-    destination: Construction Site
-    description: Sufian is an architect and going to work at the construction site.
-      Speed it up as he wants to be the first one on the scene.
-    speedLimit: 100
-    timeLimit: 220
-    hasSpecialEvent: 0
-    startRaining: 0
-    description_SE: 
-    destination_SE: 
-    speedLimit_SE: 50
-    timeLimit_SE: 60
+  type: 2
+  laps: 0
+  levelTime: 80
+  carPower: 0
+  sceneNum: 4
+  aiCars: []

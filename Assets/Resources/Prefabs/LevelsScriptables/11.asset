@@ -12,22 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d9492b67302df428665f63dbcea5e9, type: 3}
   m_Name: 11
   m_EditorClassIdentifier: 
-  allowedPanelties: 10
-  isRaining: 0
-  passenger:
-  - name: Chingli
-    type: 0
-    prefab: {fileID: 5165130707571120135, guid: f49ce45caa37bc048a3abff65cace7f3,
-      type: 3}
-    destination: Police Station
-    description: Chingli is a foreigner. She has some complaints. Make sure she doesn't
-      complaint about the taxi on her way to police station.
-    speedLimit: 80
-    timeLimit: 190
-    hasSpecialEvent: 1
-    startRaining: 1
-    description_SE: She has changed her mind. Such a nice person. Take her to the
-      museum. Drive Carefully!
-    destination_SE: Museum
-    speedLimit_SE: 60
-    timeLimit_SE: 90
+  type: 2
+  laps: 0
+  levelTime: 60
+  carPower: 0
+  sceneNum: 5
+  aiCars: []

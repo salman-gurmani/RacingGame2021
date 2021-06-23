@@ -12,21 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d9492b67302df428665f63dbcea5e9, type: 3}
   m_Name: 10
   m_EditorClassIdentifier: 
-  allowedPanelties: 10
-  isRaining: 0
-  passenger:
-  - name: Hamza
-    type: 0
-    prefab: {fileID: 8399931493381040020, guid: 3e0103d6553a83742bcc9a22295fd905,
-      type: 3}
-    destination: Friend Home
-    description: Hamza is going on a party at friends home. He has to make some early
-      arrangements. Speed it up as the party is about to start.
-    speedLimit: 70
-    timeLimit: 200
-    hasSpecialEvent: 0
-    startRaining: 0
-    description_SE: 
-    destination_SE: 
-    speedLimit_SE: 50
-    timeLimit_SE: 60
+  type: 1
+  laps: 3
+  levelTime: 0
+  carPower: 0
+  sceneNum: 4
+  aiCars:
+  - {fileID: 3476315772098224911, guid: 7c6314362a1927d479fff60e6396c902, type: 3}
+  - {fileID: 1928238234375304788, guid: 52e9e692ba17f9547b3478c68ca8632c, type: 3}
+  - {fileID: 8203317029169969162, guid: 2da4ae0617e3fbe47971e120b4da9094, type: 3}
+  - {fileID: 5674068858754671429, guid: 60e87328c7e13be47a219e2d7c6628f2, type: 3}

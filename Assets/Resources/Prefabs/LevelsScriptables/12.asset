@@ -12,21 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d9492b67302df428665f63dbcea5e9, type: 3}
   m_Name: 12
   m_EditorClassIdentifier: 
-  allowedPanelties: 10
-  isRaining: 1
-  passenger:
-  - name: Arshan
-    type: 0
-    prefab: {fileID: 653170113978565903, guid: dc2aa336cc2e26d4aa604e54087410e6, type: 3}
-    destination: Factory
-    description: 'Arshan is chemical engineer. His coworkers has made some mess at
-      the factory. Reach the destination before its too late. '
-    speedLimit: 100
-    timeLimit: 180
-    hasSpecialEvent: 1
-    startRaining: 0
-    description_SE: She needs to go for an urgent visit at a site. Quick, she can't
-      be late
-    destination_SE: Secret Site
-    speedLimit_SE: 90
-    timeLimit_SE: 100
+  type: 0
+  laps: 0
+  levelTime: 0
+  carPower: 0
+  sceneNum: 6
+  aiCars:
+  - {fileID: 4020994681568840762, guid: 7f90d2f89fbd9c24eb73090f2cfbc24c, type: 3}
+  - {fileID: 8521996573613263053, guid: 017a6cb1723079b42a4a0a6ce5d5be83, type: 3}
+  - {fileID: 9212056940452835266, guid: ef4d5b10a98428749b181fd48b7cd7d3, type: 3}
+  - {fileID: 1678951516142184952, guid: 994d31e3e7c5c0c458afd8ee9df68884, type: 3}

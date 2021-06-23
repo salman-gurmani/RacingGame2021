@@ -12,21 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d9492b67302df428665f63dbcea5e9, type: 3}
   m_Name: 16
   m_EditorClassIdentifier: 
-  allowedPanelties: 10
-  isRaining: 0
-  passenger:
-  - name: Melissa
-    type: 0
-    prefab: {fileID: 5508291000765152151, guid: 58e5631f4ec988243bdd3badb9ef49a5,
-      type: 3}
-    destination: Car Showroom
-    description: Melissa is going to buy a new car. Drop her at car showroom as soon
-      as possible.
-    speedLimit: 60
-    timeLimit: 140
-    hasSpecialEvent: 0
-    startRaining: 0
-    description_SE: 
-    destination_SE: 
-    speedLimit_SE: 50
-    timeLimit_SE: 60
+  type: 1
+  laps: 4
+  levelTime: 0
+  carPower: 0
+  sceneNum: 6
+  aiCars:
+  - {fileID: 6780100469378439357, guid: 87fe6e6a55ed56042a4da060994686a6, type: 3}
+  - {fileID: 2960539798510812503, guid: d0ac3ad5d41b7eb47b895d511735ae4e, type: 3}
+  - {fileID: 3476315772098224911, guid: 7c6314362a1927d479fff60e6396c902, type: 3}
+  - {fileID: 4020994681568840762, guid: 7f90d2f89fbd9c24eb73090f2cfbc24c, type: 3}

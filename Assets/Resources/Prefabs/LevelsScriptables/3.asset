@@ -12,21 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d9492b67302df428665f63dbcea5e9, type: 3}
   m_Name: 3
   m_EditorClassIdentifier: 
-  allowedPanelties: 10
-  isRaining: 0
-  passenger:
-  - name: Kelly
-    type: 0
-    prefab: {fileID: 5508291000765152151, guid: 58e5631f4ec988243bdd3badb9ef49a5,
-      type: 3}
-    destination: Hospital
-    description: Kelly has a bad stomach pain. You need to take her to nearest hospital.
-      Hurry up
-    speedLimit: 100
-    timeLimit: 270
-    hasSpecialEvent: 0
-    startRaining: 0
-    description_SE: 
-    destination_SE: 
-    speedLimit_SE: 50
-    timeLimit_SE: 60
+  type: 0
+  laps: 0
+  levelTime: 0
+  carPower: 0
+  sceneNum: 3
+  aiCars:
+  - {fileID: 1678951516142184952, guid: 994d31e3e7c5c0c458afd8ee9df68884, type: 3}
+  - {fileID: 1928238234375304788, guid: 52e9e692ba17f9547b3478c68ca8632c, type: 3}
+  - {fileID: 8203317029169969162, guid: 2da4ae0617e3fbe47971e120b4da9094, type: 3}
+  - {fileID: 5674068858754671429, guid: 60e87328c7e13be47a219e2d7c6628f2, type: 3}

@@ -41,8 +41,104 @@ MonoBehaviour:
   SelectedOrganization: 01000000
   SelectedStudio: 01000000
   SelectedGame: 01000000
-  NewVersion: 
-  Changes: 
+  NewVersion: 6.5.6
+  Changes: '6.5.6
+
+    - fixed crash bug for ios
+
+
+    6.5.5
+
+    - reverted back
+    to v6.5.2 as crashes happen for ios which have not been narrowed down to what
+    is causing this yet
+
+
+    6.5.4
+
+    - fixed typo error
+
+
+    6.5.3
+
+    - added
+    support for max in impression events
+
+    - fixed dupplicate symbol on ios
+
+
+    6.5.2
+
+    -
+    fixed crashes for android devices without google play API (android)
+
+
+    6.5.1
+
+    -
+    added support for OAID (android)
+
+    - added missing export function for UWP
+    lib (uwp)
+
+
+    6.5.0
+
+    - added app tracking transparency request function
+    (ios)
+
+
+    6.4.1
+
+    - added idfa consent status field to events (ios)
+
+
+    6.4.0
+
+    -
+    added support for unity package manager
+
+
+    6.3.14
+
+    - fixed playmaker scripts
+
+
+    6.3.13
+
+    -
+    fixed compiler errors for 2017.1
+
+    - updated client ts validator
+
+
+    6.3.12
+
+    -
+    changed AppTrackingTransparency dependency to be optional for iOS
+
+
+    6.3.11
+
+    -
+    fixed dependencies for iOS (min. XCode 12 required)
+
+
+    6.3.10
+
+    - fix to
+    mopub impression events, require min. mopub v5.14.0
+
+    - REMEMBER to update
+    to this version of the SDK if you use MoPub impression events and you have min.
+    v5.14.0 of MoPub SDK inatalled or else the SDK will not send MoPub impression
+    event for you any more
+
+
+    6.3.9
+
+    - fixed ironsource impression event compile
+    error'
   SignUpOpen: 0
   StudioName: IdeeGames
   GameName: CityTaxiSim2020
@@ -64,7 +160,7 @@ MonoBehaviour:
   ResourceCurrencies: []
   LastCreatedGamePlatform: -1
   Platforms: 0b000000
-  CurrentInspectorState: 3
+  CurrentInspectorState: 1
   ClosedHints: 
   DisplayHints: 0
   DisplayHintsScrollState: {x: 0, y: 0}

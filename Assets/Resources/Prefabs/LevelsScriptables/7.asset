@@ -12,22 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d9492b67302df428665f63dbcea5e9, type: 3}
   m_Name: 7
   m_EditorClassIdentifier: 
-  allowedPanelties: 10
-  isRaining: 1
-  passenger:
-  - name: Saira
-    type: 0
-    prefab: {fileID: 2612136945320212223, guid: 2fc72773bd498e14f8e469b62350e837,
-      type: 3}
-    destination: Super Market
-    description: Saira has uninvited guests at home and need groceries. She is scared
-      of high speed too.
-    speedLimit: 60
-    timeLimit: 230
-    hasSpecialEvent: 1
-    startRaining: 0
-    description_SE: She could not find all the things here. Take her to her friends
-      place. Hurry up.
-    destination_SE: Home
-    speedLimit_SE: 80
-    timeLimit_SE: 60
+  type: 1
+  laps: 3
+  levelTime: 0
+  carPower: 0
+  sceneNum: 5
+  aiCars:
+  - {fileID: 5674068858754671429, guid: 60e87328c7e13be47a219e2d7c6628f2, type: 3}
+  - {fileID: 1928238234375304788, guid: 52e9e692ba17f9547b3478c68ca8632c, type: 3}
+  - {fileID: 9212056940452835266, guid: ef4d5b10a98428749b181fd48b7cd7d3, type: 3}
+  - {fileID: 8521996573613263053, guid: 017a6cb1723079b42a4a0a6ce5d5be83, type: 3}

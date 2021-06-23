@@ -12,22 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d9492b67302df428665f63dbcea5e9, type: 3}
   m_Name: 5
   m_EditorClassIdentifier: 
-  allowedPanelties: 10
-  isRaining: 0
-  isNight: 0
-  passenger:
-  - name: Margret
-    type: 0
-    prefab: {fileID: 2612136945320212223, guid: 2fc72773bd498e14f8e469b62350e837,
-      type: 3}
-    destination: Museum
-    description: Margret is a teacher and have to reach museum to guide her class.
-      She does not like to be late.
-    speedLimit: 75
-    timeLimit: 60
-    hasSpecialEvent: 0
-    startRaining: 0
-    description_SE: 
-    destination_SE: 
-    speedLimit_SE: 60
-    timeLimit_SE: 90
+  type: 2
+  laps: 0
+  levelTime: 100
+  carPower: 0
+  sceneNum: 3
+  aiCars: []

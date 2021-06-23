@@ -12,21 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d9492b67302df428665f63dbcea5e9, type: 3}
   m_Name: 6
   m_EditorClassIdentifier: 
-  allowedPanelties: 10
-  isRaining: 0
-  isNight: 1
-  passenger:
-  - name: Leon
-    type: 0
-    prefab: {fileID: 653170113978565903, guid: dc2aa336cc2e26d4aa604e54087410e6, type: 3}
-    destination: Docks
-    description: 'Leon has a shipment waiting for payment in docks. He might lose
-      alot of money if he is late. '
-    speedLimit: 70
-    timeLimit: 240
-    hasSpecialEvent: 0
-    startRaining: 0
-    description_SE: 
-    destination_SE: 
-    speedLimit_SE: 50
-    timeLimit_SE: 60
+  type: 0
+  laps: 0
+  levelTime: 0
+  carPower: 0
+  sceneNum: 4
+  aiCars:
+  - {fileID: 8521996573613263053, guid: 017a6cb1723079b42a4a0a6ce5d5be83, type: 3}
+  - {fileID: 9212056940452835266, guid: ef4d5b10a98428749b181fd48b7cd7d3, type: 3}
+  - {fileID: 1678951516142184952, guid: 994d31e3e7c5c0c458afd8ee9df68884, type: 3}
+  - {fileID: 1928238234375304788, guid: 52e9e692ba17f9547b3478c68ca8632c, type: 3}

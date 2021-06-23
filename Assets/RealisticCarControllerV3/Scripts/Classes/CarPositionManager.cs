@@ -93,6 +93,13 @@ public class CarPositionManager : MonoBehaviour
                 {
                     if (lapCheck)
                     {
+                        Debug.LogError("LapEndPoint! " + other.gameObject.name);
+
+                        if (this.gameObject.GetComponent<VehicleTriggerHandler>()) { 
+                        
+                        } 
+
+
                         lapCounter++;
                         DisableAllCheckPoints();
                         Counter = 0;
@@ -100,14 +107,17 @@ public class CarPositionManager : MonoBehaviour
 
                         if (Toolbox.GameplayScript.levelsManager.CurLevelData.type == LevelData.LevelType.LAP) {
 
-                            if (lapCounter >= Toolbox.GameplayScript.levelsManager.CurLevelData.laps)
+                            if (this.gameObject.GetComponent<VehicleTriggerHandler>())
                             {
-                                Toolbox.GameplayScript.RaceEndHandling();
-                            }
-                            else
-                            {
-                                Toolbox.HUDListner.SetLapTxt(lapCounter + 1);
-                            }
+                                if (lapCounter >= Toolbox.GameplayScript.levelsManager.CurLevelData.laps)
+                                {
+                                    Toolbox.GameplayScript.RaceEndHandling();
+                                }
+                                else
+                                {
+                                    Toolbox.HUDListner.SetLapTxt(lapCounter + 1);
+                                }
+                            }                            
                         }
                         
                     }

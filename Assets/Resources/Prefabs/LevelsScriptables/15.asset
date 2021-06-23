@@ -12,20 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d9492b67302df428665f63dbcea5e9, type: 3}
   m_Name: 15
   m_EditorClassIdentifier: 
-  allowedPanelties: 10
-  isRaining: 0
-  passenger:
-  - name: Frank
-    type: 0
-    prefab: {fileID: 653170113978565903, guid: dc2aa336cc2e26d4aa604e54087410e6, type: 3}
-    destination: Filmstar villa
-    description: Frank is a music director. He is going to filmstar villa for a meet
-      up. Filmstars don't wait so don't be late.
-    speedLimit: 70
-    timeLimit: 150
-    hasSpecialEvent: 0
-    startRaining: 0
-    description_SE: 
-    destination_SE: 
-    speedLimit_SE: 50
-    timeLimit_SE: 60
+  type: 0
+  laps: 0
+  levelTime: 0
+  carPower: 0
+  sceneNum: 7
+  aiCars:
+  - {fileID: 6780100469378439357, guid: 87fe6e6a55ed56042a4da060994686a6, type: 3}
+  - {fileID: 3476315772098224911, guid: 7c6314362a1927d479fff60e6396c902, type: 3}
+  - {fileID: 4020994681568840762, guid: 7f90d2f89fbd9c24eb73090f2cfbc24c, type: 3}
+  - {fileID: 8521996573613263053, guid: 017a6cb1723079b42a4a0a6ce5d5be83, type: 3}

@@ -12,23 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d9492b67302df428665f63dbcea5e9, type: 3}
   m_Name: 4
   m_EditorClassIdentifier: 
-  allowedPanelties: 10
-  isRaining: 1
-  isNight: 1
-  passenger:
-  - name: Miceal
-    type: 0
-    prefab: {fileID: 6280236942284849466, guid: 7dec572ad55d59f4aac60bdb7023ff1d,
-      type: 3}
-    destination: Airport
-    description: Miceal has a medical condition. He can not bear fast speed. Reach
-      airport in a slow speed.
-    speedLimit: 50
-    timeLimit: 260
-    hasSpecialEvent: 1
-    startRaining: 0
-    description_SE: Miceal is having a heart attack. Reach the nearest hospital as
-      Quickly as possible.
-    destination_SE: Hospital
-    speedLimit_SE: 150
-    timeLimit_SE: 120
+  type: 1
+  laps: 2
+  levelTime: 0
+  carPower: 0
+  sceneNum: 2
+  aiCars:
+  - {fileID: 6411087986676250469, guid: 82bfd4dd3be949a4985496a755dda33a, type: 3}
+  - {fileID: 5674068858754671429, guid: 60e87328c7e13be47a219e2d7c6628f2, type: 3}
+  - {fileID: 8203317029169969162, guid: 2da4ae0617e3fbe47971e120b4da9094, type: 3}
+  - {fileID: 1928238234375304788, guid: 52e9e692ba17f9547b3478c68ca8632c, type: 3}

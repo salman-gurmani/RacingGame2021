@@ -12,21 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d9492b67302df428665f63dbcea5e9, type: 3}
   m_Name: 14
   m_EditorClassIdentifier: 
-  allowedPanelties: 10
-  isRaining: 1
-  isNight: 1
-  passenger:
-  - name: Gina
-    type: 0
-    prefab: {fileID: 2612136945320212223, guid: 2fc72773bd498e14f8e469b62350e837,
-      type: 3}
-    destination: City Hall
-    description: Gina is city hall government officer. There should be no mistakes.
-    speedLimit: 60
-    timeLimit: 160
-    hasSpecialEvent: 0
-    startRaining: 0
-    description_SE: 
-    destination_SE: 
-    speedLimit_SE: 50
-    timeLimit_SE: 60
+  type: 2
+  laps: 0
+  levelTime: 50
+  carPower: 0
+  sceneNum: 7
+  aiCars: []
