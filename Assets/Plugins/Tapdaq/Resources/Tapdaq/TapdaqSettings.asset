@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 770977acc539d4a13b9bd97b1ab9e9a6, type: 3}
   m_Name: TapdaqSettings
   m_EditorClassIdentifier: 
-  ios_applicationID: 
-  ios_clientKey: 
-  android_applicationID: 
-  android_clientKey: 
-  admob_appid_ios: 
-  admob_appid_android: 
+  ios_applicationID: 60ad68a208fe6c2d735d6602
+  ios_clientKey: c7514f3d-17ae-4534-96d6-25c4e83d2493
+  android_applicationID: 60ad68e308fe6c2d735d6603
+  android_clientKey: c7514f3d-17ae-4534-96d6-25c4e83d2493
+  admob_appid_ios: ca-app-pub-7050661403707943~1665931460
+  admob_appid_android: ca-app-pub-7050661403707943~5413852201
   isDebugMode: 0
   autoReloadAds: 0
   useCocoapodsMaven: 0
@@ -62,5 +62,15 @@ MonoBehaviour:
   - androidEnabled: 0
     iOSEnabled: 0
     bundlePresent: 0
-  testDevices: []
-  skAdNetworkIds: []
+  testDevices:
+  - name: Vivo
+    type: 0
+    adMobId: f54b028b-748e-4e1b-ba95-866d8fd0b242
+    facebookId: 
+  skAdNetworkIds:
+  - key: AdMob
+    value: "cstr6suwn9.skadnetwork\t"
+  - key: AppLovin
+    value: Multiple
+  - key: UnityAds
+    value: Multiple
