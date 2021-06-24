@@ -4,111 +4,62 @@ using UnityEngine;
 
 public class CollectableHandler : MonoBehaviour
 {
-    private bool startAnim = false;
 
-    public enum Type { 
-    
+    public enum Type {
+
         COIN,
         FLARE,
         SHIELD,
         BOOST,
         REPAIR
 
-    }public Type type = Type.COIN;
-    
-    public bool moveToRandomPoint = false;
-    private Vector3 randomPoint;
+    } public Type type = Type.COIN;
 
-    private void Start()
-    {
-        if (moveToRandomPoint) {
+    public GameObject obj;
 
-            randomPoint = this.transform.position + Random.insideUnitSphere * 5;
-        }        
-    }
+    public void OnCollect() {
 
-    private void Update()
-    {
-        if (startAnim)
+        switch (type)
         {
-            CoinGetAnimation();    
-        }
 
-        if (moveToRandomPoint)
-        {
-            RandomPointAnimation();
-        }
-    }
-    
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player") || collision.CompareTag("PlayerWing")) {
+            case Type.COIN:
 
+                this.GetComponent<SizeAnimation>().enabled = false;
+                Toolbox.GameplayScript.IncrementGoldCoins(1);
+                this.GetComponent<TweenMovementToTransform>().enabled = false;
 
+                Destroy(this.gameObject, 1);
 
-            switch (type)
-            {
+                break;
 
-                case Type.COIN:
+            case Type.BOOST:
 
-                    startAnim = true;
-                    this.GetComponent<SizeAnimation>().enabled = false;
-                    Toolbox.GameplayScript.IncrementGoldCoins(1);
-                    this.GetComponent<TweenMovementToTransform>().enabled = false;
+                obj.SetActive(false);
+                Invoke("EnableObj", 5);
+                break;
 
-                    Destroy(this.gameObject, 1);
+            case Type.FLARE:
 
-                    break;
+                Destroy(this.gameObject);
 
-                case Type.BOOST:
+                break;
 
-                    Destroy(this.gameObject);
+            case Type.REPAIR:
 
-                    break;
+                Destroy(this.gameObject);
 
-                case Type.FLARE:
+                break;
 
-                    Destroy(this.gameObject);
+            case Type.SHIELD:
 
-                    break;
+                Destroy(this.gameObject);
 
-                case Type.REPAIR:
-
-                    Destroy(this.gameObject);
-
-                    break;
-
-                case Type.SHIELD:
-
-                    Destroy(this.gameObject);
-
-                    break;
-            }
-            
-        }        
-    }
-
-    private void CoinGetAnimation()
-    {
-        this.transform.position += new Vector3(-1.4f, 1, 0) * Time.deltaTime * 30;
-
-        if (this.transform.localScale.x > 0)
-        {
-            this.transform.localScale = new Vector3(this.transform.localScale.x - 0.02f,
-                                                this.transform.localScale.y - 0.02f,
-                                                    this.transform.localScale.z - 0.02f);
-
+                break;
         }
     }
 
-    private void RandomPointAnimation()
-    {
-        this.transform.position = Vector3.Lerp(this.transform.position, randomPoint, 0.05f);
+    void EnableObj() {
 
-        if (Vector3.Distance(this.transform.position, randomPoint) < 0.2f)
-        {
-            moveToRandomPoint = false;
-        }
+        obj.SetActive(true);
     }
-
 }
