@@ -19,6 +19,7 @@ public class CollectableHandler : MonoBehaviour
 
     public void OnCollect() {
 
+
         switch (type)
         {
 
@@ -33,8 +34,10 @@ public class CollectableHandler : MonoBehaviour
                 break;
 
             case Type.BOOST:
+                Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.boost);
 
                 obj.SetActive(false);
+                Toolbox.HUDListner.FillNos();
                 Invoke("EnableObj", 5);
                 break;
 

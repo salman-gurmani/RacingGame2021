@@ -13,7 +13,8 @@ public class LevelData : ScriptableObject
 
     public int laps;
     public float levelTime;
-    public float carPower;
+    public float aiCarMaxSpeed;
+    public float aiCarTorque;
 
     [Range((int)2, (int)7)]
     public int sceneNum = 2;

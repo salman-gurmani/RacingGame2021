@@ -55,6 +55,9 @@ namespace UnityStandardAssets.Vehicles.Car
         public float MaxSpeed{get { return m_Topspeed; }}
         public float Revs { get; private set; }
         public float AccelInput { get; private set; }
+        public float FullTorqueOverAllWheels { get => m_FullTorqueOverAllWheels; set => m_FullTorqueOverAllWheels = value; }
+        public float Topspeed { get => m_Topspeed; set => m_Topspeed = value; }
+
         public bool rotateWheel;
         // Use this for initialization
 

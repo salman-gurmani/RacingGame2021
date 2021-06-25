@@ -13,6 +13,7 @@ public class VehicleTriggerHandler : MonoBehaviour
 
         if (other.gameObject.tag == "NOS")
         {
+            other.GetComponent<CollectableHandler>().OnCollect();
             Toolbox.HUDListner.NosSlider.value = 100;
         }
         if (other.gameObject.tag == "CheckPoint")

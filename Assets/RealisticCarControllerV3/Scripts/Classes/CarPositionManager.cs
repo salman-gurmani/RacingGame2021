@@ -82,6 +82,11 @@ public class CarPositionManager : MonoBehaviour
                 return;
             }
 
+            if (other.CompareTag("NOS"))
+            {
+                return;
+            }
+
 
             if (!other.CompareTag("FinishPoint"))
                 CheckPosition(other.gameObject);

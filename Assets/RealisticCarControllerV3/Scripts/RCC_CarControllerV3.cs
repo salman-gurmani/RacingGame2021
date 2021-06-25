@@ -2077,7 +2077,7 @@ public class RCC_CarControllerV3 : RCC_Core {
 	/// </summary>
 	private void NOS(){
 
-		if(!useNOS)
+		if (!useNOS)
 			return;
 
 		if(!NOSSound)
@@ -2086,9 +2086,17 @@ public class RCC_CarControllerV3 : RCC_Core {
 		if(!blowSound)
 			blowSound = NewAudioSource(RCCSettings.audioMixer, gameObject, exhaustSoundPosition, "NOS Blow", 1f, 10f, .5f, null, false, false, false);
 
-		if(boostInput >= .8f && throttleInput >= .8f && NoS > 5){
-			
+		Debug.LogError("Boost Input = " + boostInput);
+
+		if (HUDListner.nosPressed)
+			boostInput = 1;
+
+		if(boostInput >= .8f /*&& throttleInput >= .8f*/ && NoS > 5){
+
+			HUDListner.tempNosVal -= 0.05f;
+
 			NoS -= NoSConsumption * Time.fixedDeltaTime;
+
 			NoSRegenerateTime = 0f;
 
 			if(!NOSSound.isPlaying)
@@ -2096,18 +2104,18 @@ public class RCC_CarControllerV3 : RCC_Core {
 			
 		}else{
 			
-			if(NoS < 100 && NoSRegenerateTime > 3)
-				NoS += (NoSConsumption / 1.5f) * Time.fixedDeltaTime;
+			//if(NoS < 100 && NoSRegenerateTime > 3)
+			//	NoS += (NoSConsumption / 1.5f) * Time.fixedDeltaTime;
 			
-			NoSRegenerateTime += Time.fixedDeltaTime;
+			//NoSRegenerateTime += Time.fixedDeltaTime;
 
-			if(NOSSound.isPlaying){
+			//if(NOSSound.isPlaying){
 				
-				NOSSound.Stop();
-				blowSound.clip = blowClip[UnityEngine.Random.Range(0, blowClip.Length)];
-				blowSound.Play();
+			//	NOSSound.Stop();
+			//	blowSound.clip = blowClip[UnityEngine.Random.Range(0, blowClip.Length)];
+			//	blowSound.Play();
 
-			}
+			//}
 
 		}
 

@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
-  obj: {fileID: 0}
+  obj: {fileID: 5841124003749749788}
 --- !u!1 &713857962576309695
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,7 +88,6 @@ GameObject:
   - component: {fileID: 713857962576309694}
   - component: {fileID: 713857962576309683}
   - component: {fileID: 713857962576309692}
-  - component: {fileID: 713857962576309693}
   m_Layer: 0
   m_Name: Power Nitro001
   m_TagString: Untagged
@@ -157,20 +156,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &713857962576309693
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 713857962576309695}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300500, guid: 9c3cfc61cdf33fa488fd131cec8eb596, type: 3}
 --- !u!1 &5841124003749749788
 GameObject:
   m_ObjectHideFlags: 0

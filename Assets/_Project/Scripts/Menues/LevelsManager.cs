@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityStandardAssets.Vehicles.Car;
 public class LevelsManager : MonoBehaviour
 {
     public bool testMode = false;
@@ -49,7 +49,11 @@ public class LevelsManager : MonoBehaviour
         for (int i = 0; i < curLevelData.aiCars.Length; i++)
         {
             GameObject tempObj = (GameObject) Instantiate(curLevelData.aiCars[i], curLevelHandler.aiSpawnPoints[i].position, curLevelHandler.aiSpawnPoints[i].rotation);
-            tempObj.GetComponent<UnityStandardAssets.Vehicles.Car.CarAIControl>().enabled = false;
+            tempObj.GetComponent<CarAIControl>().enabled = false;
+
+            CarController control = tempObj.GetComponent<CarController>();
+            control.Topspeed = CurLevelData.aiCarMaxSpeed;
+            control.FullTorqueOverAllWheels = CurLevelData.aiCarTorque;
 
             Toolbox.GameplayScript.AddAiCar(tempObj);
         }
@@ -58,10 +62,11 @@ public class LevelsManager : MonoBehaviour
 
         Toolbox.GameplayScript.PlayerObject = obj;
 
-        Toolbox.GameManager.Instantiate_Blackout();
-
         Toolbox.GameplayScript.cameraScript.SetTarget(obj);
         Toolbox.HUDListner.carController = obj.GetComponent<RCC_CarControllerV3>();
+
+        Toolbox.GameManager.Instantiate_Blackout();
+
     }
 
     private void LevelDataHandling()

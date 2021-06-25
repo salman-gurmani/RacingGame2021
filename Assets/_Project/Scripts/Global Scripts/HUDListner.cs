@@ -32,8 +32,11 @@ public class HUDListner : MonoBehaviour {
     public Button accelBtn, respawn;
     public Slider NosSlider;
     public Slider distanceSlider;
+    public Image nosTank;
+
     public Button NosButton;
-   
+
+
     public static float accelVal = 0;
     public static float brakeVal = 0;
     public static float handBrakeVal = 0;
@@ -44,27 +47,25 @@ public class HUDListner : MonoBehaviour {
 
     private float tempAccelnVal;
     private float tempTurnVal;
-    private float tempNosVal;
+    public static float tempNosVal;
     private float accelDirection = 1;
     private float oldSpeed, newSpeedLimit;
     public static float nosVal = 0;
 
     public float accelSwitchSpeed = 0.2f;
     public float steerSwitchSpeed = 0.2f;
-    public float nosSwitchSpeed = 2.5f;
 
     public bool isTimeSprintMode = false;
 
     private bool startTime = false;
     public bool outofTime = false;
 
-    [HideInInspector] public bool canUseNOS = false;
-
     float tempTime = 0;
 
     private bool isAccPressed = false;
 
     public RCC_Inputs rccInputs;
+    public static bool nosPressed = false;
 
     int paneltiesRecieved = 0;
 
@@ -108,24 +109,30 @@ public class HUDListner : MonoBehaviour {
         //RCC.SetController(1);
         
     }
+
+    public void FillNos() {
+
+        tempNosVal = 1;
+        carController.useNOS = true;
+    }
+
     private void Update()
     {
         //distanceSlider.maxValue = Toolbox.GameplayScript.levelsManager.CurLevelHandler.distScript.mainDistance;
         //distanceSlider.value = carController.GetComponent<VehicleTriggerHandler>().distanceBar;
-        if (NosSlider.value > 0)
+        nosTank.fillAmount = Mathf.MoveTowards(nosTank.fillAmount, tempNosVal, 0.03f);
+
+
+        if (nosTank.fillAmount > 0)
         {
             NosButton.interactable = true;
+            
         }
         else
         {
             NosButton.interactable = false;
-            canUseNOS = false;
-            tempNosVal = 0;
         }
-        if (canUseNOS)
-        {
-            NosSlider.value -= 0.05f;
-        }
+
         accelVal = Mathf.MoveTowards(accelVal, tempAccelnVal, accelSwitchSpeed);
         
         //if (cruiseBtn.isOn) OnPress_Forward();
@@ -147,7 +154,7 @@ public class HUDListner : MonoBehaviour {
        
         Handle_RCCInputs();
 
-        nosVal = Mathf.MoveTowards(nosVal, nosSwitchSpeed, 2.5f);
+        //nosVal = Mathf.MoveTowards(nosVal, nosSwitchSpeed, 2.5f);
         //nosVal = Mathf.Clamp(tempNosVal * 2.5f, 1, nosSwitchSpeed);
 
         if (carController)
@@ -169,6 +176,11 @@ public class HUDListner : MonoBehaviour {
         rccInputs.brakeInput = brakeVal;
         rccInputs.boostInput = nosVal;
         rccInputs.handbrakeInput = handBrakeVal;
+
+        if (nosVal > 0) {
+
+            rccInputs.throttleInput = 1;
+        }
     }
 
     public void SetLvlTxt(string _str) {
@@ -274,16 +286,13 @@ public class HUDListner : MonoBehaviour {
     {
         //carController.maxspeed = 400;
         //carController.speed += 100;
-        tempNosVal = 1;
-        canUseNOS = true;
 
+        nosPressed = true;
     }
     public void onReleaseNOS()
     {
-        //carController.maxspeed = 200;
-        tempNosVal = 0;
-        canUseNOS = false;
     }
+
     public void SetNStartTime(float _val) {
 
         TempTime = _val;
