@@ -636,7 +636,7 @@ MonoBehaviour:
   useCounterSteering: 1
   counterSteeringFactor: 1
   speed: 0
-  maxspeed: 320
+  maxspeed: 190
   engineTorqueCurve:
     serializedVersion: 2
     m_Curve:
@@ -680,7 +680,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   autoGenerateEngineRPMCurve: 0
-  maxEngineTorque: 800
+  maxEngineTorque: 550
   maxEngineTorqueAtRPM: 5500
   minEngineRPM: 800
   maxEngineRPM: 7600
@@ -18387,7 +18387,7 @@ GameObject:
   - component: {fileID: 4758951613821905826}
   - component: {fileID: 4758951613821905827}
   - component: {fileID: 4758951613821905824}
-  m_Layer: 16
+  m_Layer: 8
   m_Name: New Text (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

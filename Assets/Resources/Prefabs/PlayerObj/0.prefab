@@ -17980,7 +17980,7 @@ MonoBehaviour:
   useCounterSteering: 1
   counterSteeringFactor: 1
   speed: 0
-  maxspeed: 320
+  maxspeed: 180
   engineTorqueCurve:
     serializedVersion: 2
     m_Curve:
@@ -18024,8 +18024,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   autoGenerateEngineRPMCurve: 0
-  maxEngineTorque: 800
-  maxEngineTorqueAtRPM: 5500
+  maxEngineTorque: 550
+  maxEngineTorqueAtRPM: 5000
   minEngineRPM: 800
   maxEngineRPM: 7600
   engineRPM: 0
@@ -23335,6 +23335,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6465606721564306588, guid: e5679d3c6aaa8df4c9bb975b7a118bc2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5679d3c6aaa8df4c9bb975b7a118bc2, type: 3}

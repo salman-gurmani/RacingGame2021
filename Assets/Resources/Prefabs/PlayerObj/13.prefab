@@ -18417,7 +18417,7 @@ MonoBehaviour:
   useCounterSteering: 1
   counterSteeringFactor: 1
   speed: 0
-  maxspeed: 320
+  maxspeed: 270
   engineTorqueCurve:
     serializedVersion: 2
     m_Curve:
@@ -18461,8 +18461,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   autoGenerateEngineRPMCurve: 0
-  maxEngineTorque: 800
-  maxEngineTorqueAtRPM: 5500
+  maxEngineTorque: 720
+  maxEngineTorqueAtRPM: 7200
   minEngineRPM: 800
   maxEngineRPM: 7600
   engineRPM: 0
@@ -23680,7 +23680,7 @@ GameObject:
   - component: {fileID: 6682004131946301693}
   - component: {fileID: 6682004131946301666}
   - component: {fileID: 6682004131946301667}
-  m_Layer: 16
+  m_Layer: 8
   m_Name: New Text (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24281,9 +24281,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1399311877078183727}
     m_Modifications:
+    - target: {fileID: 179918, guid: 1311741839a44344c9ccc4730f6e0e39, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 179920, guid: 1311741839a44344c9ccc4730f6e0e39, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 179922, guid: 1311741839a44344c9ccc4730f6e0e39, type: 3}
       propertyPath: m_Name
       value: Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 179922, guid: 1311741839a44344c9ccc4730f6e0e39, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 479922, guid: 1311741839a44344c9ccc4730f6e0e39, type: 3}
       propertyPath: m_RootOrder

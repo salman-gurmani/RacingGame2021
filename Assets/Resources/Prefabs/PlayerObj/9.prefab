@@ -9927,7 +9927,7 @@ MonoBehaviour:
   externalController: 0
   rigid: {fileID: 0}
   COM: {fileID: 1768309700971950315}
-  brakeTorque: 12000
+  brakeTorque: 14000
   steerAngle: 25
   highspeedsteerAngle: 10
   highspeedsteerAngleAtspeed: 200
@@ -9938,7 +9938,7 @@ MonoBehaviour:
   useCounterSteering: 1
   counterSteeringFactor: 1
   speed: 0
-  maxspeed: 320
+  maxspeed: 240
   engineTorqueCurve:
     serializedVersion: 2
     m_Curve:
@@ -9982,8 +9982,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   autoGenerateEngineRPMCurve: 0
-  maxEngineTorque: 800
-  maxEngineTorqueAtRPM: 5500
+  maxEngineTorque: 680
+  maxEngineTorqueAtRPM: 6800
   minEngineRPM: 800
   maxEngineRPM: 7600
   engineRPM: 0
@@ -24031,7 +24031,7 @@ GameObject:
   - component: {fileID: 8105992862848017840}
   - component: {fileID: 8105992862848017839}
   - component: {fileID: 8105992862848017838}
-  m_Layer: 16
+  m_Layer: 8
   m_Name: New Text (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
