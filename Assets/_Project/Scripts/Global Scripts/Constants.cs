@@ -3,7 +3,7 @@
 public static class Constants{
 
     public const string moreGamesLink = "https://play.google.com/store/apps/developer?id=RivalWheels";
-    public const string appLink = "https://play.google.com/store/apps/details?id=com.supersmashact.citytaxidriver3d";
+    public const string appLink = "https://play.google.com/store/apps/details?id=com.rivalwheels.racing.car";
     public const string privacyPolicy = "https://docs.google.com/document/d/1rQcufgb_Y9noN3LNFnF5cvsMcldRyoSmP90XoT_H0_o/edit?usp=sharing";
     public const string fb = "";
 
@@ -35,14 +35,14 @@ public static class Constants{
 
     #region InApp
 
-    public const string coins_1 = "pack_1";
-    public const string coins_2 = "pack_2";
-    public const string coins_3 = "pack_3";
-    public const string coins_4 = "pack_4";
-    public const string coins_5 = "pack_5";
-    public const string unlockPlayerObj = "unlock_playerobj";
-    public const string unlockLevels = "unlock_levels";
-    public const string buyFuel = "fueltank";
+    public const string coins_1 = "1k_cash";
+    public const string coins_2 = "3k_cash";
+    public const string coins_3 = "5k_cash";
+    public const string coins_4 = "20k_cash";
+    public const string coins_5 = "50k_cash";
+    public const string unlockPlayerObj = "unlock_all_cars";
+    public const string unlockLevels = "unlock_all_levels";
+    public const string buyFuel = "refill_tank";
 
     //TestID
     //public const string admobId_Banner = "ca-app-pub-3940256099942544/6300978111";

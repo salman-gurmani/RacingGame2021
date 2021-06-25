@@ -990,14 +990,17 @@ public class RCC_CarControllerV3 : RCC_Core {
                 throttleInput = inputs.throttleInput;
                 brakeInput = inputs.brakeInput;
 
-                //throttleInput = HUDListner.accelVal;
-                //brakeInput = HUDListner.brakeVal;
-                //steerInput = HUDListner.turnVal;
+				boostInput = inputs.boostInput;
 
-                //Debug.LogError("Throttle = " + inputs.throttleInput);
-                //Debug.LogError("steerInput = " + steerInput);
 
-                if (!automaticGear || semiAutomaticGear)
+				//throttleInput = HUDListner.accelVal;
+				//brakeInput = HUDListner.brakeVal;
+				//steerInput = HUDListner.turnVal;
+
+				//Debug.LogError("Throttle = " + inputs.throttleInput);
+				//Debug.LogError("steerInput = " + steerInput);
+
+				if (!automaticGear || semiAutomaticGear)
                 {
                     if (!changingGear && !cutGas)
                         throttleInput = inputs.throttleInput;
@@ -1025,8 +1028,8 @@ public class RCC_CarControllerV3 : RCC_Core {
                 }
 
                 steerInput = inputs.steerInput;
-                boostInput = inputs.boostInput;
                 handbrakeInput = inputs.handbrakeInput;
+
 
                 if (!useAutomaticClutch)
                     clutchInput = inputs.clutchInput;
@@ -1087,11 +1090,16 @@ public class RCC_CarControllerV3 : RCC_Core {
 		if (changingGear || cutGas)
 			throttleInput = 0f;
 
-		if (!useNOS || NoS < 5 || throttleInput < .75f)
+		if (!useNOS || NoS < 5 || speed < 50f)
 			boostInput = 0f;
 
 		if (useCounterSteering)
 			steerInput += driftAngle * counterSteeringFactor;
+
+		if (boostInput > 0)
+		{
+			throttleInput = 1;
+		}
 
 		throttleInput = Mathf.Clamp01(throttleInput);
 		brakeInput = Mathf.Clamp01(brakeInput);
@@ -2086,14 +2094,8 @@ public class RCC_CarControllerV3 : RCC_Core {
 		if(!blowSound)
 			blowSound = NewAudioSource(RCCSettings.audioMixer, gameObject, exhaustSoundPosition, "NOS Blow", 1f, 10f, .5f, null, false, false, false);
 
-		Debug.LogError("Boost Input = " + boostInput);
-
-		if (HUDListner.nosPressed)
-			boostInput = 1;
-
-		if(boostInput >= .8f /*&& throttleInput >= .8f*/ && NoS > 5){
-
-			HUDListner.tempNosVal -= 0.05f;
+		//Debug.LogError("NOS = " + NoS);
+		if (boostInput >= .8f /*&& throttleInput >= .8f*/ && NoS > 5){
 
 			NoS -= NoSConsumption * Time.fixedDeltaTime;
 
@@ -2103,21 +2105,22 @@ public class RCC_CarControllerV3 : RCC_Core {
 				NOSSound.Play();
 			
 		}else{
-			
-			//if(NoS < 100 && NoSRegenerateTime > 3)
-			//	NoS += (NoSConsumption / 1.5f) * Time.fixedDeltaTime;
-			
-			//NoSRegenerateTime += Time.fixedDeltaTime;
 
-			//if(NOSSound.isPlaying){
-				
-			//	NOSSound.Stop();
-			//	blowSound.clip = blowClip[UnityEngine.Random.Range(0, blowClip.Length)];
-			//	blowSound.Play();
+            //if(NoS < 100 && NoSRegenerateTime > 3)
+            //	NoS += (NoSConsumption / 1.5f) * Time.fixedDeltaTime;
 
-			//}
+            //NoSRegenerateTime += Time.fixedDeltaTime;
 
-		}
+            if (NOSSound.isPlaying)
+            {
+
+                NOSSound.Stop();
+				blowSound.clip = blowClip[UnityEngine.Random.Range(0, blowClip.Length)];
+				blowSound.Play();
+
+            }
+
+        }
 
 	}
 

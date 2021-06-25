@@ -47,10 +47,8 @@ public class HUDListner : MonoBehaviour {
 
     private float tempAccelnVal;
     private float tempTurnVal;
-    public static float tempNosVal;
     private float accelDirection = 1;
     private float oldSpeed, newSpeedLimit;
-    public static float nosVal = 0;
 
     public float accelSwitchSpeed = 0.2f;
     public float steerSwitchSpeed = 0.2f;
@@ -112,21 +110,19 @@ public class HUDListner : MonoBehaviour {
 
     public void FillNos() {
 
-        tempNosVal = 1;
         carController.useNOS = true;
+        carController.NoS = 100;
     }
 
     private void Update()
     {
         //distanceSlider.maxValue = Toolbox.GameplayScript.levelsManager.CurLevelHandler.distScript.mainDistance;
         //distanceSlider.value = carController.GetComponent<VehicleTriggerHandler>().distanceBar;
-        nosTank.fillAmount = Mathf.MoveTowards(nosTank.fillAmount, tempNosVal, 0.03f);
+        nosTank.fillAmount = carController.NoS / 100;// Mathf.MoveTowards(nosTank.fillAmount, carController.NoS / 100, 0.03f);
 
-
-        if (nosTank.fillAmount > 0)
+        if (nosTank.fillAmount > 0.05f)
         {
             NosButton.interactable = true;
-            
         }
         else
         {
@@ -171,16 +167,11 @@ public class HUDListner : MonoBehaviour {
 
     public void Handle_RCCInputs()
     {
-        rccInputs.throttleInput = accelVal;
-        rccInputs.steerInput = turnVal;
-        rccInputs.brakeInput = brakeVal;
-        rccInputs.boostInput = nosVal;
-        rccInputs.handbrakeInput = handBrakeVal;
-
-        if (nosVal > 0) {
-
-            rccInputs.throttleInput = 1;
-        }
+        //rccInputs.throttleInput = accelVal;
+        //rccInputs.steerInput = turnVal;
+        //rccInputs.brakeInput = brakeVal;
+        //rccInputs.boostInput = nosVal;
+        //rccInputs.handbrakeInput = handBrakeVal;
     }
 
     public void SetLvlTxt(string _str) {
@@ -478,7 +469,7 @@ public class HUDListner : MonoBehaviour {
         rccInputs.throttleInput = accelVal;
         rccInputs.steerInput = turnVal;
         rccInputs.brakeInput = brakeVal;
-        rccInputs.boostInput = nosVal;
+        rccInputs.boostInput = 0;
         rccInputs.handbrakeInput = handBrakeVal;
 
         uiParent.SetActive(false);

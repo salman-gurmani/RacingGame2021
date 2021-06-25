@@ -20,12 +20,30 @@ MonoBehaviour:
   admob_appid_android: ca-app-pub-7050661403707943~5413852201
   isDebugMode: 0
   autoReloadAds: 0
-  useCocoapodsMaven: 0
-  shouldAddUnityIPhoneTargetToPodfile: 0
+  useCocoapodsMaven: 1
+  shouldAddUnityIPhoneTargetToPodfile: 1
   networks:
   - androidEnabled: 0
     iOSEnabled: 0
     bundlePresent: 0
+  - androidEnabled: 1
+    iOSEnabled: 1
+    bundlePresent: 0
+  - androidEnabled: 1
+    iOSEnabled: 1
+    bundlePresent: 1
+  - androidEnabled: 0
+    iOSEnabled: 0
+    bundlePresent: 0
+  - androidEnabled: 1
+    iOSEnabled: 1
+    bundlePresent: 0
+  - androidEnabled: 0
+    iOSEnabled: 0
+    bundlePresent: 0
+  - androidEnabled: 0
+    iOSEnabled: 0
+    bundlePresent: 0
   - androidEnabled: 0
     iOSEnabled: 0
     bundlePresent: 0
@@ -34,27 +52,9 @@ MonoBehaviour:
     bundlePresent: 1
   - androidEnabled: 0
     iOSEnabled: 0
-    bundlePresent: 0
-  - androidEnabled: 0
-    iOSEnabled: 0
-    bundlePresent: 0
-  - androidEnabled: 0
-    iOSEnabled: 0
-    bundlePresent: 0
-  - androidEnabled: 0
-    iOSEnabled: 0
-    bundlePresent: 0
-  - androidEnabled: 0
-    iOSEnabled: 0
-    bundlePresent: 0
-  - androidEnabled: 0
-    iOSEnabled: 0
     bundlePresent: 1
-  - androidEnabled: 0
-    iOSEnabled: 0
-    bundlePresent: 1
-  - androidEnabled: 0
-    iOSEnabled: 0
+  - androidEnabled: 1
+    iOSEnabled: 1
     bundlePresent: 0
   - androidEnabled: 0
     iOSEnabled: 0
@@ -73,4 +73,6 @@ MonoBehaviour:
   - key: AppLovin
     value: Multiple
   - key: UnityAds
+    value: Multiple
+  - key: Facebook AN
     value: Multiple

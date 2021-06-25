@@ -5,13 +5,13 @@ using Coffee.UIEffects;
 
 public class LevelSelectionMenuListner : MonoBehaviour {
 
-	//public Transform scrollContent;
+	public Transform scrollContent;
 	public LevelSelectionLevelBtnHandler[] buttons;
 
 	public Text goldTxt;
 	public Text fuelTxt;
 
-	private void OnEnable()
+    private void OnEnable()
 	{
 		UpdateTxt();
 	}
@@ -19,6 +19,9 @@ public class LevelSelectionMenuListner : MonoBehaviour {
 	{
 		SetLevelsButtonLockState();
 		Highlight_CurrBtn();
+
+		scrollContent.transform.position = new Vector3(-70 * Toolbox.DB.prefs.LastSelectedLevel, scrollContent.transform.position.y, scrollContent.transform.position.z);
+
 	}
 	void UpdateTxt()
 	{

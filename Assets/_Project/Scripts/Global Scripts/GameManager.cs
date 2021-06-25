@@ -21,8 +21,9 @@ public class GameManager : MonoBehaviour {
 
     [Header("Debug")]
     public bool showDebug = false;
+    public bool directShowLevelSel = false;
 
-    public GameObject debugCanvas;
+	public GameObject debugCanvas;
     public Text [] debugTxt;
     int debugCursor = 0;
 

@@ -129,7 +129,7 @@ public class LevelCompleteListner : MonoBehaviour {
 		Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.buttonPressYes);
 		//Toolbox.GameManager.LoadScene(Constants.sceneIndex_Game, true, 0);
 		Toolbox.GameManager.LoadScene(Constants.sceneIndex_Menu, true, 0);
-
+		Toolbox.GameManager.directShowLevelSel = true;
 		Destroy(this.gameObject);
 	}
 

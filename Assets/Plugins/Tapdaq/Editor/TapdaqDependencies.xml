@@ -1,7 +1,45 @@
 <?xml version="1.0"?>
 <dependencies xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <androidPackages />
+  <androidPackages>
+    <androidPackage spec="com.tapdaq.sdk:Tapdaq-BaseSDK:7.8.3">
+      <repositories>
+        <repository>http://android-sdk.tapdaq.com</repository>
+      </repositories>
+    </androidPackage>
+    <androidPackage spec="com.tapdaq.sdk:Tapdaq-UnityBridge:7.8.3">
+      <repositories>
+        <repository>http://android-sdk.tapdaq.com</repository>
+      </repositories>
+    </androidPackage>
+    <androidPackage spec="com.tapdaq.sdk:TapdaqAdMobAdapter:7.8.3">
+      <repositories>
+        <repository>http://android-sdk.tapdaq.com</repository>
+      </repositories>
+    </androidPackage>
+    <androidPackage spec="com.tapdaq.sdk:TapdaqAppLovinAdapter:7.8.3">
+      <repositories>
+        <repository>http://android-sdk.tapdaq.com</repository>
+      </repositories>
+    </androidPackage>
+    <androidPackage spec="com.tapdaq.sdk:TapdaqFANAdapter:7.8.3">
+      <repositories>
+        <repository>http://android-sdk.tapdaq.com</repository>
+      </repositories>
+    </androidPackage>
+    <androidPackage spec="com.tapdaq.sdk:TapdaqUnityAdsAdapter:7.8.3">
+      <repositories>
+        <repository>http://android-sdk.tapdaq.com</repository>
+      </repositories>
+    </androidPackage>
+  </androidPackages>
   <iosPods>
-    <sources />
+    <sources>
+      <source>https://github.com/tapdaq/cocoapods-specs.git</source>
+    </sources>
+    <iosPod name="Tapdaq" version="7.8.2" minTargetSdk="9.0" />
+    <iosPod name="Tapdaq/AdMob" version="7.8.2" minTargetSdk="9.0" />
+    <iosPod name="Tapdaq/AppLovin" version="7.8.2" minTargetSdk="9.0" />
+    <iosPod name="Tapdaq/FAN" version="7.8.2" minTargetSdk="9.0" />
+    <iosPod name="Tapdaq/UnityAds" version="7.8.2" minTargetSdk="9.0" />
   </iosPods>
 </dependencies>

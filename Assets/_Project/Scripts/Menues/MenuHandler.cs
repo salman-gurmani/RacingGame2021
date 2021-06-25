@@ -24,7 +24,19 @@ public class MenuHandler : MonoBehaviour {
 		Toolbox.Set_MenuHandler(this);
 
         AdsManager.instance.RequestAd(AdsManager.AdType.INTERSTITIAL);
-		StartMainMenu();
+
+		if (Toolbox.GameManager.directShowLevelSel)
+		{
+			menuList[0].SetActive(false);
+			menuList[2].SetActive(true);
+
+			currentMenuNum = 2;
+			Toolbox.GameManager.directShowLevelSel = false;
+		}
+		else { 
+			
+			StartMainMenu();
+		}
 
 	}
 

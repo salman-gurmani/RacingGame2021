@@ -2855,7 +2855,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.8000488, y: 7.7000046}
+  m_AnchoredPosition: {x: -0.8000488, y: 6.2}
   m_SizeDelta: {x: 87.57518, y: 65.77546}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7492897450948540049
@@ -2879,7 +2879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3212,10 +3212,8 @@ MonoBehaviour:
   carController: {fileID: 0}
   accelSwitchSpeed: 1
   steerSwitchSpeed: 0.1
-  nosSwitchSpeed: 2.5
   isTimeSprintMode: 0
   outofTime: 0
-  canUseNOS: 0
   rccInputs:
     throttleInput: 0
     brakeInput: 0
@@ -3769,7 +3767,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5205397617753835046
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5091,7 +5089,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.300003, y: -22.899994}
+  m_AnchoredPosition: {x: -2.300003, y: -24.399994}
   m_SizeDelta: {x: 41.994064, y: 22.955425}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5370711450192475725
@@ -5115,7 +5113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5209,7 +5207,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -12.01001, y: 6.9299316}
+  m_AnchoredPosition: {x: -12.009766, y: 6.9299316}
   m_SizeDelta: {x: 252.94342, y: 372.40656}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &5535038473117196627
