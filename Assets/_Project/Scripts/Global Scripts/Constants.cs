@@ -23,6 +23,8 @@ public static class Constants{
     public const string privacyPolicy = "https://docs.google.com/document/d/1rQcufgb_Y9noN3LNFnF5cvsMcldRyoSmP90XoT_H0_o/edit?usp=sharing";
     public const string fb = "";
 
+
+
     public const string serverPrefsLink = "";
 
 
