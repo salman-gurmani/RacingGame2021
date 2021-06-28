@@ -326,21 +326,6 @@ namespace GameAnalyticsSDK.Wrapper
             return 0;
         }
 
-        private static void subscribeMoPubImpressions()
-        {
-            Debug.Log("subscribeMoPubImpressions()");
-        }
-
-        private static void subscribeFyberImpressions()
-        {
-            Debug.Log("subscribeFyberImpressions()");
-        }
-
-        private static void subscribeIronSourceImpressions()
-        {
-            Debug.Log("subscribeIronSourceImpressions()");
-        }
-
 #endif
 
         public static void SetAvailableCustomDimensions01 (string list)
@@ -693,33 +678,6 @@ namespace GameAnalyticsSDK.Wrapper
             return stopTimer(key);
 #else
             return 0;
-#endif
-        }
-
-        public static void SubscribeMoPubImpressions()
-        {
-#if UNITY_EDITOR
-            subscribeMoPubImpressions();
-#elif UNITY_IOS || UNITY_ANDROID
-            subscribeMoPubImpressions();
-#endif
-        }
-
-        public static void SubscribeFyberImpressions()
-        {
-#if UNITY_EDITOR
-            subscribeFyberImpressions();
-#elif UNITY_IOS || UNITY_ANDROID
-            subscribeFyberImpressions();
-#endif
-        }
-
-        public static void SubscribeIronSourceImpressions()
-        {
-#if UNITY_EDITOR
-            subscribeIronSourceImpressions();
-#elif UNITY_IOS || UNITY_ANDROID
-            subscribeIronSourceImpressions();
 #endif
         }
     }
