@@ -7,20 +7,17 @@ public static class Constants{
     public const string moreGamesLink = "https://play.google.com/store/apps/developer?id=RivalWheels";
     public const string appLink = "https://play.google.com/store/apps/details?id=com.rivalwheels.racing.car";
 
-
     public const string CP1 = "https://play.google.com/store/apps/details?id=com.supersmashact.citytaxidriver3d";
     public const string CP2 = "https://play.google.com/store/apps/details?id=com.rivalwheels.commando.secret.mission";
     public const string CP3 = "https://play.google.com/store/apps/details?id=com.rivalwheels.bussimulator2021";
 
 #elif UNITY_IOS
     public const string moreGamesLink = "https://apps.apple.com/pk/developer/muhammad-salman-gurmani/id1549650722";
-    public const string appLink = "https://apps.apple.com/pk/app/taxi-sim-2021/id1560788544";
-
-    
+    public const string appLink = "https://apps.apple.com/pk/app/id1574141188";
+        
     public const string CP1 = "https://apps.apple.com/pk/app/taxi-sim-2021/id1549650720";
     public const string CP2 = "https://apps.apple.com/pk/app/fps-battle-unleashed-2021/id1557610547";
     public const string CP3 = "https://apps.apple.com/pk/app/real-bus-driving-simulator-3d/id1560788544";
-
 #endif
 
     public const string privacyPolicy = "https://docs.google.com/document/d/1rQcufgb_Y9noN3LNFnF5cvsMcldRyoSmP90XoT_H0_o/edit?usp=sharing";
