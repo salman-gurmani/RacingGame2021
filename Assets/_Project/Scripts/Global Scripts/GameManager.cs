@@ -1,8 +1,6 @@
 ﻿using GameAnalyticsSDK;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Notifications.Android;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -27,19 +25,9 @@ public class GameManager : MonoBehaviour {
     public Text [] debugTxt;
     int debugCursor = 0;
 
-	#region Notification
-
-	private string noti_Id = "0";
-	private int id;
-    private AndroidNotificationChannel channel;
-    private AndroidNotification notification;
-
-    #endregion
 
     private void Start()
     {
-
-		AddNotificationChannel();
 
 		if (Toolbox.DB.prefs.FirstRun)
 		{
@@ -47,8 +35,8 @@ public class GameManager : MonoBehaviour {
 			Toolbox.DB.prefs.FirstTimeOpenTime = DateTime.Now;
 			Toolbox.DB.prefs.FirstRun = false;
 
-			Toolbox.DB.prefs.LastNotificationFireTime = DateTime.Now.AddHours(24);
-			Schedule_Notification(Toolbox.DB.prefs.LastNotificationFireTime);
+			//Toolbox.DB.prefs.LastNotificationFireTime = DateTime.Now.AddHours(24);
+			//Schedule_Notification(Toolbox.DB.prefs.LastNotificationFireTime);
 			Toolbox.DB.prefs.FuelTank = 8;
 
 		}
@@ -58,7 +46,6 @@ public class GameManager : MonoBehaviour {
 				LoadScene(Constants.sceneIndex_Menu, false, SceneDelay);
 		}
 
-		NotificationHandling();		
     }
 
     void LateUpdate(){
@@ -128,17 +115,6 @@ public class GameManager : MonoBehaviour {
 
 		if(loadingObj && loadingObj.GetComponent<Loading>() && !loadingObj.GetComponent<Loading>().IsTemporaryLoading)
 			Destroy(loadingObj);
-	}
-
-	private void NotificationHandling()
-	{
-		if (DateTime.Now >= Toolbox.DB.prefs.LastNotificationFireTime)
-		{
-			Toolbox.DB.prefs.LastNotificationFireTime = DateTime.Now.AddDays(1);			
-
-			Schedule_Notification(Toolbox.DB.prefs.LastNotificationFireTime);
-			Toolbox.GameManager.Log("NEW_Notification = " + Toolbox.DB.prefs.LastNotificationFireTime);
-		}
 	}
 
 	public int GetLastSelectedLevelSceneIndex() {
@@ -391,80 +367,6 @@ public class GameManager : MonoBehaviour {
 
 	#endregion
 
-	#region Local_Notification
-
-	private void AddNotificationChannel() {
-
-#if UNITY_ANDROID
-
-		channel = new AndroidNotificationChannel()
-		{
-			Id = noti_Id,
-			Name = "FirstReminder",
-			Importance = Importance.High,
-			Description = "This is the first reminder",
-		};
-		AndroidNotificationCenter.RegisterNotificationChannel(channel);
-		Log("Channel Added = " + channel.Name);
-#endif
-
-	}
-
-	public void Schedule_Notification(DateTime _time)
-	{
-
-#if UNITY_ANDROID
-
-		string msg = "Lets, learn something new.";
-
-		notification = new AndroidNotification();
-		notification.Title = Application.productName;
-
-		notification.Text = msg;		
-
-		notification.FireTime = _time;
-		notification.SmallIcon = "icon_1";
-		notification.LargeIcon = "icon_0";
-
-		id = AndroidNotificationCenter.SendNotification(notification, noti_Id);
-
-#endif
-	}
-
-	public void CheckNotificationStatus() {
-#if UNITY_ANDROID
-
-		try
-		{
-			var notificationStatus = AndroidNotificationCenter.CheckScheduledNotificationStatus(id);
-
-			if (notificationStatus == NotificationStatus.Scheduled)
-			{
-				// Replace the scheduled notification with a new notification.
-				//AndroidNotificationCenter.UpdateScheduledNotification(id, newNotification, "channel_id");
-				AndroidNotificationCenter.CancelNotification(id);
-			}
-			else if (notificationStatus == NotificationStatus.Delivered)
-			{
-				// Remove the previously shown notification from the status bar.
-				AndroidNotificationCenter.CancelNotification(id);
-			}
-			else if (notificationStatus == NotificationStatus.Unknown)
-			{
-				//AndroidNotificationCenter.SendNotification(notification , channel);
-				AndroidNotificationCenter.CancelNotification(id);
-			}
-		}
-		catch (Exception ex) {
-
-			Log(ex.ToString());
-		}
-		
-#endif
-
-	}
-
-	#endregion
 
 	public bool IsNetworkAvailable()
 	{
