@@ -54,10 +54,11 @@ public class CarPositionManager : MonoBehaviour
 
         }
 
-        for (int i = 0; i < PositionSystem.transform.childCount; ++i)
+        for (int i = 0; i < PositionSystem.transform.childCount; i++)
         {
         if (PositionSystem.transform.GetChild(i).gameObject.tag.Contains("CheckPoint"))
             totalCheckPoints++;
+
             PositionClass ps = new PositionClass(PositionSystem.transform.GetChild(i).gameObject, false);
             PositionsList.Add(ps);
         }

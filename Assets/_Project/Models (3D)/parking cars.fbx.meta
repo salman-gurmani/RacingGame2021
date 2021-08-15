@@ -6,7 +6,42 @@ ModelImporter:
   - first:
       74: 1827226128182048838
     second: Take 001
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Challenger
+    second: {fileID: 2100000, guid: d42ae17ddba80744c982503259a1850d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: HondaRidgeline
+    second: {fileID: 2100000, guid: 9ece834a3841cb543b5fe67e9f97a2f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: HyundaiEntour
+    second: {fileID: 2100000, guid: e75f55087195d2d4cad18bb8d015e236, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Opel_Agila
+    second: {fileID: 2100000, guid: 4042f7c4c7f40f1419b0b4823238036d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rav4Body
+    second: {fileID: 2100000, guid: f8c124b9ad57cce4fa093593b22de360, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TaxiUSsedan
+    second: {fileID: 2100000, guid: 7a98fe89c9c4d664e8009b883dc6d1a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ToyotaMaatrix
+    second: {fileID: 2100000, guid: 57fbeaf2286469040aa6d3d83295d79f, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -38,7 +73,7 @@ ModelImporter:
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 0
+    meshCompression: 3
     addColliders: 1
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1

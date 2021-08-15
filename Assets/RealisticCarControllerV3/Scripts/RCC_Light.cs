@@ -320,7 +320,7 @@ public class RCC_Light : RCC_Core {
 			if(angle != 0)
 				finalFlareBrightness = flareBrightness * (4f / distanceTocam) * ((300f - (3f * angle)) / 300f) / 3f;
 
-			lensFlare.brightness = finalFlareBrightness * _light.intensity;
+			lensFlare.brightness = finalFlareBrightness * _light.intensity * 4;
 			lensFlare.color = _light.color;
 
 		}

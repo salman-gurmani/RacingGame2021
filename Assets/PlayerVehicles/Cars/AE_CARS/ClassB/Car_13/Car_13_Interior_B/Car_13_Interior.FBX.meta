@@ -70,7 +70,12 @@ ModelImporter:
   - first:
       95: 9500000
     second: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Interior_B
+    second: {fileID: 2100000, guid: 47f8c2a2d7744c64b8d3cd9817f54c6f, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -102,7 +107,7 @@ ModelImporter:
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 0
+    meshCompression: 3
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1

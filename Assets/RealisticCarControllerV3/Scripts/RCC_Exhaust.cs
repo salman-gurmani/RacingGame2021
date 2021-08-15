@@ -214,7 +214,7 @@ public class RCC_Exhaust : RCC_Core {
 		if(angle != 0)
 			finalFlareBrightness = flareBrightness * (4 / distanceTocam) * ((100f - (1.11f * angle)) / 100f) / 2f;
 
-		lensFlare.brightness = finalFlareBrightness * flameLight.intensity;
+		//lensFlare.brightness = finalFlareBrightness * flameLight.intensity;
 		lensFlare.color = flameLight.color;
 
 	}

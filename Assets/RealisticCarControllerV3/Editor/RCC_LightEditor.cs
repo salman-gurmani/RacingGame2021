@@ -59,11 +59,11 @@ public class RCC_LightEditor : Editor {
 			
 		} else {
 
-			EditorGUILayout.Space();
-			EditorGUILayout.LabelField("RCC uses ''Interpolation'' mode for all rigidbodies. Therefore, lights at front of the vehicle will blink while on high speeds. To fix this, select your RCC layer in LensFlare component as ignored layer. RCC_Light script will simulate lens flares depending on camera distance and angle.''.", EditorStyles.helpBox);
-			EditorGUILayout.Space();
+			//EditorGUILayout.Space();
+			//EditorGUILayout.LabelField("RCC uses ''Interpolation'' mode for all rigidbodies. Therefore, lights at front of the vehicle will blink while on high speeds. To fix this, select your RCC layer in LensFlare component as ignored layer. RCC_Light script will simulate lens flares depending on camera distance and angle.''.", EditorStyles.helpBox);
+			//EditorGUILayout.Space();
 
-			EditorGUILayout.PropertyField(serializedObject.FindProperty("flareBrightness"), new GUIContent("Lens Flare Brightness"), false);
+			//EditorGUILayout.PropertyField(serializedObject.FindProperty("flareBrightness"), new GUIContent("Lens Flare Brightness"), false);
 
 		}
 
@@ -155,8 +155,8 @@ public class RCC_LightEditor : Editor {
 				if (lights[i].GetComponent<Light> ().flare != null)
 					lights[i].GetComponent<Light> ().flare = null;
 
-				if (lights[i].GetComponent<LensFlare> ())
-					lights[i].GetComponent<LensFlare> ().brightness = 0f;
+				//if (lights[i].GetComponent<LensFlare> ())
+				//	lights[i].GetComponent<LensFlare> ().brightness = 1f;
 
 			}
 			

@@ -346,7 +346,32 @@ ModelImporter:
   - first:
       95: 9500000
     second: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body_D_30__skull_png
+    second: {fileID: 2100000, guid: 75e288778dfddd24a8332b3308f4fa0d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass_D_30
+    second: {fileID: 2100000, guid: 0d109f555fd2767488891006f42379e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lights_25_32
+    second: {fileID: 2100000, guid: 98e3ed3d34f57294a82a9e10013c012f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Matte_D_30
+    second: {fileID: 2100000, guid: 829f4b46b9dbf9f4f80c29ce90aa5e94, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wheel_D_30
+    second: {fileID: 2100000, guid: 0e438f38007368f44a40e35988cabffa, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -378,7 +403,7 @@ ModelImporter:
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 0
+    meshCompression: 3
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
