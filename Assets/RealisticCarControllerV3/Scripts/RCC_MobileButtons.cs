@@ -196,7 +196,7 @@ public class RCC_MobileButtons : RCC_Core {
 		case RCC_Settings.MobileController.Gyro:
 
 			gyroInput = Mathf.Lerp(gyroInput, Input.acceleration.x * RCCSettings.gyroSensitivity, Time.deltaTime * 5f);
-			brakeButton.transform.position = leftButton.transform.position;
+			brakeButton.transform.position = rightButton.transform.position;/////////khansa
 
 			if(steeringWheel && steeringWheel.gameObject.activeInHierarchy)
 				steeringWheel.gameObject.SetActive(false);

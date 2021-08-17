@@ -22444,9 +22444,10 @@ MonoBehaviour:
   CheckPointTraversed: 0
   positionVal: 0
   Position: 
-  TextMesh: {fileID: 5421875287018936300}
+  txtMesh: {fileID: 5421875287018936300}
   carpos: []
   isMenuScene: 0
+  isPlayer: 1
 --- !u!114 &9033988816274506740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23097,7 +23098,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9033988816772526446
 Transform:
   m_ObjectHideFlags: 0
@@ -23395,15 +23396,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 447990, guid: 660ec4b1fd79fa74096f0ab9e6cbd2ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.0026977
+      value: -0.864
       objectReference: {fileID: 0}
     - target: {fileID: 447990, guid: 660ec4b1fd79fa74096f0ab9e6cbd2ca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.1396
+      value: -0.1626
       objectReference: {fileID: 0}
     - target: {fileID: 447990, guid: 660ec4b1fd79fa74096f0ab9e6cbd2ca, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.9945
+      value: 2.1223
       objectReference: {fileID: 0}
     - target: {fileID: 447990, guid: 660ec4b1fd79fa74096f0ab9e6cbd2ca, type: 3}
       propertyPath: m_LocalRotation.w
@@ -23487,17 +23488,17 @@ PrefabInstance:
     - target: {fileID: 349494972304457675, guid: 3142c9b98f5bec14aaba5031e7a01f70,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.85355633
+      value: -1.033
       objectReference: {fileID: 0}
     - target: {fileID: 349494972304457675, guid: 3142c9b98f5bec14aaba5031e7a01f70,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.167
+      value: -0.1327
       objectReference: {fileID: 0}
     - target: {fileID: 349494972304457675, guid: 3142c9b98f5bec14aaba5031e7a01f70,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.106
+      value: 2.022
       objectReference: {fileID: 0}
     - target: {fileID: 1819142827242276449, guid: 3142c9b98f5bec14aaba5031e7a01f70,
         type: 3}

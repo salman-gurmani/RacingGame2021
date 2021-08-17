@@ -19,7 +19,7 @@ public class CarPositionManager : MonoBehaviour
     public int CheckPointTraversed = 0 ;
     public int positionVal = 0;
     public String Position;
-    public TextMesh TextMesh;
+    public TextMesh txtMesh;
     bool[] myArray = new bool[10];
     bool lapCheck = true;
     private int index = 0;
@@ -28,6 +28,7 @@ public class CarPositionManager : MonoBehaviour
     List<PositionClass> PositionsList = new List<PositionClass>();
 
     public bool isMenuScene = false;
+    public bool isPlayer = false;
 
     void Start()
     {
@@ -38,6 +39,10 @@ public class CarPositionManager : MonoBehaviour
         else
         {
             isMenuScene = false;
+        }
+
+        if (isPlayer) {
+            txtMesh.gameObject.SetActive(false);
         }
 
         GameObject PositionSystem = GameObject.FindGameObjectWithTag("PositionSystem");
@@ -64,11 +69,21 @@ public class CarPositionManager : MonoBehaviour
         }
         if(PositionsList.Count>0)
         Distance = Vector3.Distance(PositionsList.ElementAt(0).position.transform.position, this.gameObject.transform.position);
-
-
-
     }
 
+    public void SetPositionTxt(string txt) {
+
+        if (isPlayer)
+        {
+            Debug.LogError("A");
+            Toolbox.HUDListner.SetPlayerPos(txt);
+        }
+        else {
+            Debug.LogError("B");
+            txtMesh.text = txt;
+        }
+
+    }
 
     private void OnTriggerEnter(Collider other)
     {

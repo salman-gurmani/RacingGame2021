@@ -58,25 +58,23 @@ public class PositionManager : MonoBehaviour
 
                 if (pos == 1)
                 {
-                    cpm.TextMesh.text = "1st";
+                    cpm.SetPositionTxt("1st");
                 }
                 else if (pos == 2)
                 {
-                    cpm.TextMesh.text = "2nd";
-
+                    cpm.SetPositionTxt("2nd");
                 }
                 else if (pos == 3)
                 {
-                    cpm.TextMesh.text = "3rd";
+                    cpm.SetPositionTxt("3rd");
                 }
                 else if (pos == 4)
                 {
-                    cpm.TextMesh.text = "4th";
-
+                    cpm.SetPositionTxt("4th");
                 }
                 else
                 {
-                    cpm.TextMesh.text = "5th";
+                    cpm.SetPositionTxt("5th");
                 }
 
                 break;

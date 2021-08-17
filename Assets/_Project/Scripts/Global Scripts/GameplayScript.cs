@@ -256,7 +256,7 @@ public class GameplayScript : MonoBehaviour {
 
             case LevelData.LevelType.TIMESPRINT:
 
-                PlayerObject.GetComponent<CarPositionManager>().TextMesh.gameObject.SetActive(false);
+                PlayerObject.GetComponent<CarPositionManager>().txtMesh.gameObject.SetActive(false);
                 Toolbox.HUDListner.SetNStartTime(levelsManager.CurLevelData.levelTime);
                 break;
         }
@@ -264,7 +264,7 @@ public class GameplayScript : MonoBehaviour {
 
     public void RaceEndHandling()
     {
-        PlayerObject.GetComponent<CarPositionManager>().TextMesh.gameObject.SetActive(false);
+        PlayerObject.GetComponent<CarPositionManager>().txtMesh.gameObject.SetActive(false);
         playerPositionVal = PlayerObject.GetComponent<CarPositionManager>().positionVal;
 
 

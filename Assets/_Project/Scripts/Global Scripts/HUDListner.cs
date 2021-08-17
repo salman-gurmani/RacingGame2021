@@ -19,6 +19,7 @@ public class HUDListner : MonoBehaviour {
     public Text paneltiesLimitTxt;
     public Text levelTxt;
     public Text lapTxt;
+    public Text playerCarPosition;
 
     public GameObject uiParent;
     public GameObject controls;
@@ -106,6 +107,11 @@ public class HUDListner : MonoBehaviour {
 
         //RCC.SetController(1);
         
+    }
+
+    public void SetPlayerPos(string txt) {
+
+        playerCarPosition.text = txt;
     }
 
     public void FillNos() {

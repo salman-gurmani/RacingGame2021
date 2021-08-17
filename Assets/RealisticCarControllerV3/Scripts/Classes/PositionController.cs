@@ -27,40 +27,40 @@ public class PositionController : MonoBehaviour
 
             if (pos == 1)
             {
-                cpm.TextMesh.text = "1st";
+                cpm.txtMesh.text = "1st";
                 cpm.Position = "1st";
 
             }
             else if (pos == 2)
             {
-                cpm.TextMesh.text = "2nd";
+                cpm.txtMesh.text = "2nd";
                 cpm.Position = "2nd";
 
             }
             else if (pos == 3)
             {
-                cpm.TextMesh.text = "3rd";
+                cpm.txtMesh.text = "3rd";
                 cpm.Position = "3rd";
             }
             else if (pos == 4)
             {
-                cpm.TextMesh.text = "4th";
+                cpm.txtMesh.text = "4th";
                 cpm.Position = "4th";
 
             }
             else if (pos == 5)
             {
-                cpm.TextMesh.text = "5th";
+                cpm.txtMesh.text = "5th";
                 cpm.Position = "5th";
             }
             else if (pos == 6)
             {
-                cpm.TextMesh.text = "6th";
+                cpm.txtMesh.text = "6th";
                 cpm.Position = "6th";
             }
             else if (pos == 7)
             {
-                cpm.TextMesh.text = "7th";
+                cpm.txtMesh.text = "7th";
                 cpm.Position = "7th";
             }
 
@@ -167,42 +167,59 @@ public class PositionController : MonoBehaviour
                 pos++;
                 cpm.positionVal = pos;
 
+                //if (pos == 1)
+                //{
+                //    //cpm.TextMesh.text = "1st";
+                //    cpm.SetPositionTxt("1st");
+                //}
+                //else if (pos == 2)
+                //{
+                //    cpm.txtMesh.text = "2nd";
+
+                //}
+                //else if (pos == 3)
+                //{
+                //    cpm.txtMesh.text = "3rd";
+                //}
+                //else if (pos == 4)
+                //{
+                //    cpm.txtMesh.text = "4th";
+
+                //}
+                //else if (pos == 5)
+                //{
+                //    cpm.txtMesh.text = "5th";
+                //}
+                //else if (pos == 6)
+                //{
+                //    cpm.txtMesh.text = "6th";
+                //}
+                //else if (pos == 7)
+                //{
+                //    cpm.txtMesh.text = "7th";
+                //}
+
                 if (pos == 1)
                 {
-                    cpm.TextMesh.text = "1st";
+                    cpm.SetPositionTxt("1st");
                 }
                 else if (pos == 2)
                 {
-                    cpm.TextMesh.text = "2nd";
-
+                    cpm.SetPositionTxt("2nd");
                 }
                 else if (pos == 3)
                 {
-                    cpm.TextMesh.text = "3rd";
+                    cpm.SetPositionTxt("3rd");
                 }
                 else if (pos == 4)
                 {
-                    cpm.TextMesh.text = "4th";
-
+                    cpm.SetPositionTxt("4th");
                 }
-                else if (pos == 5)
+                else
                 {
-                    cpm.TextMesh.text = "5th";
+                    cpm.SetPositionTxt("5th");
                 }
-                else if (pos == 6)
-                {
-                    cpm.TextMesh.text = "6th";
-                }
-                else if (pos == 7)
-                {
-                    cpm.TextMesh.text = "7th";
-                }
-
-
-
             }
-
-
         }
     }
 }

@@ -18615,9 +18615,10 @@ MonoBehaviour:
   CheckPointTraversed: 0
   positionVal: 0
   Position: 
-  TextMesh: {fileID: 7881936485530072976}
+  txtMesh: {fileID: 7881936485530072976}
   carpos: []
   isMenuScene: 0
+  isPlayer: 1
 --- !u!114 &7059109354091056800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24562,11 +24563,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 447990, guid: 660ec4b1fd79fa74096f0ab9e6cbd2ca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.2092
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 447990, guid: 660ec4b1fd79fa74096f0ab9e6cbd2ca, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.3858
+      value: 1.4404
       objectReference: {fileID: 0}
     - target: {fileID: 447990, guid: 660ec4b1fd79fa74096f0ab9e6cbd2ca, type: 3}
       propertyPath: m_LocalRotation.w
