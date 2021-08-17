@@ -75,11 +75,11 @@ public class CarPositionManager : MonoBehaviour
 
         if (isPlayer)
         {
-            Debug.LogError("A");
+            
             Toolbox.HUDListner.SetPlayerPos(txt);
         }
         else {
-            Debug.LogError("B");
+            
             txtMesh.text = txt;
         }
 
