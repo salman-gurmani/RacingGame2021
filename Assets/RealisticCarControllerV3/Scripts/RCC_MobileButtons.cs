@@ -49,6 +49,8 @@ public class RCC_MobileButtons : RCC_Core {
 	public RCC_UIController NOSButtonSteeringWheel;
 	public GameObject gearButton;
 
+	public Transform brakeNewPos;
+
 	public RCC_UIJoystick joystick;
 
 	public RCC_Inputs inputs = new RCC_Inputs ();
@@ -196,7 +198,7 @@ public class RCC_MobileButtons : RCC_Core {
 		case RCC_Settings.MobileController.Gyro:
 
 			gyroInput = Mathf.Lerp(gyroInput, Input.acceleration.x * RCCSettings.gyroSensitivity, Time.deltaTime * 5f);
-			brakeButton.transform.position = rightButton.transform.position;/////////khansa
+			brakeButton.transform.position = brakeNewPos.position;/////////khansa
 
 			if(steeringWheel && steeringWheel.gameObject.activeInHierarchy)
 				steeringWheel.gameObject.SetActive(false);
