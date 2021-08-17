@@ -234,8 +234,8 @@ public class CarPositionManager : MonoBehaviour
     {
         if (isMenuScene)
             return;
-
-        if(PositionsList!=null)
+       
+        if (PositionsList != null && index < PositionsList.Count)
             Distance = Vector3.Distance(PositionsList.ElementAt(index).position.transform.position, this.gameObject.transform.position);
     }
 
