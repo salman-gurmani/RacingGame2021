@@ -52784,6 +52784,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 736639617515850910, guid: 617f1e0d8e243c64da14b68d7e68a44e,
+        type: 3}
+      propertyPath: brakeTiltButton
+      value: 
+      objectReference: {fileID: 1322821057}
     - target: {fileID: 4165382438861262950, guid: 617f1e0d8e243c64da14b68d7e68a44e,
         type: 3}
       propertyPath: m_Name
@@ -52791,6 +52796,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 617f1e0d8e243c64da14b68d7e68a44e, type: 3}
+--- !u!224 &1322821057 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7503645625783721359, guid: 617f1e0d8e243c64da14b68d7e68a44e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1322821056}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1323435068
 GameObject:
   m_ObjectHideFlags: 0
@@ -76519,9 +76530,10 @@ MonoBehaviour:
   CheckPointTraversed: 0
   positionVal: 0
   Position: 
-  TextMesh: {fileID: 891619625}
+  txtMesh: {fileID: 0}
   carpos: []
   isMenuScene: 0
+  isPlayer: 0
 --- !u!114 &1865028328
 MonoBehaviour:
   m_ObjectHideFlags: 0

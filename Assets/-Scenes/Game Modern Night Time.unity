@@ -52282,13 +52282,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 736639617515850910, guid: 617f1e0d8e243c64da14b68d7e68a44e,
+        type: 3}
+      propertyPath: brakeTiltButton
+      value: 
+      objectReference: {fileID: 1158931551}
     - target: {fileID: 4165382438861262950, guid: 617f1e0d8e243c64da14b68d7e68a44e,
         type: 3}
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 5886645813914045265, guid: 617f1e0d8e243c64da14b68d7e68a44e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 617f1e0d8e243c64da14b68d7e68a44e, type: 3}
+--- !u!224 &1158931551 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7503645625783721359, guid: 617f1e0d8e243c64da14b68d7e68a44e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1158931550}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1159024469
 GameObject:
   m_ObjectHideFlags: 0

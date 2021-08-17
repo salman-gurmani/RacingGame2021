@@ -49,7 +49,7 @@ public class RCC_MobileButtons : RCC_Core {
 	public RCC_UIController NOSButtonSteeringWheel;
 	public GameObject gearButton;
 
-	public Transform brakeNewPos;
+	public Transform brakeTiltButton;
 
 	public RCC_UIJoystick joystick;
 
@@ -198,9 +198,11 @@ public class RCC_MobileButtons : RCC_Core {
 		case RCC_Settings.MobileController.Gyro:
 
 			gyroInput = Mathf.Lerp(gyroInput, Input.acceleration.x * RCCSettings.gyroSensitivity, Time.deltaTime * 5f);
-			brakeButton.transform.position = brakeNewPos.position;/////////khansa
+				brakeButton.gameObject.SetActive(false);
+				brakeTiltButton.gameObject.SetActive(true);
+				/////////khansa
 
-			if(steeringWheel && steeringWheel.gameObject.activeInHierarchy)
+				if (steeringWheel && steeringWheel.gameObject.activeInHierarchy)
 				steeringWheel.gameObject.SetActive(false);
 
 			if(NOSButton && NOSButton.gameObject.activeInHierarchy != canUseNos)
