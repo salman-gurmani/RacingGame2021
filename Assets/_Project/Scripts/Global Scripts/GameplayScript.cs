@@ -258,6 +258,8 @@ public class GameplayScript : MonoBehaviour {
 
                 PlayerObject.GetComponent<CarPositionManager>().txtMesh.gameObject.SetActive(false);
                 Toolbox.HUDListner.SetNStartTime(levelsManager.CurLevelData.levelTime);
+                Toolbox.HUDListner.playerCarPosition.gameObject.SetActive(false);
+                Toolbox.HUDListner.pos.gameObject.SetActive(false);
                 break;
         }
     }

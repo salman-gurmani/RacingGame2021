@@ -20,6 +20,7 @@ public class HUDListner : MonoBehaviour {
     public Text levelTxt;
     public Text lapTxt;
     public Text playerCarPosition;
+    public Text pos;
 
     public GameObject uiParent;
     public GameObject controls;

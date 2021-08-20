@@ -805,8 +805,9 @@ GameObject:
   - component: {fileID: 5191612057484444759}
   - component: {fileID: 1380735681485852247}
   - component: {fileID: 406868664861426790}
+  - component: {fileID: 5348332835461270524}
   m_Layer: 12
-  m_Name: _AITrafficCar_8 1
+  m_Name: _AITrafficCar_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -877,9 +878,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vehicleType: 0
-  accelerationPower: 600
+  accelerationPower: 1500
   goToStartOnStop: 0
-  topSpeed: 15
+  topSpeed: 10
   minDrag: 0.3
   minAngularDrag: 0.3
   frontSensorSize: {x: 1.3, y: 1, z: 0.001}
@@ -906,6 +907,19 @@ MonoBehaviour:
   - name: Back Left
     meshTransform: {fileID: 8501853535419900}
     collider: {fileID: 5388135601883382023}
+--- !u!114 &5348332835461270524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5244605953137658817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68079631985938d4d90b2c77d35123f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  centerOfMass: {x: 0, y: 0, z: 0}
 --- !u!1 &5244669175697118373
 GameObject:
   m_ObjectHideFlags: 0
