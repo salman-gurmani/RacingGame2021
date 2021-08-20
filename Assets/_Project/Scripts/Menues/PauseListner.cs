@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
+using Michsky.UI.ModernUIPack;
 public class PauseListner : MonoBehaviour {
-
+	public GameObject tiltBtn;
+	public Slider tiltSlider;
+	
 	void OnDestroy(){
 		Toolbox.Soundmanager.UnPause_All ();
 		AdsManager.instance.ShowAd(AdsManager.AdType.INTERSTITIAL);
@@ -17,6 +20,8 @@ public class PauseListner : MonoBehaviour {
     private void Start()
     {
 		Time.timeScale = 0;
+		tiltBtn.GetComponentInChildren<SwitchManager>().isOn = Toolbox.DB.prefs.TiltControl;
+		tiltSlider.value = Toolbox.DB.prefs.TiltSensitivity;
 	}
 
     void Update(){
@@ -53,5 +58,23 @@ public class PauseListner : MonoBehaviour {
 
 		Destroy(this.gameObject);
 	}
+	public void GyroToggel()
+	{
+		Toolbox.DB.prefs.TiltControl = !Toolbox.DB.prefs.TiltControl;
+		if (Toolbox.DB.prefs.TiltControl) RCC.SetMobileController(RCC_Settings.MobileController.Gyro);
+		else RCC.SetMobileController(RCC_Settings.MobileController.TouchScreen);
+
+		tiltBtn.GetComponentInChildren<SwitchManager>().isOn = Toolbox.DB.prefs.TiltControl;
+	}
+
+	public void Set_GyroSensitivity()
+	{
+		Toolbox.DB.prefs.TiltSensitivity = tiltSlider.value;
+		RCC_Settings.Instance.gyroSensitivity = tiltSlider.value;
+	}
+
+
+
+
 
 }

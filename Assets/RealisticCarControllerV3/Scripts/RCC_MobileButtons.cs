@@ -186,6 +186,10 @@ public class RCC_MobileButtons : RCC_Core {
 			if(!leftButton.gameObject.activeInHierarchy){
 
 				brakeButton.transform.position = orgBrakeButtonPos;
+				brakeButton.gameObject.SetActive(true);
+				brakeTiltButton.gameObject.SetActive(false);
+
+
 				leftButton.gameObject.SetActive(true);
 
 			}
