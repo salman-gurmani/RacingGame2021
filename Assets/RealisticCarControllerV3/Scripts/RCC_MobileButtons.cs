@@ -48,8 +48,8 @@ public class RCC_MobileButtons : RCC_Core {
 	public RCC_UIController NOSButton;
 	public RCC_UIController NOSButtonSteeringWheel;
 	public GameObject gearButton;
-
-	public Transform brakeTiltButton;
+	public RCC_UIController brakeTiltButton;
+	//public Transform brakeTiltButton;
 
 	public RCC_UIJoystick joystick;
 
@@ -274,7 +274,8 @@ public class RCC_MobileButtons : RCC_Core {
 		}
 
 		throttleInput = GetInput(gasButton) + GetInput(gradualGasButton);
-		brakeInput = GetInput (brakeButton);
+		brakeInput = GetInput(brakeButton) + GetInput(brakeTiltButton);///////////////////////
+
 		leftInput = GetInput(leftButton);
 		rightInput = GetInput(rightButton);
 		handbrakeInput = GetInput(handbrakeButton);

@@ -31845,6 +31845,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11433454, guid: ce968ffb37fd3924b9688c04e192b1ac, type: 3}
+      propertyPath: prefs.tiltSensitivity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11433454, guid: ce968ffb37fd3924b9688c04e192b1ac, type: 3}
       propertyPath: prefs.lastSelectedLevel
       value: 0
       objectReference: {fileID: 0}
@@ -52286,6 +52290,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886645813914045265, guid: 617f1e0d8e243c64da14b68d7e68a44e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 617f1e0d8e243c64da14b68d7e68a44e, type: 3}
