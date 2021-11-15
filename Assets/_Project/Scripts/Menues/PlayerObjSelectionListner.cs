@@ -49,7 +49,7 @@ public class PlayerObjSelectionListner : MonoBehaviour
     public void Update()
     {
         xAxix = CnControls.CnInputManager.GetAxis("Horizontal");
-
+		print(xAxix);
 		rotateObj.transform.Rotate(Vector3.up, xAxix * Time.deltaTime * RotationSpeed);
     }
     private void SpawnObject(int _val)
