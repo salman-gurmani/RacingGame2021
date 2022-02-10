@@ -23,8 +23,8 @@ MonoBehaviour:
   useCocoapodsMaven: 1
   shouldAddUnityIPhoneTargetToPodfile: 1
   networks:
-  - androidEnabled: 0
-    iOSEnabled: 0
+  - androidEnabled: 1
+    iOSEnabled: 1
     bundlePresent: 0
   - androidEnabled: 1
     iOSEnabled: 1
@@ -32,35 +32,35 @@ MonoBehaviour:
   - androidEnabled: 1
     iOSEnabled: 1
     bundlePresent: 1
-  - androidEnabled: 0
-    iOSEnabled: 0
+  - androidEnabled: 1
+    iOSEnabled: 1
+    bundlePresent: 0
+  - androidEnabled: 1
+    iOSEnabled: 1
+    bundlePresent: 0
+  - androidEnabled: 1
+    iOSEnabled: 1
+    bundlePresent: 0
+  - androidEnabled: 1
+    iOSEnabled: 1
     bundlePresent: 0
   - androidEnabled: 1
     iOSEnabled: 1
     bundlePresent: 0
   - androidEnabled: 0
-    iOSEnabled: 0
-    bundlePresent: 0
-  - androidEnabled: 0
-    iOSEnabled: 0
-    bundlePresent: 0
-  - androidEnabled: 0
-    iOSEnabled: 0
-    bundlePresent: 0
-  - androidEnabled: 0
-    iOSEnabled: 0
+    iOSEnabled: 1
     bundlePresent: 1
-  - androidEnabled: 0
-    iOSEnabled: 0
+  - androidEnabled: 1
+    iOSEnabled: 1
     bundlePresent: 1
   - androidEnabled: 1
     iOSEnabled: 1
     bundlePresent: 0
-  - androidEnabled: 0
-    iOSEnabled: 0
+  - androidEnabled: 1
+    iOSEnabled: 1
     bundlePresent: 0
-  - androidEnabled: 0
-    iOSEnabled: 0
+  - androidEnabled: 1
+    iOSEnabled: 1
     bundlePresent: 0
   testDevices:
   - name: Vivo
@@ -75,4 +75,20 @@ MonoBehaviour:
   - key: Facebook AN
     value: Multiple
   - key: UnityAds
+    value: Multiple
+  - key: "AdColony\t"
+    value: Multiple
+  - key: Chartboost
+    value: Multiple
+  - key: InMobi
+    value: Multiple
+  - key: IronSource
+    value: "su67r6k2v3.skadnetwork\t"
+  - key: Maio
+    value: "v4nxqhlyqp.skadnetwork\t"
+  - key: Pangle
+    value: Multiple
+  - key: Tapjoy
+    value: Multiple
+  - key: Vungle
     value: Multiple
