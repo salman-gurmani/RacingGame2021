@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d9492b67302df428665f63dbcea5e9, type: 3}
   m_Name: 11
   m_EditorClassIdentifier: 
-  type: 2
+  type: 0
   laps: 0
-  levelTime: 60
+  levelTime: 0
   aiCarMaxSpeed: 260
   aiCarTorque: 5400
   sceneNum: 5
-  aiCars: []
+  aiCars:
+  - {fileID: 8521996573613263053, guid: 017a6cb1723079b42a4a0a6ce5d5be83, type: 3}
+  - {fileID: 1928238234375304788, guid: 52e9e692ba17f9547b3478c68ca8632c, type: 3}
+  - {fileID: 5674068858754671429, guid: 60e87328c7e13be47a219e2d7c6628f2, type: 3}
+  - {fileID: 6411087986676250469, guid: 82bfd4dd3be949a4985496a755dda33a, type: 3}

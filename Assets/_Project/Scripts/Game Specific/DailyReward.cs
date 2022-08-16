@@ -38,6 +38,7 @@ public class DailyReward : MonoBehaviour
             Debug.Log("First Time Reward: You have been rewarded 10 coins");
             //currentDay++;
             Toolbox.DB.prefs.RewardDay = currentDay;
+            reward = EachDayReward[0];
             PlayerPrefs.SetInt("FirstTimeClaim", 1);
             CollectableBtn.interactable = true;
         }

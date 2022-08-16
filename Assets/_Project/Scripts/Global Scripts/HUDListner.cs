@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class HUDListner : MonoBehaviour {
 
@@ -414,11 +415,12 @@ public class HUDListner : MonoBehaviour {
     }
     public void OnPress_HandBrake()
     {
-        handBrakeVal = 1;
+        StartTime = true;
+        brakeVal = 1;
     }
     public void OnRelease_Handbrake()
     {
-        handBrakeVal = 0;
+        brakeVal = 0;
     }
     public void OnPress_Reset() {
 

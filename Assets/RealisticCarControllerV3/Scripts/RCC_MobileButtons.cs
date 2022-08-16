@@ -43,8 +43,7 @@ public class RCC_MobileButtons : RCC_Core {
 	public RCC_UIController brakeButton;
 	public RCC_UIController leftButton;
 	public RCC_UIController rightButton;
-	public RCC_UISteeringWheelController steeringWheel;
-	public RCC_UIController handbrakeButton;
+	public RCC_UISteeringWheelController steeringWheel; 
 	public RCC_UIController NOSButton;
 	public RCC_UIController NOSButtonSteeringWheel;
 	public GameObject gearButton;
@@ -118,9 +117,7 @@ public class RCC_MobileButtons : RCC_Core {
 		if (brakeButton)
 			brakeButton.gameObject.SetActive (false);
 		if (steeringWheel)
-			steeringWheel.gameObject.SetActive (false);
-		if (handbrakeButton)
-			handbrakeButton.gameObject.SetActive (false);
+			steeringWheel.gameObject.SetActive (false); 
 		if (NOSButton)
 			NOSButton.gameObject.SetActive (false);
 		if (NOSButtonSteeringWheel)
@@ -145,9 +142,7 @@ public class RCC_MobileButtons : RCC_Core {
 		if (brakeButton)
 			brakeButton.gameObject.SetActive (true);
 		if (steeringWheel)
-			steeringWheel.gameObject.SetActive (true);
-		if (handbrakeButton)
-			handbrakeButton.gameObject.SetActive (true);
+			steeringWheel.gameObject.SetActive (true); 
 
 		if (canUseNos) {
 
@@ -277,8 +272,7 @@ public class RCC_MobileButtons : RCC_Core {
 		brakeInput = GetInput(brakeButton) + GetInput(brakeTiltButton);///////////////////////
 
 		leftInput = GetInput(leftButton);
-		rightInput = GetInput(rightButton);
-		handbrakeInput = GetInput(handbrakeButton);
+		rightInput = GetInput(rightButton); 
 		boostInput = Mathf.Clamp((GetInput(NOSButton) + GetInput(NOSButtonSteeringWheel)), 0f, 1f);
 
 		if(steeringWheel)
