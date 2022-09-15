@@ -147,16 +147,17 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
                     return;
 
                 Log("Requesting Interstitial");
-                Admob_RequestAndLoadInterstitialAd();
                 Unity_LoadIAd();
+                Admob_RequestAndLoadInterstitialAd();
 
                 break;
 
 
             case AdType.REWARDED:
 
-                Admob_RequestAndLoadRewardedAd();
+                
                 Unity_LoadRAd();
+                Admob_RequestAndLoadRewardedAd();
 
                 break;
         }
@@ -195,10 +196,15 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
 
                 #region Acctual Showing the IAD
 
-                if (admob_interstitialAd.IsLoaded())
-                    Admob_ShowInterstitialAd();
-                else
+                if (unity_isInitialized)
                     Unity_ShowIAd();
+                else if (admob_interstitialAd.IsLoaded())
+                    Admob_ShowInterstitialAd();
+
+                //if (admob_interstitialAd.IsLoaded())
+                //    Admob_ShowInterstitialAd();
+                //else
+                //    Unity_ShowIAd();
 
                 #endregion
                 break;
@@ -209,10 +215,15 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
 
             case AdType.REWARDED:
 
-                if (admob_rewardedAd.IsLoaded())
-                    Admob_ShowRewardedAd();
-                else
+                if (unity_isInitialized)
                     Unity_ShowRAd();
+                else if (admob_rewardedAd.IsLoaded())
+                    Admob_ShowRewardedAd();
+
+                //if (admob_rewardedAd.IsLoaded())
+                //    Admob_ShowRewardedAd();
+                //else
+                //    Unity_ShowRAd();
 
                 break;
         }
