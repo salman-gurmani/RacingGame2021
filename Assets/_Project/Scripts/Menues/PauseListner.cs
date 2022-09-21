@@ -8,7 +8,6 @@ public class PauseListner : MonoBehaviour {
 	
 	void OnDestroy(){
 		Toolbox.Soundmanager.UnPause_All ();
-		AdsManager.instance.ShowAd(AdsManager.AdType.INTERSTITIAL);
 		Time.timeScale = 1;
 		AudioListener.pause = false;
 	}
@@ -35,7 +34,7 @@ public class PauseListner : MonoBehaviour {
 	public void Press_Play(){
 		Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.buttonPressYes);
 		Toolbox.HUDListner.EnableHud();
-
+		AdsManager.instance.ShowAd(AdsManager.AdType.INTERSTITIAL);
 		Destroy(this.gameObject);
 	}
 	
@@ -44,7 +43,7 @@ public class PauseListner : MonoBehaviour {
 		Toolbox.GameplayScript.cameraScript.enabled = false;
 		Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.buttonPressYes);
         Toolbox.GameManager.LoadScene(SceneManager.GetActiveScene().buildIndex, true, 0);
-
+		AdsManager.instance.ShowAd(AdsManager.AdType.INTERSTITIAL);
 		Toolbox.GameplayScript.stopmap = true;
 		Destroy(this.gameObject);
 	}
@@ -55,7 +54,7 @@ public class PauseListner : MonoBehaviour {
 		Toolbox.Soundmanager.PlaySound(Toolbox.Soundmanager.buttonPressYes);
 		Toolbox.GameManager.LoadScene(Constants.sceneIndex_Menu, true, 0);
 		Toolbox.GameplayScript.stopmap = true;
-
+		AdsManager.instance.ShowAd(AdsManager.AdType.INTERSTITIAL);
 		Destroy(this.gameObject);
 	}
 	public void GyroToggel()

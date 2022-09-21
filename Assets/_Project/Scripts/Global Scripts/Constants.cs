@@ -33,6 +33,8 @@ public static class Constants{
     public const int sceneIndex_Menu = 1;
     public const int sceneIndex_Game = 2;
 
+    #region AdMob Ids
+
 #if UNITY_ANDROID
 
     public const string admobId_Banner = "ca-app-pub-8238060461072991/6149507541";
@@ -40,7 +42,7 @@ public static class Constants{
     public const string admobId_RewardedVid = "ca-app-pub-8238060461072991/8201219141";
     public const string admobId_Native = "ca-app-pub-8238060461072991/2210262530";
 
-    public const string unityId_Appkey = "4184383";
+    public const string unityId_Appkey = "4181551";
     public const string unityId_IADkey = "Interstitial_Android";
     public const string unityId_RADkey = "Rewarded_Android";
 
@@ -50,7 +52,9 @@ public static class Constants{
     public const string admobId_RewardedVid = "ca-app-pub-6351158520517644/4339139374";
     public const string admobId_Native = "";
 
-    public const string unityId_Appkey = "4184382";
+    public const string unityId_Appkey = "4181550";
+    public const string unityId_IADkey = "Interstitial_iOS";
+    public const string unityId_RADkey = "Rewarded_iOS";
 
 #endif
 
@@ -59,9 +63,9 @@ public static class Constants{
     //public const string admobId_Interstitial = "ca-app-pub-3940256099942544/1033173712";
     //public const string admobId_RewardedVid = "ca-app-pub-3940256099942544/5224354917";
     //public const string admobId_Native = "ca-app-pub-3940256099942544/2247696110";
- 
+    #endregion
 
-#region InApp
+    #region InApp
 
     public const string coins_1 = "1k_cash";
     public const string coins_2 = "3k_cash";

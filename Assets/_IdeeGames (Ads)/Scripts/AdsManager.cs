@@ -8,12 +8,13 @@ using System.Collections.Generic;
 using UnityEngine.Advertisements;
 
 
-public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnityAdsShowListener, IUnityAdsLoadListener
+public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnityAdsLoadListener, IUnityAdsShowListener
 {
     public static AdsManager instance;
 
     public Text testTxt;
     [SerializeField] private bool initializeOnStart = true;
+
     public enum AdType
     {
         BANNER,
@@ -32,7 +33,8 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
     {
         FREECOINS,
         DOUBLEREWARD,
-        SKIPLEVEL
+        SKIPLEVEL,
+        FuelAdd
     };
     private RewardType rewardType = RewardType.FREECOINS;
     private int coinsToReward = 0;
@@ -43,6 +45,12 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
     private BannerView admob_bannerView;
     private InterstitialAd admob_interstitialAd;
     private RewardedAd admob_rewardedAd;
+
+    private UnityEvent OnAdLoadedEvent;
+    private UnityEvent OnAdFailedToLoadEvent;
+    private UnityEvent OnAdOpeningEvent;
+    private UnityEvent OnAdFailedToShowEvent;
+    private UnityEvent OnAdClosedEvent;
 
     public int CoinsToReward { get => coinsToReward; set => coinsToReward = value; }
 
@@ -69,6 +77,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
 
     void Initialize()
     {
+
         MobileAds.SetiOSAppPauseOnBackground(true);
 
         List<String> deviceIds = new List<String>() { AdRequest.TestDeviceSimulator };
@@ -90,14 +99,17 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
         // Initialize the Google Mobile Ads SDK.
         MobileAds.Initialize(Admob_HandleInitCompleteAction);
 
+
         //Untiy Ads
         Advertisement.Initialize(Constants.unityId_Appkey, false, this);
     }
 
 
-    public void Log(string _str)
+    void Log(string _str)
     {
-        //Toolbox.GameManager.Log("Ads=" + _str); 
+
+        //Toolbox.GameManager.Log("Ads=" + _str);
+        Debug.Log("Ads=" + _str);
 
         if (testTxt)
         {
@@ -123,41 +135,49 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
 
         ShowAd(AdType.REWARDED);
     }
-
+    public void SetNShowRewarded(RewardType _type)
+    {
+        rewardType = _type;
+        ShowAd(AdType.REWARDED);
+    }
     public void RequestAd(AdType _type)
     {
-        Log("RequestAdFunc = Type = " + _type);
+
+#if UNITY_EDITOR
+        return;
+#endif
+
+        Log("Request Ad. Type = " + _type);
 
         switch (_type)
         {
             case AdType.BANNER:
 
-
-                if (Toolbox.DB.prefs.NoAdsPurchased)
-                    return;
-
-                Admob_RequestBannerAd();
+                if (!Toolbox.DB.prefs.NoAdsPurchased)
+                {
+                    Admob_RequestBannerAd();
+                }
 
                 break;
 
             case AdType.INTERSTITIAL:
 
+                if (!Toolbox.DB.prefs.NoAdsPurchased)
+                {
+                    Log("Requesting Interstitial");
+                    Unity_LoadIAd();
+                    Admob_RequestAndLoadInterstitialAd();
 
-                if (Toolbox.DB.prefs.NoAdsPurchased)
-                    return;
-
-                Log("Requesting Interstitial");
-                Unity_LoadIAd();
-                Admob_RequestAndLoadInterstitialAd();
+                }
 
                 break;
 
 
             case AdType.REWARDED:
 
-                
                 Unity_LoadRAd();
                 Admob_RequestAndLoadRewardedAd();
+
 
                 break;
         }
@@ -166,7 +186,8 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
 
     public void ShowAd(AdType _type)
     {
-        Log("ShowAdFunc = Type = " + _type);
+
+
 
         if (!admob_isInitialized /*|| !Toolbox.GameManager.IsNetworkAvailable()*/)
         {
@@ -181,30 +202,27 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
         {
 
             case AdType.BANNER:
-
-                if (Toolbox.DB.prefs.NoAdsPurchased)
-                    return;
-
+                //if(admob_bannerView != null)
+                //{
+                //    RequestAd(AdType.BANNER);
+                //}
+                //else
+                //{
+                //    
+                //}
                 admob_bannerView.Show();
 
                 break;
 
             case AdType.INTERSTITIAL:
 
-                if (Toolbox.DB.prefs.NoAdsPurchased)
-                    return;
-
+                //if (Toolbox.DB.prefs.NoAdsPurchased)
+                //    return;
                 #region Acctual Showing the IAD
-
                 if (unity_isInitialized)
                     Unity_ShowIAd();
                 else if (admob_interstitialAd.IsLoaded())
                     Admob_ShowInterstitialAd();
-
-                //if (admob_interstitialAd.IsLoaded())
-                //    Admob_ShowInterstitialAd();
-                //else
-                //    Unity_ShowIAd();
 
                 #endregion
                 break;
@@ -220,11 +238,6 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
                 else if (admob_rewardedAd.IsLoaded())
                     Admob_ShowRewardedAd();
 
-                //if (admob_rewardedAd.IsLoaded())
-                //    Admob_ShowRewardedAd();
-                //else
-                //    Unity_ShowRAd();
-
                 break;
         }
     }
@@ -234,7 +247,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
 
     void RewardPlayer()
     {
-        //   Toolbox.DB.prefs.GoldCoins += coinsToReward;
+        //  Toolbox.DB.prefs.GoldCoins += coinsToReward;
 
         switch (rewardType)
         {
@@ -253,7 +266,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
 
             case RewardType.SKIPLEVEL:
 
-                //  FindObjectOfType<LevelFailListner>().UnlockAndPlayNextLevel();
+                //FindObjectOfType<LevelFailListner>().UnlockAndPlayNextLevel();
 
                 break;
         }
@@ -272,7 +285,6 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
         MobileAdsEventExecutor.ExecuteInUpdate(() =>
         {
             Log("Initialization complete");
-
             admob_isInitialized = true;
 
             //Admob_RequestBannerAd();
@@ -303,7 +315,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
             return;
         }
 
-        Log("Admob Requesting Banner Ad.");
+        Log("Requesting Banner Ad.");
 
 
         if (admob_bannerView != null)
@@ -347,7 +359,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
         if (admob_interstitialAd != null && admob_interstitialAd.IsLoaded())
             return;
 
-        Log("Admob Requesting Interstitial Ad.");
+        Log("Requesting Interstitial Ad.");
 
         // Clean up interstitial before using it
         if (admob_interstitialAd != null)
@@ -355,39 +367,14 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
             admob_interstitialAd.Destroy();
         }
         admob_interstitialAd = new InterstitialAd(Constants.admobId_Interstitial);
-        admob_interstitialAd.OnAdLoaded += (sender, args) =>
-        {
-            Log("Admob Interstitial ad loaded.");
-        };
-        admob_interstitialAd.OnAdFailedToLoad += (sender, args) =>
-        {
-            Log("Admob Interstitial ad failed to load with error: " + args.LoadAdError.GetMessage());
-        };
-        admob_interstitialAd.OnAdOpening += (sender, args) =>
-        {
-            Log("Admob Interstitial ad opening.");
-        };
-        admob_interstitialAd.OnAdClosed += (sender, args) =>
-        {
-            Log("Admob Interstitial ad closed.");
-        };
-        admob_interstitialAd.OnAdDidRecordImpression += (sender, args) =>
-        {
-            Log("Admob Interstitial ad recorded an impression.");
-        };
-        admob_interstitialAd.OnAdFailedToShow += (sender, args) =>
-        {
-            Log("Admob Interstitial ad failed to show.");
-        };
-        admob_interstitialAd.OnPaidEvent += (sender, args) =>
-        {
-            string msg = string.Format("{0} (currency: {1}, value: {2}",
-                                        "Interstitial ad received a paid event.",
-                                        args.AdValue.CurrencyCode,
-                                        args.AdValue.Value);
-            Log(msg);
-        };
 
+        // Add Event Handlers
+        //admob_interstitialAd.OnAdLoaded += (sender, args) => OnAdLoadedEvent.Invoke();
+        //admob_interstitialAd.OnAdFailedToLoad += (sender, args) => OnAdFailedToLoadEvent.Invoke();
+        //admob_interstitialAd.OnAdOpening += (sender, args) => OnAdOpeningEvent.Invoke();
+        //admob_interstitialAd.OnAdClosed += (sender, args) => OnAdClosedEvent.Invoke();
+
+        // Load an interstitial ad
         admob_interstitialAd.LoadAd(Admob_CreateAdRequest());
     }
 
@@ -395,7 +382,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
     {
         if (!admob_isInitialized)
         {
-            Log("Admob Not Initialized");
+            Log("Not Initialized");
             return;
         }
 
@@ -405,7 +392,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
         }
         else
         {
-            Log("Admob Interstitial ad is not ready yet");
+            Log("Interstitial ad is not ready yet");
         }
     }
 
@@ -444,13 +431,9 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
         //admob_rewardedAd.OnAdOpening += (sender, args) => OnAdOpeningEvent.Invoke();
         //admob_rewardedAd.OnAdFailedToShow += (sender, args) => OnAdFailedToShowEvent.Invoke();
         //admob_rewardedAd.OnAdClosed += (sender, args) => OnAdClosedEvent.Invoke();
-
-        admob_interstitialAd.OnAdFailedToLoad += (sender, args) =>
-        {
-            Log("Admob RAD ad failed to load with error: " + args.LoadAdError.GetMessage());
-        };
-
         admob_rewardedAd.OnUserEarnedReward += (sender, args) => RewardPlayer();
+
+        // Create empty ad request
         admob_rewardedAd.LoadAd(Admob_CreateAdRequest());
     }
 
@@ -507,7 +490,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
         if (!unity_isInitialized)
             return;
 
-        Log("Showing Ad: UNITY IAd");
+        Debug.Log("Showing Ad: UNITY IAd");
         Advertisement.Show(Constants.unityId_IADkey, this);
     }
 
@@ -525,7 +508,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
         if (!unity_isInitialized)
             return;
 
-        Log("Showing Ad: UNITY RAd");
+        Debug.Log("Showing Ad: UNITY RAd");
         Advertisement.Show(Constants.unityId_RADkey, this);
     }
 
@@ -533,30 +516,38 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
     {
         if (adUnitId.Equals(Constants.unityId_RADkey) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
         {
-            Log("Unity Ads Rewarded Ad Completed");
+            Debug.Log("Unity Ads Rewarded Ad Completed");
             RewardPlayer();
+
+            Unity_LoadRAd();
         }
     }
 
-    public void OnUnityAdsShowFailure(string adUnitId, UnityAdsShowError error, string message)
+    public void OnUnityAdsAdLoaded(string placementId)
     {
-        Log($"Error showing Ad Unit {adUnitId}: {error.ToString()} - {message}");
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
     }
 
-    public void OnUnityAdsShowStart(string adUnitId) { }
-    public void OnUnityAdsShowClick(string adUnitId) { }
-
-    public void OnUnityAdsAdLoaded(string _adUnitId)
+    public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
     {
-        Log("Ad Loaded: " + _adUnitId);
+        //  throw new NotImplementedException();
     }
 
-    public void OnUnityAdsFailedToLoad(string adUnitId, UnityAdsLoadError error, string message)
+    public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
     {
-        Log($"Error loading Ad Unit: {adUnitId} - {error.ToString()} - {message}");
+        //throw new NotImplementedException();
     }
 
+    public void OnUnityAdsShowStart(string placementId)
+    {
+
+        //throw new NotImplementedException();
+    }
+
+    public void OnUnityAdsShowClick(string placementId)
+    {
+        // throw new NotImplementedException();
+    }
 
     #endregion
 }
